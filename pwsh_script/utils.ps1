@@ -53,3 +53,18 @@ Function reload {
     }
   }
 }
+
+# get total disk usage of the current directory
+Function size {
+    param(
+        [string]$path
+    )
+    Get-Item -Path $path | Get-ChildItem | Measure-Object -Sum Length
+}
+
+# remove multiple items from the current directory
+Function rms {
+  for ( $i = 0; $i -lt $args.count; $i++ ) {
+    Remove-Item $args[$i]
+  }
+}
