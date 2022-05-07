@@ -22,6 +22,16 @@ git log --oneline --decorate
 git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 ```
 
+- Some `log` commands I just find out, really cool stuff:
+
+```git
+git shortlog -e -s -n HEAD
+git log -L <start_line>,<end_line>:FILENAME --full-history --pretty=oneline --date-order --decorate=full --skip=0 --max-count=10
+```
+
+NOTE: The second one is really fascinating, it shows the change in the specified 
+from start to end lines.
+
 Resource: [https://stephencharlesweiss.com](https://stephencharlesweiss.com/git-rebase-interactive)
 
 3. `git add`:
@@ -65,7 +75,7 @@ git commit --amend --no-edit
 From:
 
 ```git
-git push origin main
+git push -f origin main
 ```
 
 to:
@@ -133,8 +143,8 @@ Some options in popup interactive editor:
 |---|---|---|
 | p | pick | use commit |
 | r | reword | use and edit commit message |
-| e | edit | use commit, sop for amending |
-| s | squash | use commit, meld into previous commit |
+| e | edit | use commit, stop for amending |
+| s | squash | use commit, melt into previous commit |
 | f | fixup | like 'squash', but discard commit's log |
 | x | exec | run command |
 | b | break | stop here (continue later with (1))
