@@ -182,3 +182,27 @@ git --git-dir=./.git ls-files -oc --exclude-standard
 ```git
 git grep <text>
 ```
+
+11. `gitk`
+
+- Visualize current branch's history:
+
+```git
+gitk
+```
+
+12. `git mergetool`:
+
+- This command used to fix the conflict happened between the merge commits 
+process:
+
+```git
+git mergetool
+```
+
+An interactive `vi` windows popup. 
+Choose the left-hand side branch     : `diffg LO`
+Choose the right-hand side branch    : `diffg RE`
+Choose none of these above           : `diffg BA`
+Quit this prompt and save our choice : `wq`
+
