@@ -165,3 +165,20 @@ or discard and exit the rebase process:
 ```git
 git rebase --abort
 ```
+
+9. `git ls-files`:
+
+- List files using git instead of `ls` commands in your current shell:
+
+```git
+git ls-files
+git --git-dir=./.git ls-files -oc --exclude-standard
+```
+
+10. `git grep`:
+
+- Using `git grep` instead of `grep` or `rg` inside a `git` directory:
+
+```git
+git grep <text>
+```
