@@ -200,9 +200,8 @@ process:
 git mergetool
 ```
 
-An interactive `vi` windows popup. 
-Choose the left-hand side branch     : `diffg LO`
-Choose the right-hand side branch    : `diffg RE`
-Choose none of these above           : `diffg BA`
-Quit this prompt and save our choice : `wq`
-
+* An interactive `vi` windows popup. 
+* Choose the left-hand side branch     : `diffg LO`
+* Choose the right-hand side branch    : `diffg RE`
+* Choose none of these above           : `diffg BA`
+* Quit this prompt and save our choice : `wq`
