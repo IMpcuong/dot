@@ -205,3 +205,11 @@ git mergetool
 * Choose the right-hand side branch    : `diffg RE`
 * Choose none of these above           : `diffg BA`
 * Quit this prompt and save our choice : `wq`
+
+13. `git gc`
+
+- `git gc` clean up unnecessary files and optimize the local repo
+
+```git
+git gc
+```
