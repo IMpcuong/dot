@@ -84,7 +84,7 @@ mndirs() {
 		fi
 		
 		# `2>&1`: captures `stderr` -> pipes it into `stdout` -> whole lots piped to `null` 
-		ls ./*/ > /dev/null 2>&1 ;
+	 	ls ./*/ > /dev/null 2>&1 ;
 
 		# Menu dirs recursion; `$?`: the exit status of the command above
 		if [ $? == 0 ]; then
@@ -109,10 +109,24 @@ chper() {
 	filename=$1
 	if [[ -f "$filename" ]]; then
 		# If you wanna see access rigths in human readable form: "%a" -> "%A"
-		perm=`stat -c "%a" $filename`
-		printf "%s have permissions: %d\n" $filename $perm
+		perm=`stat -c "%a" "$filename"`
+		printf "%s have permissions: %d\n" "$filename" "$perm"
 	else	
 		echo ""$filename" is not a file"
+	fi
+}
+
+# Checking if the given directory is a git repository or not.
+chrepo() {
+	dir=$1
+	[[ -d "$dir" ]] || echo "Not a readable directory's path"
+	
+	counter=`ls -halt "$dir"| grep -E "\.git" | wc -l`
+	if (( "$counter" == 1 )); then
+		cd "$dir"; branches=`git branch -a`
+		printf "List current branches\n: %s" "$branches"
+	else 
+		echo "Not a git repository" 
 	fi
 }
 
