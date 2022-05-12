@@ -104,6 +104,18 @@ mndirs() {
 	echo "Current directory: [$name]; absolute path: [$curDir]"
 }
 
+# Checking and retrieve the given file's privilege.
+chper() {
+	filename=$1
+	if [[ -f "$filename" ]]; then
+		# If you wanna see access rigths in human readable form: "%a" -> "%A"
+		perm=`stat -c "%a" $filename`
+		printf "%s have permissions: %d\n" $filename $perm
+	else	
+		echo ""$filename" is not a file"
+	fi
+}
+
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
 ### ARCHIVE EXTRACTION
 # usage: ex <file>
