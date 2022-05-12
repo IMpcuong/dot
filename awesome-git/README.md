@@ -95,10 +95,23 @@ Note: `HEAD` equal with `@`
 git fetch --prune
 ```
 
-- `git pull`: pull new branch without checkout in local first.
+- `git pull`: pull new branch without checkout in local first (both have same utility).
 
 ```git
 git pull origin develop:develop
+git checkout origin/BRANCH -b BRANCH
+```
+
+- Pull and rebase if the current branch is busy:
+
+```git
+git pull --rebase REMOTE_BRANCH LOCAL_BRANCH
+```
+
+- I'm not test this command yet (?):
+
+```git
+git pull -s recursive -X origin REMOTE_BRANCH
 ```
 
 7. `git stash`:
@@ -109,17 +122,30 @@ git pull origin develop:develop
 git stash
 ```
 
+- Naming the current stash for easy pop changes later:
+
+```git
+git stash save "<text>"
+```
+
 - Want to pop the latest changes from the stack:
 
 ```git
 git stash pop
 ```
 
-- Want to pop some specific stash from the stack:
+- Want to show stash history from the stack:
 
 ```git
+git stash show -p
 git stash list
-git stash pop YOUR_HASH
+```
+
+- And pop or apply the changes you want to rollback:
+
+```git
+git stash pop stash@{<STASH_INDEX>}
+git stash apply stash@{<STASH_INDEX>}
 ```
 
 8. `git rebase`:
@@ -197,7 +223,7 @@ gitk
 process:
 
 ```git
-git mergetool
+git mergetool -t opendiff
 ```
 
 * An interactive `vi` windows popup. 
@@ -212,4 +238,91 @@ git mergetool
 
 ```git
 git gc
+```
+
+14. `git delete` (kind of):
+
+- Delete branch locally:
+
+```git
+git checkout ANOTHER_BRANCH
+git branch -D BRANCH_NAME
+```
+
+- Delete remote branch:
+
+```git
+git push --delete origin BRANCH_NAME
+```
+
+15. `git branch`:
+
+- Common commands:
+
+```git 
+git branch -a
+git branch -r
+git branch -vv
+git branch --contains COMMIT_HASH
+```
+
+16. `git diff`
+
+- List conflicts:
+
+```git
+git diff --name-only --diff-filter=U | rg "<<<"
+```
+
+- Show changes between 2 branches:
+
+```git
+git diff <branch_1> <branch_2>
+```
+
+- Show list of files have been changed between 2 branches:
+
+```git
+git diff --name-status <branch_1>..<branch_2> >> changelog.txt
+```
+
+17. `git checkout`
+
+- Recover deleted branch:
+
+```git 
+git checkout -b BRANCH_NAME <hash>
+```
+
+- Revert the repo to latest commit has been applied:
+
+```git 
+git checkout .
+```
+
+- Revert a file to most recent commit
+
+```git 
+git checkout <path_to_file>
+git checkout HEAD -- <path_to_file>
+```
+
+- Checkout to a file from another branch:
+
+```git
+git checkout origin/BRANCH_NAME -- <file_name>
+```
+
+18. `git reset` (BE CAREFUL WITH `git reset` !!!)
+
+- Sweep the latest commit out of Earth:
+
+```git
+git reset --hard HEAD~1
+```
+
+- NOTE: recommendation because it's just revert the most recent changed file to unstaged status.
+
+```git
+git reset --soft HEAD~1
 ```
