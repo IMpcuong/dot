@@ -1,5 +1,10 @@
 # This is an archive some awesome `git` command I have been collected!
 
+## Resources:
+
+- [gist](https://gist.github.com/etoxin/1acb257550b1de60fe99)
+- [https://stephencharlesweiss.com](https://stephencharlesweiss.com/git-rebase-interactive)
+
 ## Feel free to make this archive become even larger and more useful.
 
 1. `git clone`:
@@ -31,8 +36,6 @@ git log -L <start_line>,<end_line>:FILENAME --full-history --pretty=oneline --da
 
 NOTE: The second one is really fascinating, it shows the change in the specified 
 from start to end lines.
-
-Resource: [https://stephencharlesweiss.com](https://stephencharlesweiss.com/git-rebase-interactive)
 
 3. `git add`:
 
@@ -111,7 +114,7 @@ git pull --rebase REMOTE_BRANCH LOCAL_BRANCH
 - I'm not test this command yet (?):
 
 ```git
-git pull -s recursive -X origin REMOTE_BRANCH
+git pull -s recursive -X origin
 ```
 
 7. `git stash`:
