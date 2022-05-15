@@ -1,1 +1,1 @@
-## An Archive of some utilitites script and configuration files in multiple platform
+## An Archive of some utility scripts and configuration files on multiple platforms
