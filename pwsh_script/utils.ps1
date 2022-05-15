@@ -70,7 +70,7 @@ Function rms {
 }
 
 # invocate absolut path for the given application or command.
-function which ($command) {
+Function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
   Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
