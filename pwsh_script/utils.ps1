@@ -68,3 +68,9 @@ Function rms {
     Remove-Item $args[$i]
   }
 }
+
+# invocate absolut path for the given application or command.
+function which ($command) {
+  Get-Command -Name $command -ErrorAction SilentlyContinue |
+  Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
+}
