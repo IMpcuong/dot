@@ -130,6 +130,21 @@ chrepo() {
 	fi
 }
 
+# From the GitHub API retrieve the 'created-date' of one repo.
+daterepo() {
+    username=$1
+    repo=$2
+
+    date=$( curl -s "https://api.github.com/repos/${username}/${repo}" | 
+            grep -E "created_at" | cut -d: -f2- )
+
+    if [[ $? == 1 ]]; then
+        echo "The given username ("$username") or repo ("$repo") is wrong!"
+    else 
+	echo "The created date of the repo "$repo" is: "${date//[\",]/''}""
+    fi    
+}
+
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
 ### ARCHIVE EXTRACTION
 # usage: ex <file>
