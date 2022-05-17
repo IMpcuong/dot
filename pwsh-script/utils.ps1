@@ -74,3 +74,15 @@ Function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
   Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
+
+# get the created date of an eternal repository on GitHub
+# require: scoop, curl, rip-grep
+Function crepo {
+  param(
+    [string]$username,
+    [string]$repo
+  )
+  Write-Host -NoNewline "Created date of this repository on GitHub is: "
+  curl -s "https://api.github.com/repos/${username}/${repo}" | rg 'created_at' |
+  ForEach-Object { $_.split(": ")[1] -replace '([",])', '' }
+}
