@@ -75,7 +75,7 @@ Function which ($command) {
   Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
-# get the created date of an eternal repository on GitHub
+# get the created date of an external repository on GitHub
 # require: scoop, curl, rip-grep
 Function crepo {
   param(
