@@ -25,43 +25,43 @@ realdir() {
 	echo $curDir
 }
 
-# Search through man pages options utility faster: manopt <cmd> -<opt> 
+# Search through man pages options utility faster: manopt <cmd> -<opt>
 manopt() {
 	local cmd=$1 opt=$2
 	[[ $opt == -* ]] || { (( ${#opt} == 1 )) && opt="-$opt" || opt="--$opt"; }
-	man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"' 
+	man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
 }
 
 # Split PATH variable for human readable
 splitpath() {
 	local counter=$(grep -o ':' <<< "$PATH" | wc -l)
 	IFS=':' read -ra Path <<< "$PATH"
-	
+
 	# With default the indices equal to the total elements of list/array
 	# We can define an  array with specific type of key, eg:
- 
+
 	# declare/typeset -A dirs
 	# dirs=(
 	#       [jim]=/home/jim
        	#	[silvia]=/home/silvia
        	#	[alex]=/home/alex]
 	#      )
- 
+
 	# "[@]" : it's a separated list/array of words
 	# "!"   : enumerate all indices in the list/array [echo "${!Path[@]}"]
 	for i in "${!Path[@]}"; do
 		printf "%s\t%s\n" "Path $((i+1)):" "${Path[$i]}"
-	done 
+	done
 }
 
-# Interaction menu showing all the children dirs inside 
+# Interaction menu showing all the children dirs inside
 # current dir and can traverse between all of them
 mndirs() {
 	# Get 'ls' command's location: /usr/bin/ls
 	local lsLoc=$(whereis ls | cut -d ":" -d " " -f 2)
 
-	# FIXME: if dir doesn't have children dir -> throw error	
-	# List all directory options and store in a/an list/array 
+	# FIXME: if dir doesn't have children dir -> throw error
+	# List all directory options and store in a/an list/array
 	local opts=$(${lsLoc} -d */ | cut -d " " -f 1)
 	local optsArr=($opts)
 
@@ -70,37 +70,37 @@ mndirs() {
 	local q="Quit" b="Back"
 
 	# Arithmetric expansion inside string literal: "<text> ... $((${#arr[@] + 1))"
-	
+
 	echo "Select directory you want to 'cd'."
 	select choice in "${dirs[@]}" "$b" "$q"; do
 		[[ -n "$choice" ]] || { echo "Invalid choice. Please try again!" >&2; continue; }
-		if [[ "${choice%/*}" = "$q" ]]; then 
+		if [[ "${choice%/*}" = "$q" ]]; then
  	    		{ echo "Quit prompt!" >&2; break; }
 		elif [[ "${choice%/*}" = "$b" ]]; then
  	    		{ echo "Back to father directory!" >&2; b; }
-		else 
+		else
 			cd $choice
 			echo "[cd] to [$choice]"
 		fi
-		
-		# `2>&1`: captures `stderr` -> pipes it into `stdout` -> whole lots piped to `null` 
+
+		# `2>&1`: captures `stderr` -> pipes it into `stdout` -> whole lots piped to `null`
 	 	ls ./*/ > /dev/null 2>&1 ;
 
 		# Menu dirs recursion; `$?`: the exit status of the command above
 		if [ $? == 0 ]; then
 			mndirs
-		else 
-			{ echo "There is no more directory!" >&2; break; } 
+		else
+			{ echo "There is no more directory!" >&2; break; }
 		fi
 		break # Valid choice was made; exit the prompt
 	done
-	
+
 	# local curDir=$(find ../ "$name" -exec readlink -f {} \;)
 
 	# Split the chosen line in to only dir's name
 	read -r name unused <<< "$choice"
 
-	# $curDir is global variable defined in function realdir() {}	
+	# $curDir is global variable defined in function realdir() {}
 	echo "Current directory: [$name]; absolute path: [$curDir]"
 }
 
@@ -111,7 +111,7 @@ chper() {
 		# If you wanna see access rigths in human readable form: "%a" -> "%A"
 		perm=`stat -c "%a" "$filename"`
 		printf "%s have permissions: %d\n" "$filename" "$perm"
-	else	
+	else
 		echo ""$filename" is not a file"
 	fi
 }
@@ -120,13 +120,13 @@ chper() {
 chrepo() {
 	dir=$1
 	[[ -d "$dir" ]] || echo "Not a readable directory's path"
-	
+
 	counter=`ls -halt "$dir"| grep -E "\.git" | wc -l`
 	if (( "$counter" == 1 )); then
 		cd "$dir"; branches=`git branch -a`
 		printf "List current branches\n: %s" "$branches"
-	else 
-		echo "Not a git repository" 
+	else
+		echo "Not a git repository"
 	fi
 }
 
@@ -135,14 +135,14 @@ daterepo() {
     username=$1
     repo=$2
 
-    date=$( curl -s "https://api.github.com/repos/${username}/${repo}" | 
+    date=$( curl -s "https://api.github.com/repos/${username}/${repo}" |
             grep -E "created_at" | cut -d: -f2- )
 
     if [[ $? == 1 ]]; then
         echo "The given username ("$username") or repo ("$repo") is wrong!"
-    else 
+    else
 	echo "The created date of the repo "$repo" is: "${date//[\",]/''}""
-    fi    
+    fi
 }
 
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc

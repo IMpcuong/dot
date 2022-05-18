@@ -66,7 +66,17 @@ function! ToggleGUICruft()
     endif
 endfunction
 
+function! <SID>StripTrailingWhitespaces()
+    if !&binary && &filetype != 'diff'
+        let l:save = winsaveview()
+        keeppatterns %s/\s\+$//e
+        call winrestview(l:save)
+    endif
+endfunction
+
 map <F11> <Esc>:call ToggleGUICruft()<CR>
+
+autocmd FileType c,cpp,java,go,rust,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " vim-ripgrep is now usable
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
