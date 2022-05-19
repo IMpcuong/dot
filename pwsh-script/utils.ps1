@@ -3,7 +3,7 @@
 # NOTE: mkdir === md
 Function mdg {
   mkdir $args[0]
-  cd $args[0]
+  Set-Location $args[0]
 }
 
 # new multiple folders
@@ -45,21 +45,30 @@ Function reload {
     $PROFILE.AllUsersCurrentHost,
     $PROFILE.CurrentUserAllHosts,
     $PROFILE.CurrentUserCurrentHost
-  ) | % {
+  ) | ForEach-Object {
     # $_ := refers to the current item in the pipeline.
-    if(Test-Path $_) {
+    if (Test-Path $_) {
       Write-Verbose "Running $_"
       . $_
     }
   }
 }
 
-# get total disk usage of the current directory
+# get total disk usage of the current directory in human-readable mode
 Function size {
-    param(
-        [string]$path
-    )
-    Get-Item -Path $path | Get-ChildItem | Measure-Object -Sum Length
+  param(
+    [string]$path
+  )
+  Write-Host -NoNewline "The size of the given path $path is: "
+  $defaultSize = (Get-Item -Path $path | Get-ChildItem | Measure-Object -Sum Length).Sum
+  switch -Regex ([math]::truncate([math]::log($defaultSize, 1024))) {
+    '^0' { "$defaultSize Bytes" }
+    '^1' { "{0:n2} KB" -f ($defaultSize / 1KB) }
+    '^2' { "{0:n2} MB" -f ($defaultSize / 1MB) }
+    '^3' { "{0:n2} GB" -f ($defaultSize / 1GB) }
+    '^4' { "{0:n2} TB" -f ($defaultSize / 1TB) }
+    Default { "{0:n2} PB" -f ($defaultSize / 1PB) }
+  }
 }
 
 # remove multiple items from the current directory
@@ -69,7 +78,7 @@ Function rms {
   }
 }
 
-# invocate absolut path for the given application or command.
+# invocate absolute path for the given application or command.
 Function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
   Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
@@ -85,4 +94,12 @@ Function crepo {
   Write-Host -NoNewline "Created date of this repository on GitHub is: "
   curl -s "https://api.github.com/repos/${username}/${repo}" | rg 'created_at' |
   ForEach-Object { $_.split(": ")[1] -replace '([",])', '' }
+}
+
+# Get the list details of the given command or function.
+Function details {
+  param(
+    [string]$cmd
+  )
+  Get-Command $cmd -ErrorAction SilentlyContinue | Format-List *
 }
