@@ -4,6 +4,7 @@
 
 - [gist](https://gist.github.com/etoxin/1acb257550b1de60fe99)
 - [https://stephencharlesweiss.com](https://stephencharlesweiss.com/git-rebase-interactive)
+- [StackOverflow](https://stackoverflow.com/questions/15798862/what-does-git-rev-parse-do)
 
 ## Feel free to make this archive become even larger and more useful.
 
@@ -34,7 +35,13 @@ git shortlog -e -s -n HEAD
 git log -L <start_line>,<end_line>:FILENAME --full-history --pretty=oneline --date-order --decorate=full --skip=0 --max-count=10
 ```
 
-NOTE: The second one is really fascinating, it shows the change in the specified 
+- Retrieve the latest commit message:
+
+```git
+git log --format=%B -n 1 HEAD
+```
+
+NOTE: The second one is really fascinating, it shows the change in the specified
 from start to end lines.
 
 3. `git add`:
@@ -222,18 +229,18 @@ gitk
 
 12. `git mergetool`:
 
-- This command used to fix the conflict happened between the merge commits 
-process:
+- This command used to fix the conflict happened between the merge commits
+  process:
 
 ```git
 git mergetool -t opendiff
 ```
 
-* An interactive `vi` windows popup. 
-* Choose the left-hand side branch     : `diffg LO`
-* Choose the right-hand side branch    : `diffg RE`
-* Choose none of these above           : `diffg BA`
-* Quit this prompt and save our choice : `wq`
+- An interactive `vi` windows popup.
+- Choose the left-hand side branch : `diffg LO`
+- Choose the right-hand side branch : `diffg RE`
+- Choose none of these above : `diffg BA`
+- Quit this prompt and save our choice : `wq`
 
 13. `git gc`
 
@@ -262,7 +269,7 @@ git push --delete origin BRANCH_NAME
 
 - Common commands:
 
-```git 
+```git
 git branch -a
 git branch -r
 git branch -vv
@@ -289,23 +296,32 @@ git diff <branch_1> <branch_2>
 git diff --name-status <branch_1>..<branch_2> >> changelog.txt
 ```
 
+- Show change between 2 commits: (NOTE: `^` := plumbing operator)
+- A revision range `A..B` for `git log` or `git diff` into the equivalent arguments
+  for the underlying plumbing command as `B ^A`.
+
+```git
+git diff HEAD~1..HEAD~0
+git diff HEAD~0 ^HEAD~1
+```
+
 17. `git checkout`
 
 - Recover deleted branch:
 
-```git 
+```git
 git checkout -b BRANCH_NAME <hash>
 ```
 
 - Revert the repo to latest commit has been applied:
 
-```git 
+```git
 git checkout .
 ```
 
 - Revert a file to most recent commit
 
-```git 
+```git
 git checkout <path_to_file>
 git checkout HEAD -- <path_to_file>
 ```
@@ -324,8 +340,35 @@ git checkout origin/BRANCH_NAME -- <file_name>
 git reset --hard HEAD~1
 ```
 
-- NOTE: recommendation because it's just revert the most recent changed file to unstaged status.
+- NOTE: recommendation because it's just revert the most recent changed file to un-staged status.
 
 ```git
 git reset --soft HEAD~1
+```
+
+18. `git rev-parse`
+
+- NOTE: `rev` stand for `revision`
+
+- This is an ancillary/support `plumbing` (^) command used for manipulation purpose,
+  one of the primary use cases is to print the `SHA1` hashes given a revision specific.
+
+```git
+git rev-parse HEAD
+git rev-parse --short HEAD
+```
+
+Also works for getting the current branch name
+
+```git
+git rev-parse --abbrev-ref HEAD
+```
+
+- Some options: [--verify, --git-dir, --is-inside-git-dir, --is-inside-work-tree, --branches, --remote]
+
+- If you want to find the latest commit in another branch:
+
+```git
+git rev-parse <local-branch-name>
+git rev-parse origin/<remote-branch-name>
 ```
