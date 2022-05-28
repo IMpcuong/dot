@@ -143,8 +143,22 @@ daterepo() {
     if [[ $? == 1 ]]; then
         echo "The given username ("$username") or repo ("$repo") is wrong!"
     else
-        echo "The created date of the repo "$repo" is: "${date//[\",]/''}""
+        created_date=${date//[\",]/''}
+        echo "The created date of the repo "$repo" is: "${created_date}""
     fi
+}
+
+# Synchronize forked repositories up-to-date with the latest commit.
+syncforked() {
+    username=$1
+
+    forkedRepos=(`gh repo list | grep -E "fork" |
+        grep -E "$username" |
+        cut -d " " -f 1
+    `)
+    for repo in "${forkedRepos[@]}"; do
+        gh sync $repo
+    done
 }
 
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
@@ -185,7 +199,7 @@ up () {
         limit=1
     fi
 
-    for ((i=1;i<=limit;i++)); do
+    for (( i=1; i<=limit; i++ )); do
         d="../$d"
     done
 

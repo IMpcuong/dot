@@ -109,3 +109,17 @@ Function details {
   )
   Get-Command $cmd -ErrorAction SilentlyContinue | Format-List *
 }
+
+# Synchronize multiple remote forked repositories on GitHub.
+Function syncFork {
+  param(
+    [string]$username
+  )
+  $forkedRepo = $(gh repo list | findstr "fork" | ForEach-Object {
+      $_ -split "\s{1}"
+    } | Select-String -Pattern "${username}/.+"
+  )
+  foreach ($repo in $forkedRepo) {
+    gh repo sync $repo
+  }
+}
