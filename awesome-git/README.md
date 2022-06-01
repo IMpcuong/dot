@@ -158,6 +158,12 @@ git stash pop stash@{<STASH_INDEX>}
 git stash apply stash@{<STASH_INDEX>}
 ```
 
+- Or you can apply directly from index number in the stash tree:
+
+```git
+git stash apply --index <STASH_INDEX> -q
+```
+
 8. `git rebase`:
 
 - Want to change the order of commits history of your current branch:
