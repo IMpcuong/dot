@@ -325,10 +325,16 @@ git diff --cached
 git checkout -b BRANCH_NAME <hash>
 ```
 
-- Revert the repo to latest commit has been applied:
+- Revert the repo to latest changes has been applied:
 
 ```git
 git checkout .
+```
+
+Have the same idea with the previous checkout command
+
+```git
+git restore --staged <FILES>
 ```
 
 - Revert a file to most recent commit
