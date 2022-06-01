@@ -311,6 +311,12 @@ git diff HEAD~1..HEAD~0
 git diff HEAD~0 ^HEAD~1
 ```
 
+- Show current modification that is not yet added in blob tree
+
+```git
+git diff --cached
+```
+
 17. `git checkout`
 
 - Recover deleted branch:
