@@ -16,6 +16,12 @@
 git clone -b BRANCH_NAME --single-branch git@github.com:USERNAME/REPO.git
 ```
 
+- Clone project in the specific port: (NOTE: the square bracket is not needing)
+
+```git
+git clone ssh://git@mydomain.com:[port]/USERNAME/REPO.git
+```
+
 2. `git log/reflog`:
 
 - This is some beautify _log/reflog_ commands. Try it yourself!
