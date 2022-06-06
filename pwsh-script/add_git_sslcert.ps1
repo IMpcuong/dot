@@ -9,6 +9,7 @@
 # [System.Environment]::SetEnvironmentVariable('SSLCERT_PATH', '<cert_contents>')
 
 $SSL_CERT = [System.Environment]::GetEnvironmentVariable('SSLCERT_PATH')
+# $SSL_CERT = $env:Path.Split(";") | findstr cer
 
 $GIT_PATH = Get-Command -Name git -ErrorAction SilentlyContinue | 
             Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
