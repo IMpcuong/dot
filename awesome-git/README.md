@@ -1,4 +1,4 @@
-# This is an archive some awesome `git` command I have been collected!
+# This is an archive of some awesome `git` command I have been collected!
 
 ## Resources:
 
