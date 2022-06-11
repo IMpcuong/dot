@@ -33,7 +33,7 @@ Function cpa {
 # measure total items in the current directory
 Function count {
   $curDir = Get-Location
-  Write-Host "Total items in ${curDir} is" (Get-ChildItem $args[0] | Measure-Object).Count
+  Write-Host "Total items in ${curDir} is" (Get-ChildItem $args[0] | Measure-Object).Count -ForegroundColor Green
 }
 
 # reload profile in PowerShell enviroment
@@ -122,4 +122,26 @@ Function syncFork {
   foreach ($repo in $forkedRepo) {
     gh repo sync $repo
   }
+}
+
+# Check the current version of the PowerShell interpreter.
+# Global variable: $Host === Get-Host
+Function version {
+  $core = $PSEdition
+  if (-not ($core -eq 'core')) {
+    Write-Host -NoNewLine "This PowerShell version is not the core version!" -ForegroundColor Green
+  }
+
+  (Get-Host).version || $PSVersionTable.PSversion
+}
+
+# Print help information of the given command input.
+Function man {
+  [CmdletBinding()]
+  param (
+    [Parameter()]
+    [string]
+    $cmd
+  )
+  Get-Help -Name $cmd -Examples
 }
