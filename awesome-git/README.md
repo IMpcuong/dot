@@ -101,6 +101,12 @@ git push origin +@:main
 git push origin +HEAD:main
 ```
 
+- Push/pull within a up-to-date circle with the current upstream branch:
+
+```git
+git push -u origin HEAD
+```
+
 Note: `HEAD` equal with `@`
 
 6. `git pull/fetch`:

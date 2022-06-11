@@ -1,1 +1,0 @@
-1. `git push` and set upstream branch: git push -u origin HEAD
