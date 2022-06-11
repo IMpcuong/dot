@@ -416,4 +416,5 @@ gir remote add origin git@github.com:<USERNAME>/<REPO>.git
 
 ```git
 git remote set-url origin git@github.com:<USERNAME>/<REPO>.git
+git remote set-url origin https://github.com/<USERNAME>/<REPO>.git
 ```
