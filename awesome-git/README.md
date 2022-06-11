@@ -104,6 +104,7 @@ git push origin +HEAD:main
 - Push/pull within a up-to-date circle with the current upstream branch:
 
 ```git
+git push --set-upstream origin HEAD
 git push -u origin HEAD
 ```
 
@@ -401,4 +402,18 @@ git rev-parse --abbrev-ref HEAD
 ```git
 git rev-parse <local-branch-name>
 git rev-parse origin/<remote-branch-name>
+```
+
+19. `git remote`
+
+- `git remote` add new remote repo:
+
+```git
+gir remote add origin git@github.com:<USERNAME>/<REPO>.git
+```
+
+- `git remote` set default URL to avoid asking username/passwords prompt popping off:
+
+```git
+git remote set-url origin git@github.com:<USERNAME>/<REPO>.git
 ```
