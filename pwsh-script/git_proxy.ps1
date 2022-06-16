@@ -53,7 +53,7 @@ function IPLookUp {
     [String] $proxyHost
   )
   nslookup.exe "$proxyHost" | `
-    findstr /r /c:"^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$" | `
+    findstr /r /c:"^((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])(\.(?!$)|$)){4}$" | `
     Select-Object -First 2 | `
     Select-Object -Last 1
 }
