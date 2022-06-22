@@ -295,6 +295,12 @@ git branch -vv
 git branch --contains COMMIT_HASH
 ```
 
+- List all remote branches:
+
+```git
+git ls-remote
+```
+
 16. `git diff`
 
 - List conflicts:
