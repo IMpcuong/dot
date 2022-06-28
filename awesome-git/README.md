@@ -425,3 +425,23 @@ gir remote add origin git@github.com:<USERNAME>/<REPO>.git
 git remote set-url origin git@github.com:<USERNAME>/<REPO>.git
 git remote set-url origin https://github.com/<USERNAME>/<REPO>.git
 ```
+
+20. `git config`:
+
+- Basic commands:
+
+```git
+git config -l
+git config --system --list
+git config --global -l
+```
+
+- Forget old saved credentials, re-enter username and password as required:
+
+```git
+git credential-cache exit
+git config --global credential.helper manager
+git config --global credential.helper manager-core
+```
+
+NOTE: all the saved credentials can be found in here (`Control Panel\User Accounts\Credential Manager`)
