@@ -116,6 +116,7 @@ Note: `HEAD` equal with `@`
 
 ```git
 git fetch --prune
+git -c diff.mnemonicprefix=false -c core.quotepath=false fetch origin
 ```
 
 - `git pull`: pull new branch without checkout in local first (both have same utility).
