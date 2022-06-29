@@ -16,6 +16,28 @@
 git clone -b BRANCH_NAME --single-branch git@github.com:USERNAME/REPO.git
 ```
 
+- NOTE:
+
+> - Eg: you clone only one branch (`dev`) from a remote server.
+>
+> ```git
+> git clone -b dev --single-branch <repo_https_url>
+> ```
+>
+> - In the `.git/config` you will see: that mean you can only interact with `dev` remote branch.
+>
+> ```.gitconfig
+> [remote "origin"]
+>   url = <repo_https_url>
+>   fetch = +refs/heads/dev:refs/remotes/origin/dev
+> ```
+>
+> -> You can change this to normal behavior with this command:
+>
+> ```git
+> git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+> ```
+
 - Clone project in the specific port: (NOTE: the square bracket is not needing)
 
 ```git
