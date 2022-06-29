@@ -129,14 +129,21 @@ git checkout origin/BRANCH -b BRANCH
 - Pull and rebase if the current branch is busy:
 
 ```git
+git config --global branch.autosetuprebase always
 git pull --rebase REMOTE_BRANCH LOCAL_BRANCH
 ```
 
-- I'm not test this command yet (?):
+- I'm not test this command yet (?) -> tested done, quite useful command:
 
 ```git
 git pull -s recursive -X origin
 ```
+
+- NOTE: `pull --rebase`
+
+> - Applied your commit on top of the remote commit (in the top of HEAD).
+> - Careful, as your commits will no longer be in choronological order, have rewritten the history.
+> - `--global autosetuprebase`: auto setup rebase before pull remote commit.
 
 7. `git stash`:
 
