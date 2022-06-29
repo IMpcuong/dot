@@ -84,6 +84,11 @@ git commit --amend -m YOUR_MESSAGE
 git commit --amend --no-edit
 ```
 
+- NOTE:
+
+> - After you `commit --amend --no-edit` -> then you don't want to `push` the update hash of amended commit
+> -> you can using `pull --amend` first -> then you don't have to `push -f` in your next push session.
+
 5. `git push`:
 
 - Using this shortcut instead of forcing to push the latest commit:
