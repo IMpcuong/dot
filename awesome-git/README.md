@@ -479,3 +479,24 @@ git config --global credential.helper manager-core
 ```
 
 NOTE: all the saved credentials can be found in here (`Control Panel\User Accounts\Credential Manager`)
+
+21. `git switch`:
+
+- You are in `detached HEAD` state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+- If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using `-c` with the switch command. Example:
+
+```git
+git switch -c <new-branch-name>
+```
+
+Or undo this operation with:
+
+```git
+git switch -
+```
+
+- Turn off this advice by setting config variable `advice.detachedHead` to `false`P
