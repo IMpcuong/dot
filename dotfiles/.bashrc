@@ -3,7 +3,7 @@
 # .bashrc
 ### ALIASES ###
 
-# root privileges
+# Root privileges
 alias doas="doas --"
 
 # User specific aliases and functions
@@ -12,6 +12,8 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias h='history'
 alias b='cd ..'
+
+### ALIASES ###
 
 # History format with datetime
 HISTTIMEFORMAT="%d/%m/%Y %T "
@@ -22,23 +24,23 @@ if [ -f /etc/bashrc ]; then
 fi
 
 # Get absolute path of file/dir
-realdir() {
+function realdir() {
     curDir="$(cd "$(dirname "$1")"; pwd -P)/$(basename "$1")"
     echo $curDir
 }
 
 # Search through man pages options utility faster: manopt <cmd> -<opt>
-manopt() {
+function manopt() {
     local cmd=$1 opt=$2
     [[ $opt == -* ]] || { (( ${#opt} == 1 )) && opt="-$opt" || opt="--$opt"; }
 
     # `-v`: var=val
-    # `RS`: input Record Separator, by default is a newline (\n):
+    # `RS`: input Record Separator, by default is a newline (\n)
     man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
 }
 
 # Split PATH variable for human readable
-splitpath() {
+function splitpath() {
     local counter=$(grep -o ':' <<< "$PATH" | wc -l)
     IFS=':' read -ra Path <<< "$PATH"
 
@@ -61,7 +63,7 @@ splitpath() {
 
 # Interaction menu showing all the children dirs inside
 # current dir and can traverse between all of them
-mndirs() {
+function mndirs() {
     # Get 'ls' command's location: /usr/bin/ls
     local lsLoc=$(whereis ls | cut -d ":" -d " " -f 2)
 
@@ -110,7 +112,7 @@ mndirs() {
 }
 
 # Checking and retrieve the given file's privilege.
-chper() {
+function chper() {
     filename=$1
     if [[ -f "$filename" ]]; then
         # If you wanna see access rigths in human readable form: "%a" -> "%A"
@@ -123,7 +125,7 @@ chper() {
 }
 
 # Checking if the given directory is a git repository or not.
-chrepo() {
+function chrepo() {
     dir=$1
     [[ -d "$dir" ]] || echo "Not a readable directory's path"
 
@@ -137,7 +139,7 @@ chrepo() {
 }
 
 # From the GitHub API retrieve the 'created-date' of one repo.
-daterepo() {
+function daterepo() {
     username=$1
     repo=$2
 
@@ -153,11 +155,11 @@ daterepo() {
 }
 
 # Synchronize forked repositories up-to-date with the latest commit.
-syncforked() {
+function syncforked() {
     username=$1
 
-    forkedRepos=(`gh repo list | grep -E "fork" |
-        grep -E "$username" |
+    forkedRepos=(`gh repo list | grep -E "fork" | \
+        grep -E "$username" | \
         cut -d " " -f 1
     `)
     for repo in "${forkedRepos[@]}"; do
@@ -168,8 +170,7 @@ syncforked() {
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
 ### ARCHIVE EXTRACTION
 # usage: ex <file>
-ex ()
-{
+function ex() {
     if [ -f "$1" ] ; then
         case $1 in
             *.tar.bz2)   tar xjf $1   ;;
@@ -194,7 +195,7 @@ ex ()
 }
 
 # navigation
-up () {
+function up() {
     local d=""
     local limit="$1"
 
