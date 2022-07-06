@@ -47,10 +47,10 @@ splitpath() {
 
     # declare/typeset -A dirs
     # dirs=(
-    #       [jim]=/home/jim
+    #   [jim]=/home/jim
     #	[silvia]=/home/silvia
     #	[alex]=/home/alex]
-    #      )
+    # )
 
     # "[@]" : it's a separated list/array of words
     # "!"   : enumerate all indices in the list/array [echo "${!Path[@]}"]
@@ -114,6 +114,7 @@ chper() {
     filename=$1
     if [[ -f "$filename" ]]; then
         # If you wanna see access rigths in human readable form: "%a" -> "%A"
+        # Some more indirective fields: ["%F", "%s". "%i", "%m/%M", "%l/%L", "%c/%C"]
         perm=`stat -c "%a" "$filename"`
         printf "%s have permissions: %d\n" "$filename" "$perm"
     else
