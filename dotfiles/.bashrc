@@ -143,7 +143,9 @@ function daterepo() {
     username=$1
     repo=$2
 
-    date=$( curl -s "https://api.github.com/repos/${username}/${repo}" |
+    # `-f{number}`: retrieves only the field in the given position.
+    # `-f{number}-`: retrieves all the field started from the given position to the end.
+    date=$( curl -s "https://api.github.com/repos/${username}/${repo}" | \
         grep -E "created_at" | cut -d: -f2- )
 
     if [[ $? == 1 ]]; then
