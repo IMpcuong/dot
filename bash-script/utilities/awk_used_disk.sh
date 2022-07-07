@@ -10,7 +10,7 @@ df -h | awk '{ if($3 > 0) { print $0 } }'
 awk 'BEGIN { cnt = 2; cnt ^= 4; print "Counter =", cnt }'
 
 # Logical:
-awk 'BEGIN { name = ""; if(!length(name)) print "name is empty string." }'
+awk 'BEGIN { name = ""; if (!length(name)) print "name is empty string." }'
 awk 'BEGIN { \
   ch = "\n"; if (ch == " " || ch == "\t" || ch == "\n") \
   print "Current character is whitespace." \
@@ -29,3 +29,16 @@ awk 'BEGIN { a = 10; a = a^2; print "a =", a }'
 
 # Regex: the pattern must be declared inside the `/.*/` block
 echo -e "knife\nknow\nfun\nfin\nfan\nnine" | awk '/n$/'
+
+# Loop:
+awk 'BEGIN { for (i = 1; i <= 5; ++i) print i }'
+awk 'BEGIN {i = 1; do { print i; ++i } while(i < 6) }'
+awk 'BEGIN { \
+  sum1 = 0; sum2 = 0; sum3 = 0;
+  for (i = 0; i < 20; ++i) { \
+    sum1 += i; if (sum1 % 2 == 2) print "Sum1 =", sum1; else continue; \
+    sum2 += i; if (sum2 > 50) exit(10); else print "Sum2 =", sum2; \
+    sum3 += i; if (sum3 > 50) break; else print "Sum3 =", sum3; \
+  } \
+}'
+awk 'BEGIN { sum = 0; for (i = 0; i < 20; i++) { sum += i; if (sum % 2 == 0) print sum; else continue } }'
