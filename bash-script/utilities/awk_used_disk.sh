@@ -26,3 +26,6 @@ awk 'BEGIN { a = -10; a = -a; print "a =", a }'
 # Exponetial:
 awk 'BEGIN { a = 10; a = a**2; print "a =", a }'
 awk 'BEGIN { a = 10; a = a^2; print "a =", a }'
+
+# Regex: the pattern must be declared inside the `/.*/` block
+echo -e "knife\nknow\nfun\nfin\nfan\nnine" | awk '/n$/'

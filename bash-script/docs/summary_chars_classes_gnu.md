@@ -21,10 +21,10 @@
 
 2. [Special characters resource](https://tldp.org/LDP/abs/html/special-chars.html)
 
-- `$IFS`, the special variable separating fields of input to certain commands. It defaults to whitespace.
+- `$IFS`: `Internal Field Separator` the special variable separating fields of input to certain commands. It defaults to whitespace.
 - Field definition:
 
 ```
 A discrete chunk of data expressed as a string of consecutive characters.
-Separate each field from adjacent/next fields is either whitespace or some designated character (field ~ record).
+Separate each field from adjacent/next fields is either whitespace or some designated character (record := { field } || Set(field)).
 ```
