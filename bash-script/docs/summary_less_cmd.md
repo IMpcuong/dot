@@ -1,13 +1,17 @@
-SUMMARY OF LESS COMMANDS: can be used in `vi` either!
+#### _SUMMARY OF LESS COMMANDS: can be used in `vi` either!_
 
+```
       Commands marked with * may be preceded by a number, N.
       Notes in parentheses indicate the behavior if N is given.
       A key preceded by a caret indicates the Ctrl key; thus ^K is ctrl-K.
 
   h  H                 Display this help.
   q  :q  Q  :Q  ZZ     Exit.
+```
+
  ---------------------------------------------------------------------------
 
+```
                            MOVING
 
   e  ^E  j  ^N  CR  *  Forward  one line   (or N lines).
@@ -28,8 +32,11 @@ SUMMARY OF LESS COMMANDS: can be used in `vi` either!
         ---------------------------------------------------
         Default "window" is the screen height.
         Default "half-window" is half of the screen height.
+```
+
  ---------------------------------------------------------------------------
 
+```
                           SEARCHING
 
   /pattern          *  Search forward for (N-th) matching line.
@@ -47,8 +54,11 @@ SUMMARY OF LESS COMMANDS: can be used in `vi` either!
         ^F or @  Start search at FIRST file (for /) or last file (for ?).
         ^K       Highlight matches, but don't move (KEEP position).
         ^R       Don't use REGULAR EXPRESSIONS.
+```
+
  ---------------------------------------------------------------------------
 
+```
                            JUMPING
 
   g  <  ESC-<       *  Go to first line in file (or line N).
@@ -75,8 +85,11 @@ SUMMARY OF LESS COMMANDS: can be used in `vi` either!
         Certain marks are predefined:
              ^  means  beginning of the file
              $  means  end of the file
+```
+
  ---------------------------------------------------------------------------
 
+```
                         CHANGING FILES
 
   :e [file]            Examine a new file.
@@ -86,8 +99,11 @@ SUMMARY OF LESS COMMANDS: can be used in `vi` either!
   :x                *  Examine the first (or N-th) file from the command line.
   :d                   Delete the current file from the command line list.
   =  ^G  :f            Print current file name.
+```
+
  ---------------------------------------------------------------------------
 
+```
                     MISCELLANEOUS COMMANDS
 
   -<flag>              Toggle a command line option [see OPTIONS below].
@@ -100,8 +116,11 @@ SUMMARY OF LESS COMMANDS: can be used in `vi` either!
   |Xcommand            Pipe file between current pos & mark X to shell command.
   v                    Edit the current file with $VISUAL or $EDITOR.
   V                    Print version number of "less".
+```
+
  ---------------------------------------------------------------------------
 
+```
                            OPTIONS
 
         Most options may be changed either on the command line,
@@ -203,10 +222,11 @@ SUMMARY OF LESS COMMANDS: can be used in `vi` either!
                   The F command changes files if the input file is renamed.
       ........  --use-backslash
                   Subsequent options use backslash as escape char.
-
+```
 
  ---------------------------------------------------------------------------
 
+```
                           LINE EDITING
 
         These keys can be used to edit text being entered
@@ -228,3 +248,4 @@ SUMMARY OF LESS COMMANDS: can be used in `vi` either!
  TAB ...................................... Complete filename & cycle.
  SHIFT-TAB ...................... ESC-TAB   Complete filename & reverse cycle.
  ctrl-L ................................... Complete filename, list all.
+```
