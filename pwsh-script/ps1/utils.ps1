@@ -1,42 +1,43 @@
 # --------- Util functions ---------
-# touch folder and go to this folder
+
+# Touch folder and go to this folder
 # NOTE: mkdir === md
 Function mdg {
   mkdir $args[0]
   Set-Location $args[0]
 }
 
-# new multiple folders
+# New multiple folders
 Function mdirs {
   for ( $i = 0; $i -lt $args.count; $i++ ) {
     mkdir $args[$i]
   }
 }
 
-# new multiple files
+# New multiple files
 Function mfs {
   for ( $i = 0; $i -lt $args.count; $i++ ) {
     touch $args[$i]
   }
 }
 
-# remove node_modules
+# Remove node_modules/*
 Function rmnode {
   Remove-Item .\node_modules\ -Recurse -Force
 }
 
-# copy all
+# Copy all
 Function cpa {
   Copy-Item -Path $args[0] -Destination $args[1] -Recurse
 }
 
-# measure total items in the current directory
+# Measure total items in the current directory
 Function count {
   $curDir = Get-Location
   Write-Host "Total items in ${curDir} is" (Get-ChildItem $args[0] | Measure-Object).Count -ForegroundColor Green
 }
 
-# reload profile in PowerShell enviroment
+# Reload profile in PowerShell enviroment
 Function reload {
   # @() := create an array
   # %   := alias ForEach-Object
@@ -54,7 +55,7 @@ Function reload {
   }
 }
 
-# get total disk usage of the current directory in human-readable mode
+# Get total disk usage of the current directory in human-readable mode
 Function size {
   param(
     [string]$path
@@ -71,20 +72,20 @@ Function size {
   }
 }
 
-# remove multiple items from the current directory
+# Remove multiple items from the current directory
 Function rms {
   for ( $i = 0; $i -lt $args.count; $i++ ) {
     Remove-Item $args[$i]
   }
 }
 
-# invocate absolute path for the given application or command.
+# Invocate absolute path for the given application or command.
 Function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
   Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
-# get the created date of an external repository on GitHub
+# Get the created date of an external repository on GitHub
 # require: scoop, curl, rip-grep
 Function crepo {
   param(
@@ -149,4 +150,21 @@ Function man {
     $cmd
   )
   Get-Help -Name $cmd -Examples
+}
+
+# Counting the position of the given commit's hash.
+Function commitRebase {
+  param (
+    [string]$fullHash
+  )
+  $posRebase = 1
+  $commits = @(git rev-list HEAD)
+  # Exp looping through array with `$PSItem` builtin variable: `$listCommits | ForEach-Object {"Item: [$PSItem]"}`
+  for ($i = 0; $i -lt $commits.Count; $i++) {
+    <# Action that will repeat until the condition is met #>
+    if ($fullHash -eq $commits[$i]) {
+      $posRebase += $i
+    }
+  }
+  git rebase -i HEAD~$posRebase
 }
