@@ -56,7 +56,7 @@ git log --oneline --decorate
 git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
 ```
 
-- Some `log` commands I just find out, really cool stuff:
+- Some `log` commands I just find out recently, really cool stuff:
 
 ```git
 git shortlog -e -s -n HEAD
@@ -71,6 +71,14 @@ git log --format=%B -n 1 HEAD
 
 NOTE: The second one is really fascinating, it shows the change in the specified
 from start to end lines.
+
+- Searching and listing all commits in a interval of time:
+
+```git
+git log --after="4 week" --before="0 week" --oneline
+git log --after="4 week" --before="0 week" --oneline | Measure-Object
+git log --after="4 week" --before="0 week" --oneline | findstr <commit_hash>
+```
 
 3. `git add`:
 
