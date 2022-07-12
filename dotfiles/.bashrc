@@ -36,7 +36,7 @@ function manopt() {
 
     # `-v`: var=val
     # `RS`: input Record Separator, by default is a newline (\n)
-    man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
+    man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,|\n)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
 }
 
 # Split PATH variable for human readable
@@ -91,7 +91,7 @@ function mndirs() {
         fi
 
         # `2>&1`: captures `stderr` -> pipes it into `stdout` -> whole lots piped to `null`
-        ls ./*/ > /dev/null 2>&1 ;
+        ls ./*/ >/dev/null 2>&1;
 
         # Menu dirs recursion; `$?`: the exit status of the command above
         if [ $? == 0 ]; then
