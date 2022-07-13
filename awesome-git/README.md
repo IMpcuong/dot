@@ -80,6 +80,12 @@ git log --after="4 week" --before="0 week" --oneline | Measure-Object
 git log --after="4 week" --before="0 week" --oneline | findstr <commit_hash>
 ```
 
+- Logging the specific file with a given path:
+
+```git
+git log --follow --oneline -- <file_path>
+```
+
 3. `git add`:
 
 - Add all the changes:
