@@ -494,6 +494,23 @@ git config --global credential.helper manager-core
 
 NOTE: all the saved credentials can be found in here (`Control Panel\User Accounts\Credential Manager`)
 
+- `git credential-manager`:
+
+  + `--system` > `--global` > `--local`: (example belows)
+
+```git
+git config --system -e
+git config --system credential.helper manger-core/wincred
+git config --system --unset-all credential.helper
+```
+
+- We should add our credential informations for `git:domain` in the `credential-mamnger` window as the form below:
+
+```credential
+username: <Git-SCM username>
+password: <your_access_token>
+```
+
 21. `git switch`:
 
 - You are in `detached HEAD` state. You can look around, make experimental
