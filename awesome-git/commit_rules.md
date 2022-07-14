@@ -12,6 +12,9 @@
 
 - Commit convention:
 
+  + `chore`: prefers to perform/cooperate in adding comments, fixing grammar errors, removing unused codes/docs.
+  + `minor`: prefers to perform/cooperate within tiny change in codebase general, fixing condition statements, etc, in brief/to summ up it related with developing process.
+
   > ```
   > chore: <commit_message>
   > minor: <commit_message>
