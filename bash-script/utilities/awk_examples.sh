@@ -11,8 +11,13 @@ awk 'BEGIN { cnt = 2; cnt ^= 4; print "Counter =", cnt }'
 
 # Logical:
 awk 'BEGIN { name = ""; if (!length(name)) print "name is empty string." }'
+# Both of these conventions in the `awk` command below returning the same result:
 awk 'BEGIN { \
   ch = "\n"; if (ch == " " || ch == "\t" || ch == "\n") \
+  print "Current character is whitespace." \
+}'
+awk -v ch="\n" 'BEGIN { \
+  if (ch == " " || ch == "\t" || ch == "\n") \
   print "Current character is whitespace." \
 }'
 
