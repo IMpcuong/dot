@@ -1,0 +1,265 @@
+{
+  // Programming Languages Settings:
+  // 1. Java:
+  "java.home": "AdoptOpenJDK",
+  "java.help.firstView": "gettingStarted",
+  "java.project.importOnFirstTimeStartup": "automatic",
+  "java.project.referencedLibraries": [
+    "lib/**/*.jar",
+    "junit-platform-console-standalone.jar"
+  ],
+  "java.test.config": [
+    {
+      "name": "myConfiguration",
+      "workingDirectory": "${workspaceFolder}",
+      "args": [
+        "-c",
+        "com.test"
+      ],
+      "vmargs": [
+        "-Xmx512M"
+      ],
+      "env": {
+        "key": "value"
+      }
+    }
+  ],
+  "redhat.telemetry.enabled": true,
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  // 2. JavaScript / TypeScript / HTML / CSS:
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "javascript.inlayHints.parameterNames.enabled": "all",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.inlayHints.parameterNames.enabled": "all",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.matchBrackets": "never"
+  },
+  "[css]": {
+    "editor.matchBrackets": "never"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "json.maxItemsComputed": 10000,
+  "emmet.showSuggestionsAsSnippets": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "vue"
+  ],
+  // 3. Python / IPythonNoteBook:
+  "python.languageServer": "Pylance",
+  "python.defaultInterpreterPath": "python.exe",
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "notebook.lineNumbers": "on",
+  "jupyter.interactiveWindowMode": "perFile",
+  // 4. Golang:
+  "[go]": {
+    "editor.insertSpaces": false,
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    },
+    "editor.suggest.snippetsPreventQuickSuggestions": false
+  },
+  // Git Configs:
+  "git.autofetch": true,
+  "gitlens.gitCommands.closeOnFocusOut": true,
+  "gitlens.defaultDateLocale": null,
+  "gitlens.gitCommands.skipConfirmations": [
+    "fetch:command",
+    "switch:command",
+    "push:command"
+  ],
+  // Editor Configs:
+  "files.trimTrailingWhitespace": true,
+  "files.autoSave": "afterDelay",
+  "explorer.confirmDragAndDrop": false,
+  "editor.formatOnPaste": true,
+  "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.fontFamily": "'CaskaydiaCove NF', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontLigatures": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.suggestSelection": "first",
+  "editor.cursorSmoothCaretAnimation": true,
+  "editor.suggest.preview": true,
+  "editor.snippetSuggestions": "top",
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": false
+  },
+  "editor.unicodeHighlight.ambiguousCharacters": false,
+  "editor.renderControlCharacters": true,
+  "editor.formatOnSave": true,
+  "editor.lineHeight": 25,
+  "editor.wordWrap": "on",
+  "editor.multiCursorModifier": "ctrlCmd",
+  "editor.fontSize": 12,
+  "window.autoDetectHighContrast": false,
+  // Tabnine Configs:
+  "tabnine.experimentalAutoImports": true,
+  // "kite.showWelcomeNotificationOnStartup": false,
+  // Terminal integrated Configs:
+  "terminal.integrated.scrollback": 100,
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.copyOnSelection": true,
+  "terminal.integrated.lineHeight": 0,
+  "terminal.integrated.profiles.windows": {
+    "PowerShell -NoProfile": {
+      "source": "PowerShell",
+      "args": [
+        "-NoProfile"
+      ]
+    }
+  },
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.tabs.enabled": true,
+  "terminal.explorerKind": "external",
+  "terminal.external.windowsExec": "C:\\Program Files\\WindowsApps\\wt.exe",
+  "terminal.integrated.commandsToSkipShell": [
+    "language-julia.interrupt"
+  ],
+  // "terminal.integrated.fontFamily": "Meslo LG M DZ for Powerline",
+  // "terminal.integrated.fontFamily": "'monospace'",
+  // Workbench Settings:
+  "workbench.colorTheme": "Evondev Dracula Night Contrast",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.preferredLightColorTheme": "Dracula Soft",
+  "workbench.preferredHighContrastColorTheme": "Dracula Soft",
+  "workbench.preferredDarkColorTheme": "Dracula Soft",
+  "workbench.editorAssociations": {
+    "*.pyc": "default",
+    "*.ipynb": "jupyter-notebook",
+    "*.xlsx": "default",
+    "*.skr": "default"
+  },
+  // Live Server Settings:
+  "liveServer.settings.donotVerifyTags": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  // k8s Configs:
+  "vs-kubernetes": {
+    "vscode-kubernetes.helm-path.linux": "/home/helm",
+    "vscode-kubernetes.minikube-path.linux": "/home/minikube",
+    "vscode-kubernetes.kubectl-path.linux": "/home/kubectl/kubectl"
+  },
+  "rsp-ui.enableStartServerOnActivation": [
+    {
+      "id": "redhat.vscode-community-server-connector",
+      "name": "Community Server Connector",
+      "startOnActivation": true
+    }
+  ],
+  // Users Languages Configs:
+  "cSpell.language": "en,en-GB,en-US",
+  "cSpell.enableFiletypes": [
+    "sql"
+  ],
+  "cSpell.userWords": [
+    "autofetch",
+    "axios",
+    "Caskaydia",
+    "classpath",
+    "commandline",
+    "committerdate",
+    "Conda",
+    "donot",
+    "easymotion",
+    "Evondev",
+    "factorypath",
+    "hlsearch",
+    "incsearch",
+    "Intellicode",
+    "ipynb",
+    "isocalendar",
+    "kubectl",
+    "kubernetes",
+    "lowlighter",
+    "minikube",
+    "mkdir",
+    "monospace",
+    "powerline",
+    "Pylance",
+    "rustlang",
+    "tabnine",
+    "vmargs",
+    "vsintellicode",
+    "Vuex"
+  ],
+  // Remote SSH Configs:
+  "remote.SSH.defaultExtensions": [
+    "gitpod.gitpod-remote-ssh"
+  ],
+  "remote.SSH.configFile": "",
+  "remote.SSH.remotePlatform": {
+    "rustlang-rustlings": "linux"
+  },
+  // UNUSED:
+  // VSCode Vim Editor settings:
+  "vim.easymotion": true,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.hlsearch": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "d"
+      ],
+      "after": [
+        "d",
+        "d"
+      ]
+    }
+  ],
+  "vim.insertModeKeyBindings": [
+    {
+      "before": [
+        "j",
+        "j"
+      ],
+      "after": [
+        "<Esc>"
+      ]
+    }
+  ],
+  "vim.handleKeys": {
+    "<C-d>": true
+  },
+  "vim.leader": "<space>",
+  // Rainbow settings:
+  "bracket-pair-colorizer-2.activeScopeCSS": [
+    "borderStyle : solid",
+    "borderWidth : 1px",
+    "borderColor : {color}",
+    "opacity: 0.5"
+  ],
+  "bracket-pair-colorizer-2.showVerticalScopeLine": true,
+  "bracket-pair-colorizer-2.excludedLanguages": [],
+  // VSIntellicode:
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  // Conda IPythonNoteBook:
+  "python.pythonPath": "python.exe"
+}
