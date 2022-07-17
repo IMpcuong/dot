@@ -2,9 +2,9 @@
 
 - Keywords:
 
-  + `minor`: the new patch has a small range of effect to the entire codebase.
-  + `medium`: the new patch has an intermediate range of effect to the entire codebase.
-  + `major`: the new patch has a ginormous range of effect to the entire codebase.
+  - `minor`: the new patch has a small range of effect to the entire codebase.
+  - `medium`: the new patch has an intermediate range of effect to the entire codebase.
+  - `major`: the new patch has a ginormous range of effect to the entire codebase.
 
 1. With a small/tiny or minor change that will not affect codebase's structure:
 
@@ -12,8 +12,8 @@
 
 - Commit convention:
 
-  + `chore`: prefers to perform/cooperate in adding comments, fixing grammar errors, removing unused codes/docs.
-  + `minor`: prefers to perform/cooperate within tiny change in codebase general, fixing condition statements, etc, in brief/to summ up it related with developing process.
+  - `chore`: prefers to perform/cooperate in adding comments, fixing grammar errors, removing unused codes/docs.
+  - `minor`: prefers to perform/cooperate within tiny change in codebase general, fixing condition statements, etc, in brief/to sum up it related with developing process.
 
   > ```
   > chore: <commit_message>
@@ -27,7 +27,7 @@
 
 2. With a medium affection to the codebase's structure, the new patch could apply modification in the approximation with the modules level:
 
-- Examples: modify/extend/enrich old feature, new small features, rearrange order of a module tree, new methodology to appoach the business logical, etc.
+- Examples: modify/extend/enrich old feature, new small features, rearrange order of a module tree, new methodology to approach the business logical, etc.
 
 - Commit conventions: (inside brackets is optional)
 

@@ -123,7 +123,7 @@ git commit --amend --no-edit
 - NOTE:
 
 > - After you `commit --amend --no-edit` -> then you don't want to `push` the update hash of amended commit
-> -> you can using `pull --amend` first -> then you don't have to `push -f` in your next push session.
+>   -> you can using `pull --amend` first -> then you don't have to `push -f` in your next push session.
 
 5. `git push`:
 
@@ -496,7 +496,7 @@ NOTE: all the saved credentials can be found in here (`Control Panel\User Accoun
 
 - `git credential-manager`:
 
-  + `--system` > `--global` > `--local`: (example belows)
+  - `--system` > `--global` > `--local`: (example belows)
 
 ```git
 git config --system -e
@@ -504,7 +504,7 @@ git config --system credential.helper manger-core/wincred
 git config --system --unset-all credential.helper
 ```
 
-- We should add our credential informations for `git:domain` in the `credential-mamnger` window as the form below:
+- We should add our credential informations for `git:domain` in the `credential-manager` window as the form below:
 
 ```credential
 username: <Git-SCM username>
@@ -514,11 +514,11 @@ password: <your_access_token>
 21. `git switch`:
 
 - You are in `detached HEAD` state. You can look around, make experimental
-changes and commit them, and you can discard any commits you make in this
-state without impacting any branches by switching back to a branch.
+  changes and commit them, and you can discard any commits you make in this
+  state without impacting any branches by switching back to a branch.
 
 - If you want to create a new branch to retain commits you create, you may
-do so (now or later) by using `-c` with the switch command. Example:
+  do so (now or later) by using `-c` with the switch command. Example:
 
 ```git
 git switch -c <new-branch-name>
