@@ -385,6 +385,13 @@ git diff HEAD~0 ^HEAD~1
 git diff --cached
 ```
 
+- Show list filenames of all modified files in a specific commit hash:
+
+```git
+git diff-tree --no-commit-id --name-only -r <COMMIT_HASH>
+```
+
+
 17. `git checkout`
 
 - Recover deleted branch:
@@ -530,4 +537,4 @@ Or undo this operation with:
 git switch -
 ```
 
-- Turn off this advice by setting config variable `advice.detachedHead` to `false`P
+- Turn off this advice by setting config variable `advice.detachedHead` to `false`.
