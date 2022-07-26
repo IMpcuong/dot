@@ -2,13 +2,19 @@
 
 $procs = $(tasklist /fi "STATUS eq running" | findstr /i $args[0])
 
-$procIDs = $($procs | ForEach-Object {
+$procObjs = $($procs | ForEach-Object {
   [PSCustomObject] @{
-    "PID" = $_.Substring(25, 9).Trim() -as [Int]
+    "Image" = $_.Substring(0, 25).Trim()
+    "PID"   = $_.Substring(25, 9).Trim() -as [Int]
   }
 })
 
-foreach ($proc in $procIDs) {
-  <# $id is current $pidList item #>
-  taskkill /pid $proc.PID /f
+taskkill /f /im ($procObjs | Select-Object -First 1).Image
+
+# FIXME: the condition statement is always return true, beacause of the `$procs || $procObjs` always have length greater than `0`.
+if (0 -ne $procs.Length) {
+  foreach ($proc in $procObjs) {
+    <# $proc is current $procObjs item #>
+    taskkill /f /pid $proc.PID
+  }
 }
