@@ -95,13 +95,15 @@ Function crepo {
   Write-Host -NoNewline "Created date of this repository on GitHub is: "
 
   # NOTE: `curl` == `Invoke-WebRequest`
-  Invoke-WebRequest -s "https://api.github.com/repos/${username}/${repo}" | rg 'created_at' |
-  ForEach-Object { $_.split(": ")[1] -replace '([",])', '' }
+  Invoke-WebRequest -s "https://api.github.com/repos/${username}/${repo}" | `
+    rg 'created_at' | `
+    ForEach-Object { $_.split(": ")[1] -replace '([",])', '' }
 
   if (-not $?) {
     <# Action to perform if the condition is true #>
-    (Invoke-WebRequest -useb "https://api.github.com/repos/${username}/${repo}" |
-    Select-Object -ExpandProperty Content | ConvertFrom-Json).created_at
+    (Invoke-WebRequest -useb "https://api.github.com/repos/${username}/${repo}" | `
+      Select-Object -ExpandProperty Content | `
+      ConvertFrom-Json).created_at
   }
 }
 
