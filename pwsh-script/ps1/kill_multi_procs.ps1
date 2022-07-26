@@ -1,5 +1,7 @@
 # Resource: https://stackoverflow.com/questions/47335781/extract-columns-from-text-based-table-output
 
+# NOTE: must run this script with administrator permissions in `Windows Powershell`.
+
 $procs = $(tasklist /fi "STATUS eq running" | findstr /i $args[0])
 
 $procObjs = $($procs | ForEach-Object {
