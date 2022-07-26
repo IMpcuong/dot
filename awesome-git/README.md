@@ -69,7 +69,7 @@ git log -L <start_line>,<end_line>:FILENAME --full-history --pretty=oneline --da
 git log --format=%B -n 1 HEAD
 ```
 
-NOTE: The second one is really fascinating, it shows the change in the specified
+NOTE: The second one is really fascinating, it shows the changed parts in the specified file
 from start to end lines.
 
 - Searching and listing all commits in a interval of time:
