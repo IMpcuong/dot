@@ -8,36 +8,37 @@ if ($browser.Proxy) {
 }
 
 $proxyAddr = [System.Net.WebProxy]::GetDefaultProxy().Address
-if ($null -eq $proxyAddr) {
-  $proxies = (Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings')
+if ($null -ne $proxyAddr) {
+  # When the Windows system was already declared `ProxyServer` property.
+  $proxyPort = $proxyAddr.Port
+  $proxyHost = $proxyAddr.Host
 
+  $ipV4 = IPLookUp "${proxyHost}"
+  ActiveProxyGit "${ipV4}:${proxyPort}"
+  return
+}
+
+$proxies = (Get-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Internet Settings')
+if ($null -ne $proxies.ProxyServer) {
   $proxyServer = $proxies.ProxyServer
   $proxyHost = ($proxyServer.Split(":") | Select-Object -First 2 | Select-Object -Last 1) -replace "\/", ""
   $proxyPort = $proxyServer.Split(":") | Select-Object -First 3 | Select-Object -Last 1
 
   $ipV4 = IPLookUp "${proxyHost}"
   ActiveProxyGit "$ipV4" "$proxyPort"
-
-  # Script addresess
-  if ($null -eq $proxyAddr) {
-    $proxyAddr = $proxies.AutoConfigURL
-    $proxyHost = ($proxyAddr.Split("/") | Select-Object -First 3 | Select-Object -Last 1).Split(":") | `
-      Select-Object -First 1
-    $proxyPort = ($proxyAddr.Split("/") | Select-Object -First 3 | Select-Object -Last 1).Split(":") | `
-      Select-Object -First 2 | `
-      Select-Object -Last 1
-
-    $ipV4 = IPLookUp "${proxyHost}"
-    ActiveProxyGit $ipV4 $proxyPort
-  }
+  return
 }
 
-# When the system was already declared `ProxyServer` property
-$proxyPort = $proxyAddr.Port
-$proxyHost = $proxyAddr.Host
+# Script addresess
+$proxyAddr = $proxies.AutoConfigURL
+$proxyHost = ($proxyAddr.Split("/") | Select-Object -First 3 | Select-Object -Last 1).Split(":") | `
+  Select-Object -First 1
+$proxyPort = ($proxyAddr.Split("/") | Select-Object -First 3 | Select-Object -Last 1).Split(":") | `
+  Select-Object -First 2 | `
+  Select-Object -Last 1
 
 $ipV4 = IPLookUp "${proxyHost}"
-ActiveProxyGit "${ipV4}:${proxyPort}"
+ActiveProxyGit $ipV4 $proxyPort
 
 function ActiveProxyGit {
   param (
