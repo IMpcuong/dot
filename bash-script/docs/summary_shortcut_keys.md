@@ -10,3 +10,4 @@
 | Ctrl + D | Escape from current shell right away. |
 | Ctrl + Z | Re-allocate the running process to the background stage. |
 | Ctrl + W | Deleting backward word by word started from the current position of the cursor. |
+| Alt  + D | Opposite/paradoxical/contrary/contradictory with `Ctrl + W` action. |
