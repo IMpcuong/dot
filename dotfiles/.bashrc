@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# .bashrc
-### ALIASES ###
+# .bashrc: with some useful utility functions.
 
+### ALIASES ###
 # Root privileges
 alias doas="doas --"
 
@@ -10,9 +10,9 @@ alias doas="doas --"
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias os='cat /etc/*release'
 alias h='history'
 alias b='cd ..'
-
 ### ALIASES ###
 
 # History format with datetime
@@ -114,13 +114,13 @@ function mndirs() {
 # Checking and retrieve the given file's privilege.
 function chper() {
     filename=$1
-    if [[ -f "$filename" ]]; then
+    if [[ -f "${filename}" ]]; then
         # If you wanna see access rigths in human readable form: "%a" -> "%A"
         # Some more indirective fields: ["%F", "%s". "%i", "%m/%M", "%l/%L", "%c/%C"]
-        perm=`stat -c "%a" "$filename"`
-        printf "%s have permissions: %d\n" "$filename" "$perm"
+        perm=`stat -c "%a" "${filename}"`
+        printf "%s have permissions: %d\n" "${filename}" "${perm}"
     else
-        echo ""$filename" is not a file"
+        echo "'${filename}' is not a file"
     fi
 }
 
@@ -152,7 +152,7 @@ function daterepo() {
         echo "The given username ("$username") or repo ("$repo") is wrong!"
     else
         created_date=${date//[\",]/''}
-        echo "The created date of the repo "$repo" is: "${created_date}""
+        echo "The created date of the repo "${repo}" is: "${created_date}""
     fi
 }
 
@@ -206,7 +206,7 @@ function up() {
         limit=1
     fi
 
-    for (( i=1; i<=limit; i++ )); do
+    for (( i = 1; i <= limit; i++ )); do
         d="../$d"
     done
 
