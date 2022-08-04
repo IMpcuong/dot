@@ -547,3 +547,28 @@ git switch -
 ```
 
 - Turn off this advice by setting config variable `advice.detachedHead` to `false`.
+
+22. `git clean` and `git rm`:
+
+- Remove untracked files: show files and directories will be deleted (dry run) -> then delete (interactive or forcing through)!
+
+  - `-n` ~ perform a “dry run” and show you what files and directories will be deleted.
+  - `-i` ~ delete in interactive mode.
+  - `-d` ~ remove untracked directories.
+  - `-f` ~ force delete the untracked files and directories.
+  - `-x` ~ remove the all ignored and untracked files.
+  - `-X` ~ remove only the ignored files and directories.
+
+```bash
+git clean -d -n
+git clean -d -n src/
+git clean -d -f
+git clean -d -i
+git clean -d -n -x
+git clean -d -n -X
+```
+
+```bash
+git worktree
+git rm <tracked_files>
+```
