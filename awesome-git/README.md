@@ -86,6 +86,12 @@ git log --after="4 week" --before="0 week" --oneline | findstr <commit_hash>
 git log --follow --oneline -- <file_path>
 ```
 
+- Showing the different between two branches: almost have the same effectiveness as the `git diff`.
+
+```bash
+git log --oneline --graph --decorate --abbrev-commit <BRANCH_NAME>..<BRANCH_NAME>
+```
+
 3. `git add`:
 
 - Add all the changes:
@@ -104,6 +110,7 @@ git add -u
 
 ```git
 git add -p
+git add --patch
 ```
 
 4. `git commit`:
@@ -362,6 +369,8 @@ git diff --name-only --diff-filter=U | rg "<<<"
 
 ```git
 git diff <branch_1> <branch_2>
+git diff <branch_1>..<branch_2>
+git diff --name-only <branch_name>..origin/<branch_name>
 ```
 
 - Show list of files have been changed between 2 branches:
@@ -397,7 +406,7 @@ git diff-tree --no-commit-id --name-only -r <COMMIT_HASH>
 - Recover deleted branch:
 
 ```git
-git checkout -b BRANCH_NAME <hash>
+git checkout -b <BRANCH_NAME> <COMMIT_HASH>
 ```
 
 - Revert the repo to latest changes has been applied:
