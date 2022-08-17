@@ -2,6 +2,8 @@
 syntax on
 syntax enable
 
+colorscheme gruvbox
+
 set encoding=utf-8  " The encoding displayed.
 set fileencoding=utf-8  " The encoding written to file.
 set background=dark
@@ -10,8 +12,6 @@ set shell=pwsh
 set splitbelow
 set termwinsize=18x0
 set pythonthreehome=python39.dll
-
-cmap vt vertical terminal
 
 set noerrorbells
 set novisualbell
@@ -52,10 +52,8 @@ Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
-colorscheme gruvbox
-
 if executable('rg')
-    let g:rg_derive_root='true'
+  let g:rg_derive_root='true'
 endif
 
 function! ToggleGUICruft()
@@ -76,6 +74,8 @@ endfunction
 
 map <F11> <Esc>:call ToggleGUICruft()<CR>
 
+cmap vt vertical terminal
+
 autocmd FileType c,cpp,java,go,rust,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 " vim-ripgrep is now usable
@@ -91,7 +91,7 @@ let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline_theme = 'transparent'
 
 " Change default keymap for convenient usage
-" <space>+h = :h
+" <space> + h = :h
 nnoremap <leader>h :wincmd h<CR>
 nnoremap <leader>j :wincmd j<CR>
 nnoremap <leader>k :wincmd k<CR>
