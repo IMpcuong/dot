@@ -18,6 +18,10 @@ alias b='cd ..'
 # History format with datetime
 HISTTIMEFORMAT="%d/%m/%Y %T "
 
+# Customizing the prompt:
+# For more informations please visit: https://github.com/IMpcuong/live-and-learn/blob/main/08162022.md
+export PS1="[\A \u@\h \w]\$ "
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
