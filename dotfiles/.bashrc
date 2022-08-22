@@ -22,6 +22,11 @@ HISTTIMEFORMAT="%d/%m/%Y %T "
 # For more informations please visit: https://github.com/IMpcuong/live-and-learn/blob/main/08162022.md
 export PS1="[\A \u@\h \w]\$ "
 
+# NOTE: when using the backslash (\) line continuation character (placed at the end of the line).
+# Notice that the greater-than symbol (>) will appear at the start of any newline was showed up.
+# It is the secondary prompt string and can be customized by changing the `$PS2` environment variable.
+export PS2="line continued: "
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
