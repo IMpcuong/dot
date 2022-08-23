@@ -62,6 +62,7 @@ function _splitpath_alt() {
     sed 's/:/\n/g' <<< "$PATH" || tr ":" "\n" <<< "$PATH"
 }
 
+### From: https://github.com/rwxrob/dot/blob/c6b19d0c1dfe1b3a5b7dc013b288b9c1fb0b8467/.bashrc#L17.
 function _have() {
     type "$1" &>/dev/null
 }
@@ -70,6 +71,7 @@ function _have() {
 function _source_if() {
     [[ -r "$1" ]] && source "$1"
 }
+### End From: https://github.com/rwxrob/dot/blob/c6b19d0c1dfe1b3a5b7dc013b288b9c1fb0b8467/.bashrc#L18.
 
 # Split PATH variable for human readable.
 function splitpath() {
@@ -203,7 +205,7 @@ function syncforked() {
 }
 
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
-### ARCHIVE EXTRACTION:
+# Archive extraction.
 # Usage: `ex <file>``.
 function ex() {
     if [ -f "$1" ] ; then
