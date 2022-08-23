@@ -3,6 +3,7 @@
 # .bashrc: with some useful utility functions.
 
 ### ALIASES ###
+
 # Root privileges
 alias doas="doas --"
 
@@ -13,7 +14,10 @@ alias mv='mv -i'
 alias os='cat /etc/*release'
 alias h='history'
 alias b='cd ..'
+
 ### ALIASES ###
+
+### Special/Builtin Variables ###
 
 # History format with datetime
 HISTTIMEFORMAT="%d/%m/%Y %T "
@@ -27,10 +31,14 @@ export PS1="[\A \u@\h \w]\$ "
 # It is the secondary prompt string and can be customized by changing the `$PS2` environment variable.
 export PS2="line continued: "
 
+### Special/Builtin Variables ###
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
+
+# ---------- Utilitty functions ----------
 
 # Get absolute path of file/dir
 function realdir() {
@@ -51,7 +59,16 @@ function manopt() {
 # NOTE:
 # `tr`: Translate or delete characters. See: `man tr`.
 function _splitpath_alt() {
-  sed 's/:/\n/g' <<< "$PATH" || tr ":" "\n" <<< "$PATH"
+    sed 's/:/\n/g' <<< "$PATH" || tr ":" "\n" <<< "$PATH"
+}
+
+function _have() {
+    type "$1" &>/dev/null
+}
+
+# NOTE: `-r` ~ file has read permission (for the user running the test).
+function _source_if() {
+    [[ -r "$1" ]] && source "$1"
 }
 
 # Split PATH variable for human readable.
@@ -232,3 +249,5 @@ function up() {
     fi
 }
 ### End From.
+
+# ---------- Utilitty functions ----------
