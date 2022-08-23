@@ -35,4 +35,5 @@ set /P N=Enter number to choose option:
     goto :end-switch
 
 :end-switch
-  echo End this prompt.
+
+echo End this prompt.
