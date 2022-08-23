@@ -38,22 +38,28 @@ function realdir() {
     echo $curDir
 }
 
-# Search through man pages options utility faster: manopt <cmd> -<opt>
+# Search through man pages options utility faster: `manopt <cmd> -<opt>`.
 function manopt() {
     local cmd=$1 opt=$2
     [[ $opt == -* ]] || { (( ${#opt} == 1 )) && opt="-$opt" || opt="--$opt"; }
 
-    # `-v`: var=val
-    # `RS`: input Record Separator, by default is a newline (\n)
+    # `-v`: `var=val`.
+    # `RS`: input Record Separator, by default is a newline (\n).
     man "$cmd" | col -b | awk -v opt="$opt" -v RS= '$0 ~ "(^|,|\n)[[:blank:]]+" opt "([[:punct:][:space:]]|$)"'
 }
 
-# Split PATH variable for human readable
+# NOTE:
+# `tr`: Translate or delete characters. See: `man tr`.
+function _splitpath_alt() {
+  sed 's/:/\n/g' <<< "$PATH" || tr ":" "\n" <<< "$PATH"
+}
+
+# Split PATH variable for human readable.
 function splitpath() {
     local counter=$(grep -o ':' <<< "$PATH" | wc -l)
     IFS=':' read -ra Path <<< "$PATH"
 
-    # With default the indices equal to the total elements of list/array
+    # With default the indices equal to the total elements of list/array.
     # We can define an  array with specific type of key, eg:
 
     # declare/typeset -A dirs
@@ -63,29 +69,29 @@ function splitpath() {
     #	[alex]=/home/alex]
     # )
 
-    # "[@]" : it's a separated list/array of words
-    # "!"   : enumerate all indices in the list/array [echo "${!Path[@]}"]
+    # "[@]" : it's a separated list/array of words.
+    # "!"   : enumerate all indices in the list/array [echo "${!Path[@]}"].
     for i in "${!Path[@]}"; do
         printf "%s\t%s\n" "Path $((i+1)):" "${Path[$i]}"
     done
 }
 
 # Interaction menu showing all the children dirs inside
-# current dir and can traverse between all of them
+# current dir and can traverse between all of them.
 function mndirs() {
-    # Get 'ls' command's location: /usr/bin/ls
+    # Get 'ls' command's location: "/usr/bin/ls".
     local lsLoc=$(whereis ls | cut -d ":" -d " " -f 2)
 
-    # FIXME: if dir doesn't have children dir -> throw error
-    # List all directory options and store in a/an list/array
+    # FIXME: if dir doesn't have children dir -> throw `error`.
+    # List all directory options and store in a/an list/array.
     local opts=$(${lsLoc} -d */ | cut -d " " -f 1)
     local optsArr=($opts)
 
-    # Read array and separate to lines with line number
+    # Read array and separate to lines with line number.
     IFS=' ' read -d '' -ra dirs <<< "${optsArr[@]}"
     local q="Quit" b="Back"
 
-    # Arithmetric expansion inside string literal: "<text> ... $((${#arr[@] + 1))"
+    # Arithmetric expansion inside string literal: "<text> ... $((${#arr[@] + 1))".
 
     echo "Select directory you want to 'cd'."
     select choice in "${dirs[@]}" "$b" "$q"; do
@@ -99,24 +105,25 @@ function mndirs() {
             echo "[cd] to [$choice]"
         fi
 
-        # `2>&1`: captures `stderr` -> pipes it into `stdout` -> whole lots piped to `null`
+        # `2>&1`: captures `stderr` -> pipes it into `stdout` -> whole lots piped to `null`.
         ls ./*/ >/dev/null 2>&1;
 
-        # Menu dirs recursion; `$?`: the exit status of the command above
+        # Menu dirs recursion; `$?`: the exit status of the command above.
         if [ $? == 0 ]; then
             mndirs
         else
             { echo "There is no more directory!" >&2; break; }
         fi
-        break # Valid choice was made; exit the prompt
+        break # Valid choice was made; exit the prompt.
     done
 
+    # Old exec command:
     # local curDir=$(find ../ "$name" -exec readlink -f {} \;)
 
-    # Split the chosen line in to only dir's name
+    # Split the chosen line in to only dir's name.
     read -r name unused <<< "$choice"
 
-    # $curDir is global variable defined in function realdir() {}
+    # $curDir is global variable defined in `function realdir() {}`.
     echo "Current directory: [$name]; absolute path: [$curDir]"
 }
 
@@ -124,8 +131,8 @@ function mndirs() {
 function chper() {
     filename=$1
     if [[ -f "${filename}" ]]; then
-        # If you wanna see access rigths in human readable form: "%a" -> "%A"
-        # Some more indirective fields: ["%F", "%s". "%i", "%m/%M", "%l/%L", "%c/%C"]
+        # If you wanna see access rigths in human readable form: "%a" -> "%A".
+        # Some more indirective fields: ["%F", "%s". "%i", "%m/%M", "%l/%L", "%c/%C"].
         perm=`stat -c "%a" "${filename}"`
         printf "%s have permissions: %d\n" "${filename}" "${perm}"
     else
@@ -179,8 +186,8 @@ function syncforked() {
 }
 
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
-### ARCHIVE EXTRACTION
-# usage: ex <file>
+### ARCHIVE EXTRACTION:
+# Usage: `ex <file>``.
 function ex() {
     if [ -f "$1" ] ; then
         case $1 in
@@ -205,7 +212,7 @@ function ex() {
     fi
 }
 
-# navigation
+# Navigation.
 function up() {
     local d=""
     local limit="$1"
