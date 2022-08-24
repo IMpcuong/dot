@@ -68,7 +68,7 @@ function _have() {
     type "$1" &>/dev/null
 }
 
-# NOTE: `-r` ~ file has read permission (for the user running the test).
+# NOTE: `-r` ~ checking if file has read permission (for the user running the test).
 function _source_if() {
     [[ -r "$1" ]] && source "$1"
 }
@@ -85,8 +85,8 @@ function splitpath() {
     # declare/typeset -A dirs
     # dirs=(
     #   [jim]=/home/jim
-    #	[silvia]=/home/silvia
-    #	[alex]=/home/alex]
+    #   [silvia]=/home/silvia
+    #   [alex]=/home/alex
     # )
 
     # "[@]" : it's a separated list/array of words.
