@@ -11,6 +11,7 @@ alias doas="doas --"
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
+alias lh='ls -halt --color=auto'
 alias os='cat /etc/*release'
 alias h='history'
 alias b='cd ..'
@@ -203,6 +204,20 @@ function syncforked() {
         gh sync $repo
     done
 }
+
+# Remove/clear multiple commands line history from `HISTFILE` in Linux system.
+function rmhist() {
+    declare -i from=$1 to=$2
+    declare -i range=$(($to - $from))
+    printf "Delete history from index %s to %s (range=%s)\n" "$from" "$to" "$range"
+
+    # NOTE: `history -c` ~ for delete all history.
+    # Remove `$range` lines starting from the `$from` position.
+    for ((i = 1; i <= $range; i++)); do
+      history -d $from
+    done
+}
+
 
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
 # Archive extraction.
