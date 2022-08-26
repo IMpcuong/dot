@@ -37,7 +37,7 @@ echo -e "knife\nknow\nfun\nfin\nfan\nnine" | awk '/n$/'
 
 # Loop:
 awk 'BEGIN { for (i = 1; i <= 5; ++i) print i }'
-awk 'BEGIN {i = 1; do { print i; ++i } while(i < 6) }'
+awk 'BEGIN { i = 1; do { print i; ++i } while (i < 6) }'
 awk 'BEGIN { \
   sum1 = 0; sum2 = 0; sum3 = 0;
   for (i = 0; i < 20; ++i) { \
@@ -47,3 +47,9 @@ awk 'BEGIN { \
   } \
 }'
 awk 'BEGIN { sum = 0; for (i = 0; i < 20; i++) { sum += i; if (sum % 2 == 0) print sum; else continue } }'
+
+# NOTE:
+# + `-F <fs>, --field-separator <fs>` := Use <fs> for the input field separator (the value of the FS predefined variable).
+# + `awk` can be executed on data stream directly from `stdin` or from file input stream.
+awk -F '|' "{ print $1 > $2 > $3 }" ~/tmp/test_fs.txt
+awk -F '|' "{ print $1 > $2 > $3 }" <~/tmp/test_fs.txt
