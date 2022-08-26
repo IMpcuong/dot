@@ -43,7 +43,7 @@ fi
 
 # Get absolute path of file/dir
 function realdir() {
-    curDir="$(cd "$(dirname "$1")"; pwd -P)/$(basename "$1")"
+    local curDir="$(cd "$(dirname "$1")"; pwd -P)/$(basename "$1")"
     echo $curDir
 }
 
@@ -149,7 +149,7 @@ function mndirs() {
 
 # Checking and retrieve the given file's privilege.
 function chper() {
-    filename=$1
+    local filename=$1
     if [[ -f "${filename}" ]]; then
         # If you wanna see access rigths in human readable form: "%a" -> "%A".
         # Some more indirective fields: ["%F", "%s". "%i", "%m/%M", "%l/%L", "%c/%C"].
@@ -162,10 +162,10 @@ function chper() {
 
 # Checking if the given directory is a git repository or not.
 function chrepo() {
-    dir=$1
+    local dir=$1
     [[ -d "$dir" ]] || echo "Not a readable directory's path"
 
-    counter=`ls -halt "$dir"| grep -E "\.git" | wc -l`
+    local counter=`ls -halt "$dir"| grep -E "\.git" | wc -l`
     if (( "$counter" == 1 )); then
         cd "$dir"; branches=`git branch -a`
         printf "List current branches\n: %s" "$branches"
@@ -176,13 +176,14 @@ function chrepo() {
 
 # From the GitHub API retrieve the 'created-date' of one repo.
 function daterepo() {
-    username=$1
-    repo=$2
+    local username=$1
+    local repo=$2
 
-    # `-f{number}`: retrieves only the field in the given position.
-    # `-f{number}-`: retrieves all the field started from the given position to the end.
-    date=$( curl -s "https://api.github.com/repos/${username}/${repo}" | \
-        grep -E "created_at" | cut -d: -f2- )
+    # `-f{number}`: retrieves only one field corresponded with the given position.
+    # `-f{number}-`: retrieves every fields from the input position until reach the end.
+    local date=$(curl -s "https://api.github.com/repos/${username}/${repo}" | \
+                  grep -E "created_at" | \
+                  cut -d: -f2-)
 
     if [[ $? == 1 ]]; then
         echo "The given username ("$username") or repo ("$repo") is wrong!"
@@ -214,8 +215,8 @@ function rmhist() {
     # NOTE: `history -c` ~ for delete all history.
     # Remove `$range` lines starting from the `$from` position permanently.
     for ((i = 1; i <= $range; i++)); do
-      history -d $from
-      history -w
+        history -d $from
+        history -w
     done
 }
 
