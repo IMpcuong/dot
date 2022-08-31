@@ -89,7 +89,18 @@ git log --follow --oneline -- <file_path>
 - Showing the different between two branches: almost have the same effectiveness as the `git diff`.
 
 ```bash
-git log --oneline --graph --decorate --abbrev-commit <BRANCH_NAME>..<BRANCH_NAME>
+git log --oneline --graph --decorate --abbrev-commit <BRANCH_NAME1>..<BRANCH_NAME2>
+```
+
+- Showing only datetime created of a commit by using its hash abbreviation:
+
+```bash
+# `%cd` := created date.
+git show --no-patch --no-notes --pretty="%cd" <commit_hash>
+
+# `%h` := hash summary.
+# `%s` := commit's subject message.
+git show --no-patch --no-notes --pretty="%h %cd %s" <commit_hash>
 ```
 
 3. `git add`:
@@ -399,7 +410,6 @@ git diff --cached
 ```git
 git diff-tree --no-commit-id --name-only -r <COMMIT_HASH>
 ```
-
 
 17. `git checkout`
 
