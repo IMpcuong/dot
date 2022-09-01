@@ -2,7 +2,7 @@
 
 ## Resources:
 
-- [gist](https://gist.github.com/etoxin/1acb257550b1de60fe99)
+- [Gist git-bash commands](https://gist.github.com/etoxin/1acb257550b1de60fe99)
 - [https://stephencharlesweiss.com](https://stephencharlesweiss.com/git-rebase-interactive)
 - [StackOverflow](https://stackoverflow.com/questions/15798862/what-does-git-rev-parse-do)
 
