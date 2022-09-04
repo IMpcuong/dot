@@ -170,3 +170,19 @@ Function commitRebase {
   }
   git rebase -i HEAD~$posRebase
 }
+
+# Create new file corresponded with the given path.
+Function touch {
+  # Parameter help description
+  [CmdletBinding()]
+  param (
+    [Parameter()]
+    [string]$Path = $args[1]
+  )
+  if ("" -eq $Path) {
+    <# Action to perform if the condition is true #>
+    New-Item -Path . -Name $args[0]
+  }
+  # $itemName = $Path.split("\") | Select-Object -Last 1
+  New-Item -Path $Path
+}
