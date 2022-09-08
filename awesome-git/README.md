@@ -590,3 +590,30 @@ git clean -d -n -X
 git worktree
 git rm <tracked_files>
 ```
+
+23. `git blame`: show what revision and author last modified each line of file.
+
+```bash
+# Include additional statistics at the end of blame output:
+git blame --show-stats <filename>
+
+# Show blank SHA-1 for boundary commits:
+git blame -b <filename>
+
+# Annotate only the line range given by <start>,<end>, or by the function name regex <funcname>:
+# * number:
+#   If <start> or <end> is a number, it specifies an absolute line number (lines count from 1).
+#
+# * /regex/:
+#   This form will use the first line matching the given POSIX regex.
+#   If <start> is a regex, it will search from the end of the previous -L range, if any, otherwise from the start of file.
+#   If <start> is ^/regex/, it will search from the start of file. If <end> is a regex, it will search starting at the line given by <start>.
+#
+# * +offset or -offset
+#   This is only valid for <end> and will specify a number of lines before or after the line given by <start>.
+git blame -L <start>,<end>
+git blame -L <start>,
+git blame -L ,<end>
+git blame -L :<funcname>
+git blame -L ^:<funcname>
+```
