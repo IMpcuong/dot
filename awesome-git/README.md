@@ -48,12 +48,20 @@ git clone ssh://git@mydomain.com:[port]/USERNAME/REPO.git
 
 - This is some beautify _log/reflog_ commands. Try it yourself!
 
-```git
+```bash
+# All activities in historical order:
 git reflog
+
+# Logging with maximum output records constraint.
 git log --oneline -10
+
+# Logging with decoration formatting:
 git log --oneline --graph
 git log --oneline --decorate
-git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+# Logging with list of changed filenames per commit only:
+git log --oneline --name-only
 ```
 
 - Some `log` commands I just find out recently, really cool stuff:
