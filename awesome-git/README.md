@@ -617,3 +617,102 @@ git blame -L ,<end>
 git blame -L :<funcname>
 git blame -L ^:<funcname>
 ```
+
+24. `git for-each-ref`: with the unique target is to order commit by most recent alteration.
+
+- Resource: [Stackoverflow git-branches ordered by most recent commit][1]
+
+[1]: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+
+- Sorting by using `commiterdate`:
+
+```bash
+# [Local]:
+git for-each-ref --sort=-committerdate refs/heads/
+
+# Or using `git branch` (since version 2.7.0):
+git branch --sort=-committerdate  # DESC
+git branch --sort=committerdate  # ASC
+
+# [Remote]:
+git for-each-ref --sort=-committerdate refs/remotes/
+
+# Show both remote and local branches order by timeline of latest commit itself:
+git branch -va --sort=-committerdate  # DESC
+git branch -va --sort=committerdate  # ASC
+
+# Remote branches only:
+git branch --remote --sort=-committerdate  # DESC
+git branch --remote --sort=committerdate  # ASC
+```
+
+- Advance options for beautify format:
+
+```git
+[Local]
+git for-each-ref --sort=-committerdate refs/heads/ \
+  --format='%(authordate:short) %(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+
+[Remote]
+git for-each-ref --sort=-committerdate refs/remotes/ \
+  --format='%(authordate:short) %(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+```
+
+- Adding into `.gitconfig` or `.bashrc` for invoking command by using alias instead:
+
+```toml
+[.gitconfig]
+[alias]
+# ATTENTION: All aliases prefixed with `!` run in `/bin/sh` make sure you use sh syntax, not `bash/zsh` or whatever
+recentb = """
+  !r() { \
+    refbranch=$1 count=$2; \
+    git for-each-ref \
+      --sort=-committerdate refs/heads \
+      --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' \
+      --color=always \
+      --count=${count:-20} | \
+      while read line; do branch=$(echo \"$line\" | \
+        awk 'BEGIN { FS = \"|\" }; { print $1 }' | tr -d '*'); \
+        ahead=$(git rev-list --count \"${refbranch:-origin/master}..${branch}\"); \
+        behind=$(git rev-list --count \"${branch}..${refbranch:-origin/master}\"); \
+        colorline=$(echo \"$line\" | sed 's/^[^|]*|//'); echo \"$ahead|$behind|$colorline\" | \
+        awk -F'|' -vOFS='|' '{ $5=substr($5,1,70) }1'; \
+      done | \
+      ( echo \"ahead|behind||branch|lastcommit|message|author\\n\" && cat ) | \
+      column -ts'|'; \
+  }; r
+"""
+```
+
+```bash
+#!/bin/bash
+
+alias r = `recentb`
+
+### From: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+
+# NOTE:
+# - `refbranch` := which branch the ahead or behind columns are calculated against. Default is master.
+# - `count` := how many recent branches to show. Default 20.
+fucntion recentb() {
+  local refbranch=$1 count=$2
+
+  # `echo -e` := enable interpretation of backslash escapes.
+  git for-each-ref \
+    --sort=-committerdate refs/heads \
+    --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' \
+    --color=always \
+    --count=${count:-20} | \
+    while read line; do branch=$(echo "$line" | \
+      awk 'BEGIN { FS = "|" }; { print $1 }' | tr -d '*'); \
+      ahead=$(git rev-list --count "${refbranch:-origin/master}..${branch}"); \
+      behind=$(git rev-list --count "${branch}..${refbranch:-origin/master}"); \
+      colorline=$(echo "$line" | sed 's/^[^|]*|//'); \
+      echo "$ahead|$behind|$colorline" | awk -F'|' -vOFS='|' '{ $5 = substr($5,1,70) }1'; \
+    done | \
+    ( echo -ne "ahead|behind||branch|lastcommit|message|author\n" && cat ) | column -ts'|'
+}
+
+### End from: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
+```
