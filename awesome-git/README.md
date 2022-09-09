@@ -373,7 +373,21 @@ git branch --contains COMMIT_HASH
 - List all remote branches:
 
 ```git
+git branch --remote
 git ls-remote
+```
+
+- Search commit belonged to which source branch or coming from any action:
+
+```bash
+git branch -a --contains COMMIT_HASH
+git reflog show --all | grep COMMIT_HASH
+
+# NOTE:
+git log -g --abbrev-commit --pretty=oneline
+# and
+git reflog show
+# are 100 percent equivalent by semantic, the second one is just the alias for the precedent.
 ```
 
 16. `git diff`
