@@ -89,6 +89,10 @@
     "switch:command",
     "push:command"
   ],
+  // Proxies Configs:
+  // "http.proxy": "http://128.10.0.1:8888",
+  "http.proxy": "socks5://128.10.0.1:8888",
+  "http.proxyStrictSSL": false,
   // Editor Configs:
   "files.trimTrailingWhitespace": true,
   "files.autoSave": "afterDelay",
