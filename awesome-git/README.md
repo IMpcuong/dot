@@ -179,7 +179,7 @@ Note: `HEAD` equal with `@`
 
 6. `git pull/fetch`:
 
-- `git fetch`: update local indexes with the remote repository.
+- `git fetch`: update local indexes updated with the remote repository.
 
 ```git
 git fetch --prune
@@ -526,10 +526,21 @@ git remote set-url origin https://github.com/<USERNAME>/<REPO>.git
 
 - Basic commands:
 
-```git
+```bash
+# [Listing configurations]:
 git config -l
 git config --system --list
 git config --global -l
+
+# [Set/unset configurations]:
+git config --global http.sslverify false
+git config --global http.proxy <host>:<port>
+git config --global https.proxy <host>:<port>
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+# [Alternative method for setting proxy in git]:
+git -c "http.proxy=address:port" clone https://github.com/<username>/<repo>
 ```
 
 - Forget old saved credentials, re-enter username and password as required:
