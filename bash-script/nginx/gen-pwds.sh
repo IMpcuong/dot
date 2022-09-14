@@ -1,8 +1,14 @@
 #!/bin/bash
 
-# Install apache2-utils:
+# Solution1 - Install apache2-utils:
 which apache2-utils
 if [[ $? -ne 0 ]]; then
+  sudo apt install apache2-utils
+fi
+
+# Solution2 - Another way to do this instead of using `which` is:
+command -v apache2-utils
+if (( 0 != $? )); then
   sudo apt install apache2-utils
 fi
 
