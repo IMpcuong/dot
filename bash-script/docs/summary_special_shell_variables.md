@@ -19,6 +19,14 @@
 | $\_      | Last argument of previous command                   |
 | $!       | Process ID (PID) of last job run in background      |
 
+- Distinct between `$@` and `$*`:
+
+  - The `$*` and `$@` variables hold all positional parameters/arguments passed to the function:
+
+    - When double-quoted, "$\*" expands to a single string separated by space (the first character of IFS) - `"$1 $2 $n"`.
+    - When double-quoted, "$@" expands to separate strings - `"$1" "$2" "$n"`.
+    - When not double-quoted, `$*` and `$@` are the same.
+
 NOTE:
 
 - `*`: Must be quoted, otherwise it defaults to `$@` (in the `Meaning` column).
