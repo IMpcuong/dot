@@ -186,3 +186,30 @@ Function touch {
   # $itemName = $Path.split("\") | Select-Object -Last 1
   New-Item -Path $Path
 }
+
+Function ghCLI {
+  winget.exe upgrade --id Github.cli
+}
+
+Function scoopUpgrade {
+  if (! (scoop --version)) {
+    <# Action to perform if the condition is true #>
+    Write-Host -NoNewLine "Scoop Pacakge Management is not installed!" -ForegroundColor Green
+    return
+  }
+  foreach ($ext in (scoop status)) {
+    <# $ext is the current item #>
+    $extProperties = @{
+      Name          = $ext.Name
+      OldVersion    = $ext."Installed Version"
+      LatestVersion = $ext."Latest Version"
+    }
+
+    $extObj = New-Object psobject -Property $extProperties
+    if ($extObj.OldVersion -ne $extObj.LatestVersion) {
+      scoop update $extObj.Name
+    }
+  }
+}
+
+# --------- Util functions ---------
