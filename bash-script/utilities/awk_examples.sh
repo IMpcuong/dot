@@ -7,11 +7,14 @@ df -h | awk '{ if ($3 > 0) { print $0 } }'
 # `awk` examples:
 
 # Assigned variable:
+# `BEGIN` pattern: means that Awk will execute the action(s) specified in `BEGIN` once before any input lines are read.
+# `END` pattern: means that Awk will execute the action(s) specified in `END` before it actually exits.
 awk 'BEGIN { cnt = 2; cnt ^= 4; print "Counter =", cnt }'
 
 # Logical:
 awk 'BEGIN { name = ""; if (!length(name)) print "name is empty string." }'
 # Both of these conventions in the `awk` command below returning the same result:
+# NOTE: `-v <assignment>` := declaration of a new variable.
 awk 'BEGIN { \
   ch = "\n"; if (ch == " " || ch == "\t" || ch == "\n") \
   print "Current character is whitespace." \
