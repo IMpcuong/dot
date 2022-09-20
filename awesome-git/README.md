@@ -507,6 +507,12 @@ git rev-parse <local-branch-name>
 git rev-parse origin/<remote-branch-name>
 ```
 
+- Retrieve the remote's latest commit-hash:
+
+```git
+git rev-parse refs/remotes/origin/main^{commit}
+```
+
 19. `git remote`
 
 - `git remote` add new remote repo:
