@@ -569,7 +569,13 @@ git config --system credential.helper manger-core/wincred
 git config --system --unset-all credential.helper
 ```
 
-- We should add our credential informations for `git:domain` in the `credential-manager` window as the form below:
+- `git config` set reference to remote URl:
+
+```git
+git config remote.origin.url <REMOTE_URL>
+```
+
+- We should add our credential informations with pattern like `git:domain` in the `credential-manager` window follow the form below:
 
 ```credential
 username: <Git-SCM username>
