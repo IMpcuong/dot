@@ -58,3 +58,15 @@ docker inspect --format "{{title .Name}}" container_name
 # Hint: To find out what data can be printed, show all content as json:
 docker container ls --format='{{json .}}'
 docker images -a --format='{{json .}}'
+
+# If you want to list only IDs from all images/containers:
+# -> Just using option `-q, --quiet` := only show image/container IDs.
+docker images -q
+docker ps -a -q
+
+# Stop/remove all Docker containers/images:
+# Container:
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+# Image:
+docker rmi $(docker ps -a -q)
