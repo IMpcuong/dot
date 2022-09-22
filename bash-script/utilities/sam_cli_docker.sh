@@ -9,7 +9,11 @@ if [ -t 0 ] && [ -t 1 ]; then
 fi
 
 docker --version
-docker rm $(docker ps -a -q)
+declare -i container=$(docker ps -a | wc -l)
+if (( "${container}" > 1 )); then
+  docker rm $(docker ps -a -q)
+  docker container prune # Remove all stopped containers.
+fi
 docker images -a --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" | \
   awk '{ print $2 }' | \
   grep sam
