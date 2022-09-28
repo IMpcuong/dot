@@ -171,6 +171,7 @@ git push origin +HEAD:main
 - Push/pull within a up-to-date circle with the current upstream branch:
 
 ```git
+git push --set-upstream origin main
 git push --set-upstream origin HEAD
 git push -u origin HEAD
 ```
@@ -388,6 +389,12 @@ git log -g --abbrev-commit --pretty=oneline
 # and
 git reflog show
 # are 100 percent equivalent by semantic, the second one is just the alias for the precedent.
+```
+
+- Set upstream branch:
+
+```git
+git branch --set-upstream-to=origin/main main
 ```
 
 16. `git diff`
