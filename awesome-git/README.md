@@ -776,3 +776,19 @@ fucntion recentb() {
 
 ### End from: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 ```
+
+25. `git update-ref`: update the object's name stored in the `ref` safely.
+
+- `ref` demystification:
+
+  - `ref` or `reference` is a name that begins with `refs/` (e.g. `refs/heads/master`) that points to an object name or another `ref` (the latter is called a symbolic ref). For convenience, a ref can sometimes be abbreviated when used as an argument to a Git command. `Refs` are stored in the repository.
+
+  - The `ref` namespace is hierarchical. Different subhierarchies are used for different purposes (e.g. the `refs/heads/` hierarchy is used to represent local branches).
+
+  - There are a few special-purpose `refs` that do not begin with `refs/`. The most notable example is HEAD.
+
+- Revert the merge process in between a merge-commit (if you want to start merging all over):
+
+```git
+git update-ref -d MERGE_HEAD
+```
