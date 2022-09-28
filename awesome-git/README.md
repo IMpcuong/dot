@@ -466,7 +466,17 @@ git checkout HEAD -- <path_to_file>
 git checkout origin/BRANCH_NAME -- <file_name>
 ```
 
-18. `git reset` (BE CAREFUL WITH `git reset` !!!)
+- Accept all incoming changes or hold still our branch:
+
+```bash
+# Incomming:
+git checkout --theirs .
+
+# Current changes:
+git checkout --ours .
+```
+
+18. `git reset` (_BE CAREFUL WITH_ `git reset` !!!)
 
 - Sweep the latest commit out of Earth:
 
