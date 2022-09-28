@@ -176,7 +176,7 @@ git push --set-upstream origin HEAD
 git push -u origin HEAD
 ```
 
-Note: `HEAD` equal with `@`
+Note: `HEAD` is equal with `@`.
 
 6. `git pull/fetch`:
 
@@ -201,10 +201,16 @@ git config --global branch.autosetuprebase always
 git pull --rebase REMOTE_BRANCH LOCAL_BRANCH
 ```
 
-- I'm not test this command yet (?) -> tested done, quite useful command:
+- I'm not test this command yet (?) -> _tested done_, quite useful command:
 
 ```git
 git pull -s recursive -X origin
+```
+
+- Pull all tags that binding to a given branch:
+
+```git
+git pull --tags origin main
 ```
 
 - NOTE: `pull --rebase`
