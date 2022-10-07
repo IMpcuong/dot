@@ -630,6 +630,12 @@ username: <Git-SCM username>
 password: <your_access_token>
 ```
 
+- Shows commit's template that has already been attached in our local configuration:
+
+```bash
+git config --get commit.template
+```
+
 21. `git switch`:
 
 - You are in `detached HEAD` state. You can look around, make experimental
@@ -816,4 +822,18 @@ fucntion recentb() {
 
 ```git
 git update-ref -d MERGE_HEAD
+```
+
+26. `git symbolic-ref`:
+
+```bash
+git symbolic-ref --short HEAD
+```
+
+27. `git cat-file`: provide content/type/size information for repository objetcs.
+
+- Findout the object size, example with a commit size:
+
+```bash
+git cat-file -s <COMMIT_HASH>
 ```
