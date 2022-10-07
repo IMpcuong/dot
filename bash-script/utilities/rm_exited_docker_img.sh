@@ -70,3 +70,6 @@ docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
 # Image:
 docker rmi $(docker ps -a -q)
+
+# Showing Docker filesystems' status:
+docker system df

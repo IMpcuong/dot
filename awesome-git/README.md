@@ -109,6 +109,8 @@ git show --no-patch --no-notes --pretty="%cd" <commit_hash>
 # `%h` := hash summary.
 # `%s` := commit's subject message.
 git show --no-patch --no-notes --pretty="%h %cd %s" <commit_hash>
+
+git -c log.showsignature=false show -s --format=%H:%ct
 ```
 
 - `git show` raw content of a file:
