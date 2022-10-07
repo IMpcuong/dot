@@ -100,7 +100,7 @@ git log --follow --oneline -- <file_path>
 git log --oneline --graph --decorate --abbrev-commit <BRANCH_NAME1>..<BRANCH_NAME2>
 ```
 
-- Showing only datetime created of a commit by using its hash abbreviation:
+- Showing only datetime creation of a commit by using its hash abbreviation:
 
 ```bash
 # `%cd` := created date.
@@ -111,7 +111,13 @@ git show --no-patch --no-notes --pretty="%cd" <commit_hash>
 git show --no-patch --no-notes --pretty="%h %cd %s" <commit_hash>
 ```
 
-3. `git add`:
+- `git show` raw content of a file:
+
+```bash
+git show --textconv :main.go
+```
+
+3. `git add/status`:
 
 - Add all the changes:
 
@@ -130,6 +136,13 @@ git add -u
 ```git
 git add -p
 git add --patch
+```
+
+- `git status` shows the current state of all file in this directory:
+
+```bash
+git status -z -u<mode>
+git status -z -uall
 ```
 
 4. `git commit`:
@@ -310,6 +323,12 @@ git rebase --abort
 ```git
 git ls-files
 git --git-dir=./.git ls-files -oc --exclude-standard
+```
+
+- Checks all files that had been staged already:
+
+```bash
+git ls-files --stage -- .
 ```
 
 10. `git grep`:
