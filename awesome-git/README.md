@@ -555,7 +555,13 @@ git rev-parse origin/<remote-branch-name>
 git rev-parse refs/remotes/origin/main^{commit}
 ```
 
-19. `git remote`
+19. `git remote`:
+
+- Shows remote URL that was binded with our local repository:
+
+```bash
+git remote --verbose
+```
 
 - `git remote` add new remote repo:
 
