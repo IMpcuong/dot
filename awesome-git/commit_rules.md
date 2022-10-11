@@ -1,5 +1,9 @@
 0. Prerequisites:
 
+- Please follows this link for an exact righteous convention that was already known widely as an legitimate version:
+
+  - [Conventional Commits Organization](https://www.conventionalcommits.org/en/v1.0.0-beta.2/)
+
 - Keywords:
 
   - `minor`: the new patch has a small range of effect to the entire codebase.
