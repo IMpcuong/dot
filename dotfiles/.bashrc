@@ -273,24 +273,29 @@ function up() {
 # NOTE:
 # - `refbranch` := which branch the ahead or behind columns are calculated against. Default is master.
 # - `count` := how many recent branches to show. Default 20.
+# - `line` := each line of data have the convention like this "data-sync|*data-sync|3 months ago|chore: Refactor a minority amount of classes|imp".
+#          := the `*` (asterisk) represents for current local branch where you have already located at.
 fucntion recentb() {
   local refbranch=$1 count=$2
 
   # `echo -e` := enable interpretation of backslash escapes.
+  # `column -t -s='|'` := table with the given separator character.
   git for-each-ref \
     --sort=-committerdate refs/heads \
     --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' \
     --color=always \
     --count=${count:-20} | \
-    while read line; do branch=$(echo "$line" | \
-      awk 'BEGIN { FS = "|" }; { print $1 }' | tr -d '*'); \
+    while read line; do \
+      branch=$(echo "$line" | awk 'BEGIN { FS = "|" }; { print $1 }' | tr -d '*'); \
       ahead=$(git rev-list --count "${refbranch:-origin/master}..${branch}"); \
       behind=$(git rev-list --count "${branch}..${refbranch:-origin/master}"); \
       colorline=$(echo "$line" | sed 's/^[^|]*|//'); \
-      echo "$ahead|$behind|$colorline" | awk -F'|' -vOFS='|' '{ $5 = substr($5,1,70) }1'; \
+      echo "$ahead|$behind|$colorline" | awk -F='|' -v OFS='|' '{ $5 = substr($5, 1, 70) } $1'; \
     done | \
-    ( echo -ne "ahead|behind||branch|lastcommit|message|author\n" && cat ) | column -ts'|'
+    cat | column -t -s='|' --table-columns Ahead,Behind,Branch,LastCommit,Message,Author
+    # Both solutions have the same effect:
+    # ( echo -e "Ahead|Behind|Branch|Lastcommit|Message|Author\n" && cat ) | column -t -s='|'
 }
-###
+### End From.
 
 # ---------- Utilitty functions ----------
