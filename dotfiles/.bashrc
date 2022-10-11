@@ -199,10 +199,10 @@ function syncforked() {
 
     forkedRepos=(`gh repo list | grep -E "fork" | \
         grep -E "$username" | \
-        cut -d " " -f 1
+        cut -d" " -f1
     `)
     for repo in "${forkedRepos[@]}"; do
-        gh sync $repo
+        gh repo sync $repo
     done
 }
 
