@@ -193,13 +193,13 @@ function daterepo() {
     fi
 }
 
-# Synchronize forked repositories up-to-date with the latest commit.
+# Synchronize forked repositories up-to-date with the latest owner's commit.
 function syncforked() {
     username=$1
 
-    forkedRepos=(`gh repo list | grep -E "fork" | \
-        grep -E "$username" | \
-        cut -d" " -f1
+    forkedRepos=(`gh repo list | \
+        grep -E "fork" | \
+        grep -ioE "^.*${username}\/[\w*-_]*\b"
     `)
     for repo in "${forkedRepos[@]}"; do
         gh repo sync $repo
