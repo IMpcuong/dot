@@ -117,6 +117,7 @@ git -c log.showsignature=false show -s --format=%H:%ct
 
 ```bash
 git show --textconv :main.go
+git show <branch_name>:<path/to/filename>
 ```
 
 3. `git add/status`:
