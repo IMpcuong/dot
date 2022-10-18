@@ -44,7 +44,7 @@ git clone -b BRANCH_NAME --single-branch git@github.com:USERNAME/REPO.git
 git clone ssh://git@mydomain.com:[port]/USERNAME/REPO.git
 ```
 
-2. `git log/reflog`:
+2. `git log/reflog/show`:
 
 - This is some beautify _log/reflog_ commands. Try it yourself!
 
@@ -92,6 +92,7 @@ git log --after="4 week" --before="0 week" --oneline | findstr <commit_hash>
 
 ```git
 git log --follow --oneline -- <file_path>
+git log --stat --follow --oneline -- <file_path>
 ```
 
 - Showing the different between two branches: almost have the same effectiveness as the `git diff`.
