@@ -26,4 +26,4 @@ if (0 -ne $procs.Length) {
 # Pattern: `vmware.exe  97238  Console   1  68,123 K`
 tasklist /fi "status eq running" | `
   findstr /i /c:"(${args[0]})" | `
-  ForEach-Object { taskkill /im ($_ -split '\s+', 4 )[0] } # --> Second positional argument `[0]`reproduce/imitate for process/application's name.
+  ForEach-Object { taskkill /f /im ($_ -split '\s+', 4 )[0] } # --> The first positional argument `[0]` reproduce/imitate for process/application's name.
