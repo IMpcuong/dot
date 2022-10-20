@@ -1,4 +1,4 @@
-# This is an archive of some awesome `git` command I have been collected!
+# This is an archive of some awesome `git` commands that I have been collected!
 
 ## Resources:
 
@@ -18,13 +18,13 @@ git clone -b BRANCH_NAME --single-branch git@github.com:USERNAME/REPO.git
 
 - NOTE:
 
-> - Eg: you clone only one branch (`dev`) from a remote server.
+> - Eg: you only want to clone a specific branch (eg: `dev`) from the remote server.
 >
 > ```git
 > git clone -b dev --single-branch <repo_https_url>
 > ```
 >
-> - In the `.git/config` you will see: that mean you can only interact with `dev` remote branch.
+> - The `.git/config` file's content can be found as below: which's mean that you can only interact with the remote `dev` branch.
 >
 > ```.gitconfig
 > [remote "origin"]
@@ -32,13 +32,13 @@ git clone -b BRANCH_NAME --single-branch git@github.com:USERNAME/REPO.git
 >   fetch = +refs/heads/dev:refs/remotes/origin/dev
 > ```
 >
-> -> You can change this to normal behavior with this command:
+> -> You can revert to normal behavior (accept all remote branches) with this command:
 >
 > ```git
 > git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 > ```
 
-- Clone project in the specific port: (NOTE: the square bracket is not needing)
+- Cloning a project using one specific port: (NOTE: the square bracket is no needed at all!)
 
 ```git
 git clone ssh://git@mydomain.com:[port]/USERNAME/REPO.git
@@ -49,10 +49,10 @@ git clone ssh://git@mydomain.com:[port]/USERNAME/REPO.git
 - This is some beautify _log/reflog_ commands. Try it yourself!
 
 ```bash
-# All activities in historical order:
+# All activities listed in historical order:
 git reflog
 
-# Logging with maximum output records constraint.
+# Logging with maximum output's records constraint:
 git log --oneline -10
 
 # Logging with decoration formatting:
@@ -60,16 +60,18 @@ git log --oneline --graph
 git log --oneline --decorate
 git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
 
-# Logging with list of changed filenames per commit only:
+# Logging only with list of changed filenames per commit:
 git log --oneline --name-only
 ```
 
-- Some `log` commands I just find out recently, really cool stuff:
+- Some `git log` commands I have just found out recently, really cool stuffs:
 
 ```git
 git shortlog -e -s -n HEAD
 git log -L <start_line>,<end_line>:FILENAME --full-history --pretty=oneline --date-order --decorate=full --skip=0 --max-count=10
 ```
+
+NOTE: The second one is really fascinating, it shows all of the changed parts in one specified file, with a range of lines as your wish.
 
 - Retrieve the latest commit message:
 
@@ -77,10 +79,7 @@ git log -L <start_line>,<end_line>:FILENAME --full-history --pretty=oneline --da
 git log --format=%B -n 1 HEAD
 ```
 
-NOTE: The second one is really fascinating, it shows the changed parts in the specified file
-from start to end lines.
-
-- Searching and listing all commits in a interval of time:
+- Searching and listing all commits from a interval of time:
 
 ```git
 git log --after="4 week" --before="0 week" --oneline
@@ -88,14 +87,14 @@ git log --after="4 week" --before="0 week" --oneline | Measure-Object
 git log --after="4 week" --before="0 week" --oneline | findstr <commit_hash>
 ```
 
-- Logging the specific file with a given path:
+- Logging a specific file's statistic with a path itself:
 
 ```git
 git log --follow --oneline -- <file_path>
 git log --stat --follow --oneline -- <file_path>
 ```
 
-- Showing the different between two branches: almost have the same effectiveness as the `git diff`.
+- Showing the different between two branches: almost have the same effectiveness as the `git diff` command.
 
 ```bash
 git log --oneline --graph --decorate --abbrev-commit <BRANCH_NAME1>..<BRANCH_NAME2>
@@ -129,7 +128,7 @@ git show <branch_name>:<path/to/filename>
 git add -A .
 ```
 
-- Add all the indexed changes:
+- Add all the indexed/upstreamed changes:
 
 ```git
 git add -u
@@ -165,8 +164,10 @@ git commit --amend --no-edit
 
 - NOTE:
 
-> - After you `commit --amend --no-edit` -> then you don't want to `push` the update hash of amended commit
->   -> you can using `pull --amend` first -> then you don't have to `push -f` in your next push session.
+> - After you `commit --amend --no-edit`
+>   -> Then you don't want to `push` the updated hash from a amend commit
+>   -> You can easily using `pull --amend` first
+>   -> Then you don't have to `push -f` in your next push session.
 
 5. `git push`:
 
@@ -197,7 +198,7 @@ Note: `HEAD` is equal with `@`.
 
 6. `git pull/fetch`:
 
-- `git fetch`: update local indexes updated with the remote repository.
+- `git fetch`: renew the local indexes tree to be updated with the remote repository.
 
 ```git
 git fetch --prune
@@ -211,7 +212,7 @@ git pull origin develop:develop
 git checkout origin/BRANCH -b BRANCH
 ```
 
-- Pull and rebase if the current branch is busy:
+- Pull and rebase if the current branch is busy (have the different history-tree with the remote repository):
 
 ```git
 git config --global branch.autosetuprebase always
@@ -238,25 +239,25 @@ git pull --tags origin main
 
 7. `git stash`:
 
-- Want to save all the changes and checkout to another branch:
+- Want to save all the changes before checkout to another branch:
 
 ```git
 git stash
 ```
 
-- Naming the current stash for easy pop changes later:
+- Naming the current stash session for an easy pop-out later:
 
 ```git
 git stash save "<text>"
 ```
 
-- Want to pop the latest changes from the stack:
+- Want to pop only the latest changes from the stack:
 
 ```git
 git stash pop
 ```
 
-- Want to show stash history from the stack:
+- Want to show the history of all stashes, extracting from the stack:
 
 ```git
 git stash show -p
@@ -270,7 +271,7 @@ git stash pop stash@{<STASH_INDEX>}
 git stash apply stash@{<STASH_INDEX>}
 ```
 
-- Or you can apply directly from index number in the stash tree:
+- Or you can apply directly using the index number from the stash tree:
 
 ```git
 git stash apply --index <STASH_INDEX> -q
@@ -278,15 +279,15 @@ git stash apply --index <STASH_INDEX> -q
 
 8. `git rebase`:
 
-- Want to change the order of commits history of your current branch:
+- Want to change the order of all commits' history from the current branch:
 
-Step 1: to see the order of `HEAD`
+Step 1: To retrieve all of the history's activities from the current `HEAD`:
 
 ```git
 git reflog
 ```
 
-Step 2: choose the position that you want to rebase from (e.g: `HEAD~8`)
+Step 2: Choosing the commit's index/position that you want to rebase from (e.g: `HEAD~8`):
 
 ```git
 git rebase -i HEAD~8
@@ -306,7 +307,7 @@ Some options in popup interactive editor:
 | l | label | label current HEAD with name |
 | t | reset | reset HEAD to a label |
 
-Step 3: changes the commit order or do anything with the options listed above.
+Step 3: Changes the commit-tree's order or doing any action with the list of options as above:
 
 After that, if you satisfy with the changes you have made, then:
 
@@ -322,7 +323,7 @@ git rebase --abort
 
 9. `git ls-files`:
 
-- List files using git instead of `ls` commands in your current shell:
+- List files using git instead of `ls` commands in your native shell:
 
 ```git
 git ls-files
@@ -407,7 +408,7 @@ git branch --remote
 git ls-remote
 ```
 
-- Search commit belonged to which source branch or coming from any action:
+- Searching for commit that was belonged to which source branch or coming from any action:
 
 ```bash
 git branch -a --contains COMMIT_HASH
