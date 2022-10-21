@@ -2,43 +2,43 @@
 
 # Touch folder and go to this folder
 # NOTE: mkdir === md
-Function mdg {
+function mdg {
   mkdir $args[0]
   Set-Location $args[0]
 }
 
 # New multiple folders
-Function mdirs {
+function mdirs {
   for ( $i = 0; $i -lt $args.count; $i++ ) {
     mkdir $args[$i]
   }
 }
 
 # New multiple files
-Function mfs {
+function mfs {
   for ( $i = 0; $i -lt $args.count; $i++ ) {
     touch $args[$i]
   }
 }
 
 # Remove node_modules/*
-Function rmnode {
+function rmnode {
   Remove-Item .\node_modules\ -Recurse -Force
 }
 
 # Copy all
-Function cpa {
+function cpa {
   Copy-Item -Path $args[0] -Destination $args[1] -Recurse
 }
 
 # Measure total items in the current directory
-Function count {
+function count {
   $curDir = Get-Location
   Write-Host "Total items in ${curDir} is" (Get-ChildItem $args[0] | Measure-Object).Count -ForegroundColor Green
 }
 
 # Reload profile in PowerShell enviroment
-Function reload {
+function reload {
   # @() := create an array
   # %   := alias ForEach-Object
   @(
@@ -56,7 +56,7 @@ Function reload {
 }
 
 # Get total disk usage of the current directory in human-readable mode
-Function size {
+function size {
   param(
     [string]$path
   )
@@ -73,21 +73,21 @@ Function size {
 }
 
 # Remove multiple items from the current directory
-Function rms {
+function rms {
   for ( $i = 0; $i -lt $args.count; $i++ ) {
     Remove-Item $args[$i]
   }
 }
 
 # Invocate absolute path for the given application or command.
-Function which ($command) {
+function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
   Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
 }
 
 # Get the created date of an external repository on GitHub
 # require: scoop, curl, rip-grep
-Function crepo {
+function crepo {
   param(
     [string]$username,
     [string]$repo
@@ -108,7 +108,7 @@ Function crepo {
 }
 
 # Get the list details of the given command or function.
-Function details {
+function details {
   param(
     [string]$cmd
   )
@@ -116,7 +116,7 @@ Function details {
 }
 
 # Synchronize multiple remote forked repositories on GitHub.
-Function syncFork {
+function syncFork {
   param(
     [string]$username
   )
@@ -131,7 +131,7 @@ Function syncFork {
 
 # Check the current version of the PowerShell interpreter.
 # Global variable: $Host === Get-Host
-Function version {
+function version {
   $core = $PSEdition
   if (-not ($core -eq 'core')) {
     Write-Host -NoNewLine "This PowerShell version is not the core version!" -ForegroundColor Green
@@ -144,7 +144,7 @@ Function version {
 }
 
 # Print help information of the given command input.
-Function man {
+function man {
   [CmdletBinding()]
   param (
     [Parameter()]
@@ -155,7 +155,7 @@ Function man {
 }
 
 # Counting the position of the given commit's hash.
-Function commitRebase {
+function commitRebase {
   param (
     [string]$fullHash
   )
@@ -172,7 +172,7 @@ Function commitRebase {
 }
 
 # Create new file corresponded with the given path.
-Function touch {
+function touch {
   # Parameter help description
   [CmdletBinding()]
   param (
@@ -187,11 +187,11 @@ Function touch {
   New-Item -Path $Path
 }
 
-Function ghCLI {
+function ghCLI {
   winget.exe upgrade --id Github.cli
 }
 
-Function scoopUpgrade {
+function scoopUpgrade {
   if (! (scoop --version)) {
     <# Action to perform if the condition is true #>
     Write-Host -NoNewLine "Scoop Pacakge Management is not installed!" -ForegroundColor Green
@@ -210,6 +210,14 @@ Function scoopUpgrade {
       scoop update $extObj.Name
     }
   }
+}
+
+# `tailf` := Simple emulation/imitation the `sh -c "tail -f <filePath>"` comamnd in Bash-shell.
+function tailf {
+  param (
+    [string]$fullPath
+  )
+  Get-Content -Tail 100 -Wait $fullPath
 }
 
 # --------- Util functions ---------
