@@ -226,8 +226,13 @@ function mdu() {
 
     # `du -h/--human-readable` := print sizes in human readable format (e.g., 1K 234M 2G).
     # `du -c/--total` := produce a grant total.
+    #
+    # `sort -h` := compares human-readable numbers such as 1k, 1G.
+    # `sort -k` := sort the data via a specific key (useful when sorting columnar data).
+    # `sort -r` := sort the values in reverse (descending order).
     find $dir -maxdepth 1 -type d ! -empty | \
-        xargs du -hc --max-depth=1
+        xargs du -hc --max-depth=1 | \
+        sort -hr -k1
 }
 
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
