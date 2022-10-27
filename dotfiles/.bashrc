@@ -220,6 +220,15 @@ function rmhist() {
     done
 }
 
+# Weighs multiple sub-folders inside the given directory.
+function mdu() {
+    declare -x dir=$1
+
+    # `du -h/--human-readable` := print sizes in human readable format (e.g., 1K 234M 2G).
+    # `du -c/--total` := produce a grant total.
+    find $dir -maxdepth 1 -type d ! -empty | \
+        xargs du -hc --max-depth=1
+}
 
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
 # Archive extraction.
