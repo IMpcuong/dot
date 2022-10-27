@@ -8,7 +8,19 @@
 
 ## Feel free to make this archive become even larger and more useful.
 
-1. `git clone`:
+1. `git init/clone`:
+
+- `git init` with specified default branch name:
+
+```git
+git init --initial-branch=BRANCH_NAME
+```
+
+Or:
+
+```bash
+git config init.defaultBranch BRANCH_NAME
+```
 
 - Clone specific branch:
 
