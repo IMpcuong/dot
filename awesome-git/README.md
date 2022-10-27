@@ -697,6 +697,9 @@ git clean -d -n -X
 ```bash
 git worktree
 git rm <tracked_files>
+
+# Remove untracked files from git-indexed: after `git add -A .`
+git rm --cached -r .
 ```
 
 23. `git blame`: show what revision and author last modified each line of file.
