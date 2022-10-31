@@ -12,7 +12,7 @@
 
 - `git init` with specified default branch name:
 
-```git
+```bash
 git init --initial-branch=BRANCH_NAME
 ```
 
@@ -24,7 +24,7 @@ git config init.defaultBranch BRANCH_NAME
 
 - Clone specific branch:
 
-```git
+```bash
 git clone -b BRANCH_NAME --single-branch git@github.com:USERNAME/REPO.git
 ```
 
@@ -32,7 +32,7 @@ git clone -b BRANCH_NAME --single-branch git@github.com:USERNAME/REPO.git
 
 > - Eg: you only want to clone a specific branch (eg: `dev`) from the remote server.
 >
-> ```git
+> ```bash
 > git clone -b dev --single-branch <repo_https_url>
 > ```
 >
@@ -46,13 +46,13 @@ git clone -b BRANCH_NAME --single-branch git@github.com:USERNAME/REPO.git
 >
 > -> You can revert to normal behavior (accept all remote branches) with this command:
 >
-> ```git
+> ```bash
 > git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
 > ```
 
 - Cloning a project using one specific port: (NOTE: the square bracket is no needed at all!)
 
-```git
+```bash
 git clone ssh://git@mydomain.com:[port]/USERNAME/REPO.git
 ```
 
@@ -63,6 +63,8 @@ git clone ssh://git@mydomain.com:[port]/USERNAME/REPO.git
 ```bash
 # All activities listed in historical order:
 git reflog
+# Remove all refs' log history:
+git reflog expire --expire=now --all
 
 # Logging with maximum output's records constraint:
 git log --oneline -10
@@ -78,7 +80,7 @@ git log --oneline --name-only
 
 - Some `git log` commands I have just found out recently, really cool stuffs:
 
-```git
+```bash
 git shortlog -e -s -n HEAD
 git log -L <start_line>,<end_line>:FILENAME --full-history --pretty=oneline --date-order --decorate=full --skip=0 --max-count=10
 ```
@@ -87,13 +89,13 @@ NOTE: The second one is really fascinating, it shows all of the changed parts in
 
 - Retrieve the latest commit message:
 
-```git
+```bash
 git log --format=%B -n 1 HEAD
 ```
 
 - Searching and listing all commits from a interval of time:
 
-```git
+```bash
 git log --after="4 week" --before="0 week" --oneline
 git log --after="4 week" --before="0 week" --oneline | Measure-Object
 git log --after="4 week" --before="0 week" --oneline | findstr <commit_hash>
@@ -101,7 +103,7 @@ git log --after="4 week" --before="0 week" --oneline | findstr <commit_hash>
 
 - Logging a specific file's statistic with a path itself:
 
-```git
+```bash
 git log --follow --oneline -- <file_path>
 git log --stat --follow --oneline -- <file_path>
 ```
@@ -136,19 +138,19 @@ git show <branch_name>:<path/to/filename>
 
 - Add all the changes:
 
-```git
+```bash
 git add -A .
 ```
 
 - Add all the indexed/upstreamed changes:
 
-```git
+```bash
 git add -u
 ```
 
 - Add all the indexed changes in interactive mode:
 
-```git
+```bash
 git add -p
 git add --patch
 ```
@@ -164,13 +166,13 @@ git status -z -uall
 
 - Modify latest commit message:
 
-```git
+```bash
 git commit --amend -m YOUR_MESSAGE
 ```
 
 - Use latest message commit instead of creating a new one:
 
-```git
+```bash
 git commit --amend --no-edit
 ```
 
@@ -187,20 +189,20 @@ git commit --amend --no-edit
 
 From:
 
-```git
+```bash
 git push -f origin main
 ```
 
 to:
 
-```git
+```bash
 git push origin +@:main
 git push origin +HEAD:main
 ```
 
 - Push/pull within a up-to-date circle with the current upstream branch:
 
-```git
+```bash
 git push --set-upstream origin main
 git push --set-upstream origin HEAD
 git push -u origin HEAD
@@ -212,34 +214,34 @@ Note: `HEAD` is equal with `@`.
 
 - `git fetch`: renew the local indexes tree to be updated with the remote repository.
 
-```git
+```bash
 git fetch --prune
 git -c diff.mnemonicprefix=false -c core.quotepath=false fetch origin
 ```
 
 - `git pull`: pull new branch without checkout in local first (both have same utility).
 
-```git
+```bash
 git pull origin develop:develop
 git checkout origin/BRANCH -b BRANCH
 ```
 
 - Pull and rebase if the current branch is busy (have the different history-tree with the remote repository):
 
-```git
+```bash
 git config --global branch.autosetuprebase always
 git pull --rebase REMOTE_BRANCH LOCAL_BRANCH
 ```
 
 - I'm not test this command yet (?) -> _tested done_, quite useful command:
 
-```git
+```bash
 git pull -s recursive -X origin
 ```
 
 - Pull all tags that binding to a given branch:
 
-```git
+```bash
 git pull --tags origin main
 ```
 
@@ -253,39 +255,39 @@ git pull --tags origin main
 
 - Want to save all the changes before checkout to another branch:
 
-```git
+```bash
 git stash
 ```
 
 - Naming the current stash session for an easy pop-out later:
 
-```git
+```bash
 git stash save "<text>"
 ```
 
 - Want to pop only the latest changes from the stack:
 
-```git
+```bash
 git stash pop
 ```
 
 - Want to show the history of all stashes, extracting from the stack:
 
-```git
+```bash
 git stash show -p
 git stash list
 ```
 
 - And pop or apply the changes you want to rollback:
 
-```git
+```bash
 git stash pop stash@{<STASH_INDEX>}
 git stash apply stash@{<STASH_INDEX>}
 ```
 
 - Or you can apply directly using the index number from the stash tree:
 
-```git
+```bash
 git stash apply --index <STASH_INDEX> -q
 ```
 
@@ -295,13 +297,13 @@ git stash apply --index <STASH_INDEX> -q
 
 Step 1: To retrieve all of the history's activities from the current `HEAD`:
 
-```git
+```bash
 git reflog
 ```
 
 Step 2: Choosing the commit's index/position that you want to rebase from (e.g: `HEAD~8`):
 
-```git
+```bash
 git rebase -i HEAD~8
 ```
 
@@ -323,13 +325,13 @@ Step 3: Changes the commit-tree's order or doing any action with the list of opt
 
 After that, if you satisfy with the changes you have made, then:
 
-```git
+```bash
 git rebase --continue (1)
 ```
 
 or discard and exit the rebase process:
 
-```git
+```bash
 git rebase --abort
 ```
 
@@ -337,7 +339,7 @@ git rebase --abort
 
 - List files using git instead of `ls` commands in your native shell:
 
-```git
+```bash
 git ls-files
 git --git-dir=./.git ls-files -oc --exclude-standard
 ```
@@ -352,7 +354,7 @@ git ls-files --stage -- .
 
 - Using `git grep` instead of `grep` or `rg` inside a `git` directory:
 
-```git
+```bash
 git grep <text>
 ```
 
@@ -360,7 +362,7 @@ git grep <text>
 
 - Visualize current branch's history:
 
-```git
+```bash
 gitk
 ```
 
@@ -369,7 +371,7 @@ gitk
 - This command used to fix the conflict happened between the merge commits
   process:
 
-```git
+```bash
 git mergetool -t opendiff
 ```
 
@@ -381,24 +383,25 @@ git mergetool -t opendiff
 
 13. `git gc`
 
-- `git gc` clean up unnecessary files and optimize the local repo
+- `git gc` clean up unnecessary files and optimize the local repository:
 
-```git
+```bash
 git gc
+git gc --prune=now --aggressive
 ```
 
 14. `git delete` (kind of):
 
 - Delete branch locally:
 
-```git
+```bash
 git checkout ANOTHER_BRANCH
 git branch -D BRANCH_NAME
 ```
 
 - Delete remote branch:
 
-```git
+```bash
 git push --delete origin BRANCH_NAME
 ```
 
@@ -406,7 +409,7 @@ git push --delete origin BRANCH_NAME
 
 - Common commands:
 
-```git
+```bash
 git branch -a
 git branch -r
 git branch -vv
@@ -415,7 +418,7 @@ git branch --contains COMMIT_HASH
 
 - List all remote branches:
 
-```git
+```bash
 git branch --remote
 git ls-remote
 ```
@@ -435,7 +438,7 @@ git reflog show
 
 - Set upstream branch:
 
-```git
+```bash
 git branch --set-upstream-to=origin/main main
 ```
 
@@ -443,13 +446,13 @@ git branch --set-upstream-to=origin/main main
 
 - List conflicts:
 
-```git
+```bash
 git diff --name-only --diff-filter=U | rg "<<<"
 ```
 
 - Show changes between 2 branches:
 
-```git
+```bash
 git diff <branch_1> <branch_2>
 git diff <branch_1>..<branch_2>
 git diff --name-only <branch_name>..origin/<branch_name>
@@ -457,7 +460,7 @@ git diff --name-only <branch_name>..origin/<branch_name>
 
 - Show list of files have been changed between 2 branches:
 
-```git
+```bash
 git diff --name-status <branch_1>..<branch_2> >> changelog.txt
 ```
 
@@ -465,20 +468,20 @@ git diff --name-status <branch_1>..<branch_2> >> changelog.txt
 - A revision range `A..B` for `git log` or `git diff` into the equivalent arguments
   for the underlying plumbing command as `B ^A`.
 
-```git
+```bash
 git diff HEAD~1..HEAD~0
 git diff HEAD~0 ^HEAD~1
 ```
 
 - Show current modification that is not yet added in blob tree
 
-```git
+```bash
 git diff --cached
 ```
 
 - Show list filenames of all modified files in a specific commit hash:
 
-```git
+```bash
 git diff-tree --no-commit-id --name-only -r <COMMIT_HASH>
 ```
 
@@ -486,32 +489,32 @@ git diff-tree --no-commit-id --name-only -r <COMMIT_HASH>
 
 - Recover deleted branch:
 
-```git
+```bash
 git checkout -b <BRANCH_NAME> <COMMIT_HASH>
 ```
 
 - Revert the repo to latest changes has been applied:
 
-```git
+```bash
 git checkout .
 ```
 
 Have the same idea with the previous checkout command
 
-```git
+```bash
 git restore --staged <FILES>
 ```
 
 - Revert a file to most recent commit
 
-```git
+```bash
 git checkout <path_to_file>
 git checkout HEAD -- <path_to_file>
 ```
 
 - Checkout to a file from another branch:
 
-```git
+```bash
 git checkout origin/BRANCH_NAME -- <file_name>
 ```
 
@@ -529,13 +532,13 @@ git checkout --ours .
 
 - Sweep the latest commit out of Earth:
 
-```git
+```bash
 git reset --hard HEAD~1
 ```
 
 - NOTE: recommendation because it's just revert the most recent changed file to un-staged status.
 
-```git
+```bash
 git reset --soft HEAD~1
 ```
 
@@ -546,14 +549,14 @@ git reset --soft HEAD~1
 - This is an ancillary/support `plumbing` (^) command used for manipulation purpose,
   one of the primary use cases is to print the `SHA1` hashes given a revision specific.
 
-```git
+```bash
 git rev-parse HEAD
 git rev-parse --short HEAD
 ```
 
 Also works for getting the current branch name
 
-```git
+```bash
 git rev-parse --abbrev-ref HEAD
 ```
 
@@ -561,14 +564,14 @@ git rev-parse --abbrev-ref HEAD
 
 - If you want to find the latest commit in another branch:
 
-```git
+```bash
 git rev-parse <local-branch-name>
 git rev-parse origin/<remote-branch-name>
 ```
 
 - Retrieve the remote's latest commit-hash:
 
-```git
+```bash
 git rev-parse refs/remotes/origin/main^{commit}
 ```
 
@@ -582,13 +585,13 @@ git remote --verbose
 
 - `git remote` add new remote repo:
 
-```git
+```bash
 gir remote add origin git@github.com:<USERNAME>/<REPO>.git
 ```
 
 - `git remote` set default URL to avoid asking username/passwords prompt popping off:
 
-```git
+```bash
 git remote set-url origin git@github.com:<USERNAME>/<REPO>.git
 git remote set-url origin https://github.com/<USERNAME>/<REPO>.git
 ```
@@ -616,7 +619,7 @@ git -c "http.proxy=address:port" clone https://github.com/<username>/<repo>
 
 - Forget old saved credentials, re-enter username and password as required:
 
-```git
+```bash
 git credential-cache exit
 git config --global credential.helper manager
 git config --global credential.helper manager-core
@@ -628,7 +631,7 @@ NOTE: all the saved credentials can be found in here (`Control Panel\User Accoun
 
   - `--system` > `--global` > `--local`: (example belows)
 
-```git
+```bash
 git config --system -e
 git config --system credential.helper manger-core/wincred
 git config --system --unset-all credential.helper
@@ -636,7 +639,7 @@ git config --system --unset-all credential.helper
 
 - `git config` set reference to remote URl:
 
-```git
+```bash
 git config remote.origin.url <REMOTE_URL>
 ```
 
@@ -662,13 +665,14 @@ git config --get commit.template
 - If you want to create a new branch to retain commits you create, you may
   do so (now or later) by using `-c` with the switch command. Example:
 
-```git
+```bash
 git switch -c <new-branch-name>
+git switch --create <new-branch-name>
 ```
 
 Or undo this operation with:
 
-```git
+```bash
 git switch -
 ```
 
@@ -759,7 +763,7 @@ git branch --remote --sort=committerdate  # ASC
 
 - Advance options for beautify format:
 
-```git
+```bash
 [Local]
 git for-each-ref --sort=-committerdate refs/heads/ \
   --format='%(authordate:short) %(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
@@ -828,7 +832,7 @@ fucntion recentb() {
 ### End from: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 ```
 
-25. `git update-ref`: update the object's name stored in the `ref` safely.
+25. `git update-ref`: safely update the object's name stored in the `ref`.
 
 - `ref` demystification:
 
@@ -840,7 +844,7 @@ fucntion recentb() {
 
 - Revert the merge process in between a merge-commit (if you want to start merging all over):
 
-```git
+```bash
 git update-ref -d MERGE_HEAD
 ```
 
@@ -856,4 +860,16 @@ git symbolic-ref --short HEAD
 
 ```bash
 git cat-file -s <COMMIT_HASH>
+```
+
+28. `git bundle`: move objects and refs by archive.
+
+```bash
+git bundle create ../project.bundle <default-branch-name>
+```
+
+29. `git count-objects`: count unpacked number of objects and their disk consumption.
+
+```bash
+git count-objects -v
 ```
