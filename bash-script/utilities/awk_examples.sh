@@ -31,7 +31,7 @@ awk 'BEGIN { str1 = "Hello, "; str2 = "World"; str3 = str1 str2; print str3 }'
 awk 'BEGIN { a = 10; b = 20; (a > b) ? max = a : max = b; print "Max =", max}'
 awk 'BEGIN { a = -10; a = -a; print "a =", a }'
 
-# Exponetial:
+# Exponential:
 awk 'BEGIN { a = 10; a = a**2; print "a =", a }'
 awk 'BEGIN { a = 10; a = a^2; print "a =", a }'
 
