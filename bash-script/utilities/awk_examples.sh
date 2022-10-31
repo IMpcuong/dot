@@ -12,7 +12,7 @@ df -h | awk '{ if ($3 > 0) { print $0 } }'
 awk 'BEGIN { cnt = 2; cnt ^= 4; print "Counter =", cnt }'
 
 # Logical:
-awk 'BEGIN { name = ""; if (!length(name)) print "name is empty string." }'
+awk 'BEGIN { name = ""; if (!length(name)) print "$name is an empty string!" }'
 # Both of these conventions in the `awk` command below returning the same result:
 # NOTE: `-v <assignment>` := declaration of a new variable.
 awk 'BEGIN { \
@@ -50,6 +50,10 @@ awk 'BEGIN { \
   } \
 }'
 awk 'BEGIN { sum = 0; for (i = 0; i < 20; i++) { sum += i; if (sum % 2 == 0) print sum; else continue } }'
+
+# Compare wildcare string:
+awk 'BEGIN { app = "dude"; if (app ~ /^du.*/) print app; }'
+awk '{ app = "dude"; if (app ~ /^du.*/) print app; }'
 
 # NOTE:
 # + `-F <fs>, --field-separator <fs>` := Use <fs> for the input field separator (the value of the FS predefined variable).
