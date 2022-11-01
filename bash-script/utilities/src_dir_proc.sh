@@ -10,6 +10,7 @@ for pid in $pids; do
   pwdx $pid
 
   # Solution2:
+  # `lsof` := list open files (from a given process-ID).
   lsof -p $pid | grep cwd
 
   # Solution3:

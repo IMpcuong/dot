@@ -96,8 +96,8 @@
   |                | Ctrl + r      | Redo.                                                               |
   | _[Searching]_  | /\<pattern\>  | Start forward search for the \<pattern\>.                           |
   |                | ?\<pattern\>  | Start reverse search for the \<pattern\>.                           |
-  | _[Moving]_     | `\'.`         | Jump to last modification line.                                     |
-  |                | `\`.`         | Jump to exact spot that was recorded the latest patches.            |
+  | _[Moving]_     | '.            | Jump to last modification line.                                     |
+  |                | `.            | Jump to exact spot that was recorded the latest patches.            |
   |                | Ctrl + o      | Retrace your movements in file in backwards.                        |
   |                | Ctrl + i      | Retrace your movements in file in forwards.                         |
   |                | gt            | Similar to `tabn/tabnext`.                                          |
