@@ -26,6 +26,7 @@ git config init.defaultBranch BRANCH_NAME
 
 ```bash
 git clone -b BRANCH_NAME --single-branch git@github.com:USERNAME/REPO.git
+git clone --bare https://<usrname>:<passwd>@gitlab.com/REPO.git
 ```
 
 - NOTE:
@@ -471,6 +472,7 @@ git diff --name-status <branch_1>..<branch_2> >> changelog.txt
 ```bash
 git diff HEAD~1..HEAD~0
 git diff HEAD~0 ^HEAD~1
+git diff --stat $(git symbolic-ref --short HEAD)^..master
 ```
 
 - Show current modification that is not yet added in blob tree
