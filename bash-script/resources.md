@@ -1,5 +1,7 @@
 ### All of the needy resources available for `bash-script` learning purposes:
 
+- NOTE: In `Bash-script` or inside a `Jenkinsfile`, single quotes are using for keeping the original form of a unescaped/raw characters.
+
 > - [Internal/Built-in variables][1]
 >
 > - `man bash`: to see all of these fundamental definitions/grammar for the `GNU Bourne-Again SHell` (Bash)
