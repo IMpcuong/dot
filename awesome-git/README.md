@@ -184,6 +184,13 @@ git commit --amend --no-edit
 >   -> You can easily using `pull --amend` first
 >   -> Then you don't have to `push -f` in your next push session.
 
+- Manipulate `git` to update indexes with only one chosen file:
+
+```bash
+git commit --only main.go
+git commit --include main.go
+```
+
 5. `git push`:
 
 - Using this shortcut instead of forcing to push the latest commit:
