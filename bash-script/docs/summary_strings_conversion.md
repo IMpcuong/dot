@@ -17,13 +17,13 @@ echo ${name^}
 echo ${name^^}
 # --> DUDE
 
-# Uppercase for specific first letter:
+# Exp2 ~ Uppercase for specific first letter:
 echo ${name^d}
 # --> Dude
 echo ${name^u}
 # --> dude
 
-# Exp2 ~ Uppercase any specific character(s) in a string:
+# Exp3 ~ Uppercase any specific character(s) in a string:
 declare -x language="python perl java php c#"
 echo $language
 # --> python perl java php c#
@@ -32,25 +32,33 @@ echo ${language^^p)}
 echo ${language^^[pj]}
 # --> Python Perl Java PhP c#
 
-# Exp3 ~ Reckon `stdin` as the value behind a variable:
+# Exp4 ~ Reckon `stdin` as the value behind a variable:
 read -p "Do you like music? " ans
 answer=${ans^}
 echo "Your answer is $answer."
 
-# Exp4 ~ `,,` operator is used to convert the values taken from stdin and compare with the variable `$username` and `$password`:
-username='admin'
-password='pop890'
+# Exp5 ~ `,,` operator is used to convert the values taken from stdin and compare with the variable `$username` and `$password`:
+declare -x username='admin'
+declare -x password='admin'
 read -p "Enter username: " u
 read -p "Enter password: " p
-user=${u,,}
-pass=${p,,}
+declare -x user=${u,,}
+declare -x pass=${p,,}
 if [ $username == $user ] && [ $password == $pass ]; then
-echo "Valid User"
+  echo "Valid User!"
 else
-echo "Invalid User"
+  echo "Invalid User!"
 fi
 
+# Exp6 ~ Using `tr` command: translate, squeeze, and/or delete characters from stdin, writing to stdout.
 tr [:upper:] [:lower:]
 tr a-z A-Z
 ls -l | awk '{print $9}' | tr A-Z a-z
+
+# Exp7 ~ Rename multiple directories' name to lowercase with the maximum depth equivalent with 2.
+declare -a dirs=(`find . -maxdepth 2 -type d -a -regextype "egrep" -regex "^.*(\/.+){2,}.*"`)
+for dir in ${dirs[@]}; do
+  declare -x new_dir=$(echo $dir | tr [[:upper:]] [[:lower:]])
+  mv $dir $new_dir
+done
 ```
