@@ -29,3 +29,17 @@ function renameRepo() {
 function cloneRepo() {
   gh repo clone "$username"/"$repo"
 }
+
+function getLatestVersion() {
+  git rev-parse --short HEAD
+}
+
+### From: https://stackoverflow.com/questions/15715825/how-do-you-get-the-git-repositorys-name-in-some-git-repository
+function getLocalRepoName() {
+  basename $(git rev-parse --show-toplevel)
+}
+
+function getRemoteRepoName() {
+  basename -s .git $(git config --get remote.origin.url)
+}
+###
