@@ -5,7 +5,8 @@
 # Exp1: Using `du` to measure all directories existed in our current location.
 find . -maxdepth 1 -type d ! -empty -regex ".*[^[:space:]*].*" | xargs du -h --max-depth=1
 
-# Exp2: Using `find -print0` to print full dirname to stdout, followed by a null character.
+# Exp2: Using `find -print0` to extricate/bring-out full dirname to stdout, followed by a null character.
+# + `\0` := is identical with null-character in Bash.
 find . -maxdepth 1 -type d -print0 | while read -d $'\0' dir; do
   du -h --max-depth=1 $dir;
 done
