@@ -456,6 +456,7 @@ git branch --set-upstream-to=origin/main main
 
 ```bash
 git diff --name-only --diff-filter=U | rg "<<<"
+git diff --name-only --diff-filter=U | xargs grep "<<<"
 ```
 
 - Show changes between 2 branches:
