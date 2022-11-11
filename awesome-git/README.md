@@ -5,6 +5,7 @@
 - [Gist git-bash commands](https://gist.github.com/etoxin/1acb257550b1de60fe99)
 - [https://stephencharlesweiss.com](https://stephencharlesweiss.com/git-rebase-interactive)
 - [StackOverflow](https://stackoverflow.com/questions/15798862/what-does-git-rev-parse-do)
+- [Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
 ## Feel free to make this archive become even larger and more useful.
 
