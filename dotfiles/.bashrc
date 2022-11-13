@@ -199,7 +199,7 @@ function syncforked() {
 
     forkedRepos=(`gh repo list | \
         grep -E "fork" | \
-        grep -ioE "^.*${username}\/[\w*-_]*\b"
+        grep -ioE "^.*${username}\/[\w*-_]*\b" \
     `)
     for repo in "${forkedRepos[@]}"; do
         gh repo sync $repo
