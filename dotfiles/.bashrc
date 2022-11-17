@@ -202,7 +202,7 @@ function syncforked() {
         grep -ioE "^.*${username}\/[\w*-_]*\b" \
     `)
     for repo in "${forkedRepos[@]}"; do
-        gh repo sync $repo
+        gh repo sync --force $repo
     done
 }
 
