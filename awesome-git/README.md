@@ -7,7 +7,11 @@
 - [StackOverflow](https://stackoverflow.com/questions/15798862/what-does-git-rev-parse-do)
 - [Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
 
-## Feel free to make this archive become even larger and more useful.
+## Feel free to make this archive even larger and more useful.
+
+## Important notes:
+
+- `refs/heads` clarification/elucidation: `@` stands for `HEAD`.
 
 1. `git init/clone`:
 
@@ -134,6 +138,20 @@ git -c log.showsignature=false show -s --format=%H:%ct
 ```bash
 git show --textconv :main.go
 git show <branch_name>:<path/to/filename>
+```
+
+- `git show` in multiple ways, with the same semantics:
+
+```bash
+# View the file content in the previous commit of the most recent one:
+git show HEAD@{1}
+git show HEAD~1
+git show @{1}
+
+# View the file content in the previous commit of a specific file:
+git show HEAD@{1}:./main.go
+git show HEAD~1:./main.go
+git show @{1}:./main.go
 ```
 
 3. `git add/status`:
@@ -539,6 +557,12 @@ git checkout --theirs .
 git checkout --ours .
 ```
 
+- Checkout a specific file to commit before the latest version:
+
+```bash
+git checkout @{1} -- main.go
+```
+
 18. `git reset` (_BE CAREFUL WITH_ `git reset` !!!)
 
 - Sweep the latest commit out of Earth:
@@ -714,6 +738,7 @@ git worktree
 git rm <tracked_files>
 
 # Remove untracked files from git-indexed: after `git add -A .`
+git rm --cached test.txt # Index deletion.
 git rm --cached -r .
 ```
 
