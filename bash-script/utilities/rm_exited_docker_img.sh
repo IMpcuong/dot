@@ -11,6 +11,16 @@ docker ps -a | \
   tail -n +2 | \
   xargs docker rm
 
+# The problem appeared when any fields from the stdout of the `docker ps -a` command contained
+# the whitespace charater(s).
+# Solved:
+docker ps -a | \
+  awk '{ \
+    for (line = 1; line <= NF; line++) { \
+      if ($line ~ /.*Exited.*/) print $1 \
+    } \
+  }' | xargs docker rm -f
+
 # NOTE: remove first matched `docker` image filtered by name.
 docker images -a | \
   grep "image_name" | \
