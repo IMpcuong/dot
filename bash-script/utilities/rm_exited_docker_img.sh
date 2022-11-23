@@ -44,6 +44,12 @@ docker images -a --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" | \
   grep -i public | \
   awk '{ system("docker rmi " $1) }'
 
+# Having the same semantics as the precedence command:
+docker images -a --format "table {{.ID}}\t{{.Tag}}" | \
+  grep none | \
+  awk '{ print $1 }' | \
+  xargs docker rmi -f
+
 # Join:
 docker inspect --format '{{join .Args " , "}}' container_name
 
