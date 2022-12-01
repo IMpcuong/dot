@@ -629,6 +629,9 @@ gir remote add origin git@github.com:<USERNAME>/<REPO>.git
 ```bash
 git remote set-url origin git@github.com:<USERNAME>/<REPO>.git
 git remote set-url origin https://github.com/<USERNAME>/<REPO>.git
+
+# NOTE: Allow user to push to both the original origin (github + gitlab).
+git remote set-url --add origin git@gitlab.com:<USERNAME>/<REPO>.git
 ```
 
 20. `git config`:
