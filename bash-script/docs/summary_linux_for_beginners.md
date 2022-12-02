@@ -88,11 +88,13 @@
     - `-R`: display recursively.
     - `-F`: option will append a character to the file name that reveals what type it is.
 
-    | Symbol | Meaning                                                               |
-    | :----: | :-------------------------------------------------------------------- |
-    |   /    | Directory                                                             |
-    |   @    | Link. The file that follows the `->` symbol is the target of the link |
-    |   \*   | Executable program                                                    |
+    | Symbol | Meaning                                                                    |
+    | :----: | :------------------------------------------------------------------------- |
+    |   /    | Directory.                                                                 |
+    |   @    | Link. The file that follows the `->` symbol is the target of the link.     |
+    |   =    | Socket. Stands for Unix Domain Socket file (`find . -maxdepth 1 -type s`). |
+    |   \|   | FIFO Named pipe.                                                           |
+    |   \*   | Executable program.                                                        |
 
 - Default Permissions and the File Creation Mask:
 
