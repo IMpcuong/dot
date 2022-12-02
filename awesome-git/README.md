@@ -514,6 +514,12 @@ git diff --cached
 git diff-tree --no-commit-id --name-only -r <COMMIT_HASH>
 ```
 
+- Review all the changes that were applied (between 2 commits) to a specific file:
+
+```bash
+git diff --stat HEAD~0 HEAD~2 -- /path/to/file
+```
+
 17. `git checkout`
 
 - Recover deleted branch:
