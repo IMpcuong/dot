@@ -27,3 +27,8 @@ if (0 -ne $procs.Length) {
 tasklist /fi "status eq running" | `
   findstr /i /c:"(${args[0]})" | `
   ForEach-Object { taskkill /f /im ($_ -split '\s+', 4)[0] } # --> The first positional argument `[0]` reproduce/imitate for process/application's name.
+
+# Or:
+tasklist /fi "status eq running" | `
+  findstr /i /c:"(${args[0]})" | `
+  ForEach-Object { taskkill /f /pid ($_ -split '\s+', 4)[2] }
