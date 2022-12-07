@@ -1,5 +1,7 @@
 @echo off
 
+@REM First switch-case method:
+
 @REM java -jar sync-bundle.jar -c config.properties -json param.json
 @REM java -jar sync-1.0.jar -c config.properties -json param.json
 @REM java -jar sync-1.0.jar -c config.properties -param param.json
@@ -37,3 +39,28 @@ set /P N=Enter number to choose option:
 :end-switch
 
 echo End this prompt.
+
+@REM Second switch-case method:
+
+@REM https://stackoverflow.com/questions/18423443/switch-statement-equivalent-in-windows-batch-file
+
+SET /p ENV="Enter which cloud environment you want to deploy (uat, prod): "
+
+2>NUL CALL :CASE_%ENV%
+IF ERRORLEVEL 1 CALL :DEFAULT_CASE
+
+ECHO Done.
+EXIT /B
+
+:CASE_uat
+  sam build -t .\template.yaml && sam deploy --config-file .\config-uat.toml --config-env uat --debug
+  GOTO END_CASE
+:CASE_prod
+  sam build -t .\template.yaml && sam deploy --config-file .\config-prod.toml --config-env prod --debug
+  GOTO END_CASE
+:DEFAULT_CASE
+  ECHO Unknown environment "%ENV%"
+  GOTO END_CASE
+:END_CASE
+  VER > NUL
+  GOTO :EOF
