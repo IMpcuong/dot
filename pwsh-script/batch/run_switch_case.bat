@@ -19,7 +19,7 @@ set /P N=Enter number to choose option:
     :: Default case.
     java -jar sync-bundle.jar -env dev -fromDate 20211001 -toDate 20211101
   )
-  goto :end-witch
+  goto :end-switch
 
   :case-1
     :: Datetime pattern/formatter = `yyyyMMdd`.
