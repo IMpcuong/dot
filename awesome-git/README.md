@@ -502,7 +502,7 @@ git diff HEAD~0 ^HEAD~1
 git diff --stat $(git symbolic-ref --short HEAD)^..master
 ```
 
-- Show current modification that is not yet added in blob tree
+- Show current modification that is not yet added in blob tree:
 
 ```bash
 git diff --cached
@@ -528,26 +528,26 @@ git diff --stat HEAD~0 HEAD~2 -- /path/to/file
 git checkout -b <BRANCH_NAME> <COMMIT_HASH>
 ```
 
-- Revert the repo to latest changes has been applied:
+- Revert (clean any changes that have not been indexed) the current directory to latest commit has been applied:
 
 ```bash
 git checkout .
 ```
 
-Have the same idea with the previous checkout command
+- Restore all the patches that were indexed using `git add`:
 
 ```bash
 git restore --staged <FILES>
 ```
 
-- Revert a file to most recent commit
+- Revert a file to most recent commit:
 
 ```bash
 git checkout <path_to_file>
 git checkout HEAD -- <path_to_file>
 ```
 
-- Checkout to a file from another branch:
+- Checkout a file back to the latest commit version that was recognized by the remote branch:
 
 ```bash
 git checkout origin/BRANCH_NAME -- <file_name>
@@ -563,7 +563,7 @@ git checkout --theirs .
 git checkout --ours .
 ```
 
-- Checkout a specific file to commit before the latest version:
+- Checkout a specific file to the previous commit of the latest one:
 
 ```bash
 git checkout @{1} -- main.go
