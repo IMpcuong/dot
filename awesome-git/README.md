@@ -700,6 +700,12 @@ password: <your_access_token>
 git config --get commit.template
 ```
 
+- Git proxy bypass (overwritten per-remote basis):
+
+```bash
+git config --add remote.origin.proxy ""
+```
+
 21. `git switch`:
 
 - You are in `detached HEAD` state. You can look around, make experimental
