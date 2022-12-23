@@ -35,7 +35,7 @@ awk 'BEGIN { a = -10; a = -a; print "a =", a }'
 awk 'BEGIN { a = 10; a = a**2; print "a =", a }'
 awk 'BEGIN { a = 10; a = a^2; print "a =", a }'
 
-# Regex: the pattern must be declared inside the `/.*/` block
+# Regex: the pattern must be declared inside the `/.*/` block.
 echo -e "knife\nknow\nfun\nfin\nfan\nnine" | awk '/n$/'
 
 # Loop:
@@ -50,6 +50,9 @@ awk 'BEGIN { \
   } \
 }'
 awk 'BEGIN { sum = 0; for (i = 0; i < 20; i++) { sum += i; if (sum % 2 == 0) print sum; else continue } }'
+
+# Backward loop using `awk`:
+awk '{ lines[NR] = $0 } END { for (i = NR; i >= 1; --i) print lines[i] }' reverse-me.txt # `tac reverse-me.txt`.
 
 # Compare wildcare string:
 awk 'BEGIN { app = "dude"; if (app ~ /^du.*/) print app; }'
