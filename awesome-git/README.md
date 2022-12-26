@@ -6,12 +6,16 @@
 - [https://stephencharlesweiss.com](https://stephencharlesweiss.com/git-rebase-interactive)
 - [StackOverflow](https://stackoverflow.com/questions/15798862/what-does-git-rev-parse-do)
 - [Git Submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
+- [Git blobs](https://docs.github.com/en/rest/git/blobs?apiVersion=2022-11-28)
 
 ## Feel free to make this archive even larger and more useful.
 
 ## Important notes:
 
 - `refs/heads` clarification/elucidation: `@` stands for `HEAD`.
+- `Git blobs`: stands for `Git binary large object` is the object type used to store the contents of each file in a repository.
+  The file's SHA-1 hash is computed and stored in the blob object.
+  These endpoints allow you to read and write blob objects to your Git database on Github. Blobs leverage these custom media types.
 
 1. `git init/clone`:
 
