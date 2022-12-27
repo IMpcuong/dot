@@ -229,6 +229,10 @@ to:
 ```bash
 git push origin +@:main
 git push origin +HEAD:main
+
+# Or any current branch that HEAD (~pointer) was pointed to:
+git push origin +@:local_branch
+git push origin +HEAD:local_branch
 ```
 
 - Push/pull within a up-to-date circle with the current upstream branch:
