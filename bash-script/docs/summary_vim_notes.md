@@ -21,6 +21,8 @@
 
 - Autocompletion: using `:e` or `Ctrl + e`.
 
+- Remove trailing white-spaces: `:%s/\s\+$//e`
+
 - Use range to manipualate content of a file:
 
   - Summary: `[range][operation][additional-options]`.
@@ -112,6 +114,7 @@
   - [Go back to last cursor postion][4]
   - [Copy to clipboard on Vim][5]
   - [Delete a block of text in Vim][6]
+  - [Autoremove trailing whitespace characters][7]
 
   [0]: https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vimp
   [1]: https://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
@@ -120,3 +123,4 @@
   [4]: https://www.cyberciti.biz/faq/unix-linux-vim-go-back-to-last-cursor-position/
   [5]: https://stackoverflow.com/questions/3961859/how-to-copy-to-clipboard-in-vim
   [6]: https://stackoverflow.com/questions/16721945/delete-a-block-of-text-in-vim
+  [7]: https://vimtricks.com/p/vim-remove-trailing-whitespace/
