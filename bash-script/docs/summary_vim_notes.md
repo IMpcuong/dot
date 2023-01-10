@@ -15,15 +15,16 @@
 
 - Copy one (or multiple) line(s) to clipboard: `COMMAND MODE` -> `<start>,<end>y *` -> `p` to paste to wherever as you want to.
 
-- Multi-cursors (concurrently): using edit-block mode to make it happen: Selecting a block of text (more than 1 line) -> `Shift + i` -> `EDIT BLOCK MODE` -> \<ESC\> (x2) to apply.
+- Multi-cursors (concurrently): using edit-block mode to make it happen:
+  Selecting a block of text (more than 1 line) -> `Shift + i` -> `EDIT BLOCK MODE` -> \<ESC\> (x2) to apply.
 
-  - Checks if you have `+visualextra` enabled in your verison of `Vim` using `:ver` in `COMMAND MODE`.
+  - Checks if you have `+visualextra` enabled in your version of `Vim` using `:ver` in `COMMAND MODE`.
 
 - Autocompletion: using `:e` or `Ctrl + e`.
 
 - Remove trailing white-spaces: `:%s/\s\+$//e`
 
-- Use range to manipualate content of a file:
+- Use range to manipulate content of a file:
 
   - Summary: `[range][operation][additional-options]`.
 
@@ -53,12 +54,12 @@
   | Named             |        | We can use 26 named registers, from `a-z \|\| A-Z`. By default Vim doesn't uses these registers.     |
   |                   |        | Lowercase register: `contents will be overwritten`.                                                  |
   |                   |        | Uppercase register: `contents will be appended`.                                                     |
-  | Numbered          |        | We can use `0-9` named registers. Vill fills these registers with text from yank and delete command. |
+  | Numbered          |        | We can use `0-9` named registers. Will fills these registers with text from yank and delete command. |
   |                   |        | Numbered `register 0` contains the text from the most recent yank command.                           |
   |                   |        | Numbered `register 1` contains the text deleted by the most recent delete or change command.         |
   | Default registers |  `%`   | Name of the current file.                                                                            |
   |                   |  `#`   | Name of the alternative file for the current window.                                                 |
-  |                   |  `:`   | Most recently excuted command.                                                                       |
+  |                   |  `:`   | Most recently executed command.                                                                      |
   |                   |  `.`   | Contains the last inserted text.                                                                     |
   |                   |  `"`   | Last used register.                                                                                  |
 
@@ -68,8 +69,8 @@
   | :--------- | :---------------------------- |
   | `.`        | Current line.                 |
   | `$`        | Last line.                    |
-  | `/<text>/` | Next occurence of text.       |
-  | `?<text>?` | Previous occurence text.      |
+  | `/<text>/` | Next occurrence of text.      |
+  | `?<text>?` | Previous occurrence text.     |
   | `*`        | All text currently on screen. |
   | `%`        | Entire file.                  |
   | `+N`       | Next N lines.                 |
@@ -104,6 +105,7 @@
   |                | Ctrl + i      | Retrace your movements in file in forwards.                         |
   |                | gt            | Similar to `tabn/tabnext`.                                          |
   |                | gT            | Similar to `tabp/tabprevious`.                                      |
+  |                | o             | Jumping to the next line (\\n character) in the `Normal` mode.      |
 
 - NOTE: Resources reference:
 
@@ -111,10 +113,10 @@
   - [Indent multiple lines in Vim][1]
   - [Switch between tabs][2]
   - [Select text in Vim][3]
-  - [Go back to last cursor postion][4]
+  - [Go back to last cursor position][4]
   - [Copy to clipboard on Vim][5]
   - [Delete a block of text in Vim][6]
-  - [Autoremove trailing whitespace characters][7]
+  - [Auto-remove trailing whitespace characters][7]
 
   [0]: https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vimp
   [1]: https://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
