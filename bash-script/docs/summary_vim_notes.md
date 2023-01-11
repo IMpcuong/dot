@@ -78,34 +78,35 @@
 
 - Table of some common motions/actions:
 
-  | Action         | Shortcut      | Description                                                         |
-  | :------------- | :------------ | :------------------------------------------------------------------ |
-  | _[Delete]_     | x             | Delete a character.                                                 |
-  |                | dw            | Delete a word.                                                      |
-  |                | d5w           | Delete 5 words.                                                     |
-  |                | dd            | Delete a line.                                                      |
-  |                | 3dd           | Delete 3 lines                                                      |
-  |                | D             | Delete from the current position to the end of the line.            |
-  | _[Changing]_   | r             | Replace current character.                                          |
-  |                | cw            | Change the current word.                                            |
-  |                | cc            | Change the current line.                                            |
-  |                | c$            | Change the text from the current position to the end of the line.   |
-  |                | C             | Same as `c$`.                                                       |
-  |                | ~             | Reverse case of the obliteration character.                         |
-  | _[Copy/Paste]_ | yy            | Yank (copy) the current line.                                       |
-  |                | y\<position\> | Yank the position. Exp: `yw` := yank a word, `y3w` := yank 3 words. |
-  |                | p             | Paste the most recent deleted or yanked text.                       |
-  | _[Undo/Redo]_  | u             | Undo.                                                               |
-  |                | Ctrl + r      | Redo.                                                               |
-  | _[Searching]_  | /\<pattern\>  | Start forward search for the \<pattern\>.                           |
-  |                | ?\<pattern\>  | Start reverse search for the \<pattern\>.                           |
-  | _[Moving]_     | '.            | Jump to last modification line.                                     |
-  |                | `.            | Jump to exact spot that was recorded the latest patches.            |
-  |                | Ctrl + o      | Retrace your movements in file in backwards.                        |
-  |                | Ctrl + i      | Retrace your movements in file in forwards.                         |
-  |                | gt            | Similar to `tabn/tabnext`.                                          |
-  |                | gT            | Similar to `tabp/tabprevious`.                                      |
-  |                | o             | Jumping to the next line (\\n character) in the `Normal` mode.      |
+  | Action         | Shortcut      | Description                                                                           |
+  | :------------- | :------------ | :------------------------------------------------------------------------------------ |
+  | _[Delete]_     | x             | Delete a character.                                                                   |
+  |                | dw            | Delete a word.                                                                        |
+  |                | d5w           | Delete 5 words.                                                                       |
+  |                | dd            | Delete a line.                                                                        |
+  |                | 3dd           | Delete 3 lines                                                                        |
+  |                | D             | Delete from the current position to the end of the line.                              |
+  | _[Editing]_    | r             | Replace current character.                                                            |
+  |                | cw            | Change the current word.                                                              |
+  |                | cc            | Change the current line.                                                              |
+  |                | c$            | Change the text from the current position to the end of the line.                     |
+  |                | C             | Same as `c$`.                                                                         |
+  |                | ~             | Reverse case of the obliteration character.                                           |
+  |                | Ctrl + v      | `Visual Block` mode, using redirection character to choose content need to be edited. |
+  | _[Copy/Paste]_ | yy            | Yank (copy) the current line.                                                         |
+  |                | y\<position\> | Yank the position. Exp: `yw` := yank a word, `y3w` := yank 3 words.                   |
+  |                | p             | Paste the most recent deleted or yanked text.                                         |
+  | _[Undo/Redo]_  | u             | Undo.                                                                                 |
+  |                | Ctrl + r      | Redo.                                                                                 |
+  | _[Searching]_  | /\<pattern\>  | Start forward search for the \<pattern\>.                                             |
+  |                | ?\<pattern\>  | Start reverse search for the \<pattern\>.                                             |
+  | _[Moving]_     | '.            | Jump to last modification line.                                                       |
+  |                | `.            | Jump to exact spot that was recorded the latest patches.                              |
+  |                | Ctrl + o      | Retrace your movements in file in backwards.                                          |
+  |                | Ctrl + i      | Retrace your movements in file in forwards.                                           |
+  |                | gt            | Similar to `tabn/tabnext`.                                                            |
+  |                | gT            | Similar to `tabp/tabprevious`.                                                        |
+  |                | o             | Jumping to the next line (\\n character) in the `Normal` mode.                        |
 
 - NOTE: Resources reference:
 
