@@ -37,7 +37,7 @@ function DeleteBatch {
     [datetime]$endDate
   )
   Get-ChildItem $path -Recurse | `
-    Where-Object { $_.LastWriteTime -ge $startDate -and $_.lastWriteTime -le $endDate } | `
+    Where-Object { $_.LastWriteTime -ge $startDate -and $_.LastWriteTime -le $endDate } | `
     Remove-Item  -Recurse -Force
 }
 
