@@ -22,6 +22,8 @@
 
 - Autocompletion: using `:e` or `Ctrl + e`.
 
+- File explorer: using `:Ex` or `:Explore`
+
 - Remove trailing white-spaces: `:%s/\s\+$//e`
 
 - Use range to manipulate content of a file:
