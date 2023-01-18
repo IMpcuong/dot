@@ -477,6 +477,13 @@ git reflog show
 git branch --set-upstream-to=origin/main main
 ```
 
+- Rename any local or current branch (with the new one):
+
+```bash
+git branch -m [<oldbranch>] <newbranch>
+git branch -M [<oldbranch>] <newbranch>
+```
+
 16. `git diff`
 
 - List conflicts:
