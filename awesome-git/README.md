@@ -939,3 +939,10 @@ git bundle create ../project.bundle <default-branch-name>
 ```bash
 git count-objects -v
 ```
+
+30. `git show-ref`: retrieve all hash-references from both local and remote repos.
+
+```bash
+git show-ref # All ref.
+git show-ref HEAD # Only from current indexed branch.
+```
