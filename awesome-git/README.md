@@ -648,6 +648,7 @@ gir remote add origin git@github.com:<USERNAME>/<REPO>.git
 - `git remote` set default URL to avoid asking username/passwords prompt popping off:
 
 ```bash
+# NOTE: Only works with `https`, `ssh` method sometimes requires passphrase as well.
 git remote set-url origin git@github.com:<USERNAME>/<REPO>.git
 git remote set-url origin https://github.com/<USERNAME>/<REPO>.git
 
