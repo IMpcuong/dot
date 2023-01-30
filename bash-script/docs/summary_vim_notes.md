@@ -93,6 +93,7 @@
   |                | cc                 | Change the current line.                                                              |
   |                | c$                 | Change the text from the current position to the end of the line.                     |
   |                | C                  | Same as `c$`.                                                                         |
+  |                | A                  | Append to the end of line (jump to the end -> switch to edit mode.)                   |
   |                | ~                  | Reverse case of the obliteration character.                                           |
   |                | Ctrl + v           | `Visual Block` mode, using redirection character to choose content need to be edited. |
   |                | `:tabe <filepath>` | `tabe/tabedit` to open file in a new tab.                                             |
@@ -111,6 +112,7 @@
   |                | Ctrl + i           | Retrace your movements in file in forwards.                                           |
   |                | gt                 | Similar to `tabn/tabnext`.                                                            |
   |                | gT                 | Similar to `tabp/tabprevious`.                                                        |
+  |                | g\_                | Jump to the last non-blank character on this line.                                    |
   |                | o                  | Jumping to the next line (\\n character) in the `Normal` mode.                        |
 
 - NOTE: Resources reference:
