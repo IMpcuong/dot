@@ -214,6 +214,13 @@ git commit --only main.go
 git commit --include main.go
 ```
 
+- Amending to reset commit's author:
+
+```bash
+git config -e # `user.name / user.email`
+git commit --amend --reset-author
+```
+
 5. `git push`:
 
 - Using this shortcut instead of forcing to push the latest commit:
