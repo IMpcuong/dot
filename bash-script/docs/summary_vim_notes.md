@@ -24,7 +24,12 @@
 
 - File explorer: using `:Ex` or `:Explore`
 
-- Remove trailing white-spaces: `:%s/\s\+$//e`
+- Substitution commands with some elegant pattern: (NOTE: This is the string substitution in `Ruby`, `Vim` has been written in `Ruby`).
+
+  - Remove trailing white-spaces: `:%s/\s\+$//e`.
+  - Substitute reference captured group (regex): `:%s/\(hello\) \(world\)/\1, there/g`. (Out: `hello, there`)
+  - Substitute each word's quotes boundary with backticks punctuation: `` :%s/"(\w+)"/`\1`/g ``.
+  - NOTE: If you have more than 9 capture groups, you can use `\g<1>`, `\g<2>`, etc. to reference them in the substitution string.
 
 - Use range to manipulate content of a file:
 
