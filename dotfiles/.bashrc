@@ -82,25 +82,26 @@ function splitpath() {
   local counter=$(grep -o ':' <<<"$PATH" | wc -l)
   IFS=':' read -ra Path <<<"$PATH"
 
-  # With default the indices equal to the total elements of list/array.
-  # We can define an  array with specific type of key, eg:
+  # By default, the large number of indices equal to the total elements from the source list/array.
+  # We can define an array using any unique type of key (for short: `dictionaries` data-structure in Python).
 
+  # E.g.:
   # declare/typeset -A dirs
   # dirs=(
-  #   [jim]=/home/jim
-  #   [silvia]=/home/silvia
-  #   [alex]=/home/alex
+  #   [jim]="/home/jim"
+  #   [silvia]="/home/silvia"
+  #   [alex]="/home/alex"
   # )
 
-  # "[@]" : it's a separated list/array of words.
-  # "!"   : enumerate all indices in the list/array [echo "${!Path[@]}"].
+  # "[@]" : A list of sequential elements that originally combined the array.
+  # "!"   : Enumerate through all indices of the list/array `[echo "${!Path[@]}"]`.
   for i in "${!Path[@]}"; do
     printf "%s\t%s\n" "Path $((i + 1)):" "${Path[$i]}"
   done
 }
 
-# Interaction menu showing all the children dirs inside
-# current dir and can traverse between all of them.
+# An interactive menu that unveils/exhibits all of the subdirectories inside
+# the current one, also give us the ability to traverse between each node as well.
 function mndirs() {
   # Get 'ls' command's location: "/usr/bin/ls".
   local lsLoc=$(whereis ls | cut -d ":" -d " " -f 2)
