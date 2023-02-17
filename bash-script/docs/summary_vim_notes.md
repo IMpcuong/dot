@@ -70,6 +70,11 @@
   |                   |  `.`   | Contains the last inserted text.                                                                     |
   |                   |  `"`   | Last used register.                                                                                  |
 
+  - Register command and content invocation: https://vi.stackexchange.com/questions/25947/execute-the-contents-of-a-register
+
+    - Command: `NORMAL MODE` -> `COMMAND MODE` -> `:@a` (execute the contents of register `"a`).
+    - Using registered content on the main page: `NORMAL MODE` -> `""ap` (copy contents from register `"a` and paste it to the current cursor position).
+
   - Useful special characters when using line addressing:
 
   | Character  | Explanation                   |
