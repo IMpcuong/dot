@@ -591,6 +591,21 @@ git checkout --ours .
 git checkout @{1} -- main.go
 ```
 
+- Revert a specific range of lines from the un-staged changes state:
+
+```bash
+git checkout -p
+git checkout --patch
+```
+
+- Checkout by date using `rev-parse` or `rev-list`:
+  https://stackoverflow.com/questions/6990484/how-to-checkout-in-git-by-date#6990682
+
+```bash
+git checkout 'main@{1979-02-26 18:30:00}' # `rev-parse` version.
+git checkout $(git rev-list -n 1 --first-parent --before="2012-07-22 11:11" main) # `rev-list` version.
+```
+
 18. `git reset` (_BE CAREFUL WITH_ `git reset` !!!)
 
 - Sweep the latest commit out of Earth:
