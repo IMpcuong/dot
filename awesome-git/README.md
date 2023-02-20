@@ -954,3 +954,23 @@ git count-objects -v
 git show-ref # All ref.
 git show-ref HEAD # Only from current indexed branch.
 ```
+
+31. `git work-tree`: manipulate several working directory at once.
+
+```out
+$ ls -d */
+worktree-1//  worktree-2//
+
+$ git worktree add worktree-1 -b w1
+Preparing worktree (new branch 'w1')
+HEAD is now at 88049b6 test
+
+$ git worktree add worktree-2 -b w2
+Preparing worktree (new branch 'w2')
+HEAD is now at 88049b6 test
+
+$ git worktree list -v
+~/tmp/test-git-update-idx             88049b6 [main]
+~/tmp/test-git-update-idx/worktree-1  88049b6 [w1]
+~/tmp/test-git-update-idx/worktree-2  88049b6 [w2]
+```
