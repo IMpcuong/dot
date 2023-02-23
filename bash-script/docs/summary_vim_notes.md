@@ -124,6 +124,7 @@
   |                | gT                 | Similar to `tabp/tabprevious`.                                                        |
   |                | g\_                | Jump to the last non-blank character on this line.                                    |
   |                | o                  | Jumping to the next line (\\n character) in the `Normal` mode.                        |
+  |                | %                  | Moving between current code block's parentheses/brackets.                             |
 
 - NOTE: Resources reference:
 
