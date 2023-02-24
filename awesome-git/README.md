@@ -333,6 +333,20 @@ git stash apply stash@{<STASH_INDEX>}
 git stash apply --index <STASH_INDEX> -q
 ```
 
+- Simple git-flow for rebasing and applying the contents of a stash tree starting at a specific index number:
+
+```bash
+git stash push -p run.sh # `stash@{1}`.
+git stash push -p test.c # `stash@{0}`.
+
+git rebase -i @~3 # Need to update `run.sh`.
+git stash pop stash@{1}
+git commit --amend --no-edit; git rebase --continue
+
+git stash pop stash@{0} # On HEAD.
+git commit -m "etc"
+```
+
 8. `git rebase`:
 
 - Want to change the order of all commits' history from the current branch:
