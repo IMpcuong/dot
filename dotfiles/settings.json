@@ -50,7 +50,8 @@
     "editor.matchBrackets": "never"
   },
   "[scss]": {
-    "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+    // "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -106,7 +107,7 @@
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   "editor.suggestSelection": "first",
-  "editor.cursorSmoothCaretAnimation": true,
+  "editor.cursorSmoothCaretAnimation": "on",
   "editor.suggest.preview": true,
   "editor.snippetSuggestions": "top",
   "editor.quickSuggestions": {
@@ -148,8 +149,9 @@
   // "terminal.integrated.fontFamily": "Meslo LG M DZ for Powerline",
   // "terminal.integrated.fontFamily": "'monospace'",
   // Workbench Settings:
-  "workbench.colorTheme": "Evondev Dracula Night Contrast",
+  "workbench.colorTheme": "Evondev Dracula Darker Contrast",
   "workbench.iconTheme": "vscode-icons",
+  "vsicons.dontShowNewVersionMessage": true,
   "workbench.preferredLightColorTheme": "Dracula Soft",
   "workbench.preferredHighContrastColorTheme": "Dracula Soft",
   "workbench.preferredDarkColorTheme": "Dracula Soft",
@@ -158,6 +160,10 @@
     "*.ipynb": "jupyter-notebook",
     "*.xlsx": "default",
     "*.skr": "default"
+  },
+  "workbench.colorCustomizations": {
+    "editorHint.foreground": "#f000",
+    "editorHint.border": "#00ff66"
   },
   // Live Server Settings:
   "liveServer.settings.donotVerifyTags": true,
@@ -177,6 +183,7 @@
   ],
   // Users Languages Configs:
   "cSpell.language": "en,en-GB,en-US",
+  "cSpell.diagnosticLevel": "Hint",
   "cSpell.enableFiletypes": [
     "sql"
   ],
