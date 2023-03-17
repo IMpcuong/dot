@@ -97,6 +97,7 @@
   |                | d5w                | Delete 5 words.                                                                       |
   |                | dd                 | Delete a line.                                                                        |
   |                | 3dd                | Delete 3 lines                                                                        |
+  |                | C                  | Delete the whole line and switch to the `INSERT MODE`.                                |
   |                | D                  | Delete from the current position to the end of the line.                              |
   | _[Editing]_    | r                  | Replace current character.                                                            |
   |                | cw                 | Change the current word.                                                              |
