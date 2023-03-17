@@ -156,6 +156,9 @@ git show @{1}
 git show HEAD@{1}:./main.go
 git show HEAD~1:./main.go
 git show @{1}:./main.go
+
+# Show the original author from a specific commit:
+git show --format="%aN <%aE>" HEAD
 ```
 
 3. `git add/status`:
