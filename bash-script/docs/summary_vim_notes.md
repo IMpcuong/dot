@@ -122,6 +122,9 @@
   |                | ?\<pattern\>                           | Start reverse search for the \<pattern\>.                                                     |
   |                | `:Ex[plore]`                           | Open local directory browser on the current file's directory (or on \[dir\] if specified).    |
   |                | `:Sex`                                 | Split the explorer browser windows.                                                           |
+  |                | `:Vex`                                 | Vertical directional split tab-panes.                                                         |
+  |                | `:Tex`                                 | Open Directory's browser on a totally new tab (similar with `tabe %`).                        |
+  |                | `:e %:h`                               | Netrw Directory Listing.                                                                      |
   | _[Moving]_     | '.                                     | Jump to last modification line.                                                               |
   |                | `.                                     | Jump to exact spot that was recorded the latest patches.                                      |
   |                | Ctrl + o                               | Retrace your movements in file in backwards.                                                  |
@@ -143,6 +146,7 @@
   - [Copy to clipboard on Vim][5]
   - [Delete a block of text in Vim][6]
   - [Auto-remove trailing whitespace characters][7]
+  - [Windows Explorer in Vim][8]
 
   [0]: https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vimp
   [1]: https://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
@@ -152,3 +156,4 @@
   [5]: https://stackoverflow.com/questions/3961859/how-to-copy-to-clipboard-in-vim
   [6]: https://stackoverflow.com/questions/16721945/delete-a-block-of-text-in-vim
   [7]: https://vimtricks.com/p/vim-remove-trailing-whitespace/
+  [8]: https://superuser.com/questions/31677/how-do-i-open-the-directory-of-the-current-open-file
