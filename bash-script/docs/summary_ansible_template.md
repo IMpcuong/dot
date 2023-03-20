@@ -184,7 +184,7 @@ controlplane $ ansible servers -i /root/hosts -m shell -a 'ls -l /opt/deploy.tar
 # ```ini
 # [servers]
 # controlplane
-# node 01
+# node01
 # ```
 
 # Working perfectly fine!
