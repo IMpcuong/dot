@@ -90,42 +90,48 @@
 
 - Table of some common motions/actions:
 
-  | Action         | Shortcut           | Description                                                                           |
-  | :------------- | :----------------- | :------------------------------------------------------------------------------------ |
-  | _[Delete]_     | x                  | Delete a character.                                                                   |
-  |                | dw                 | Delete a word.                                                                        |
-  |                | d5w                | Delete 5 words.                                                                       |
-  |                | dd                 | Delete a line.                                                                        |
-  |                | 3dd                | Delete 3 lines                                                                        |
-  |                | C                  | Delete the whole line and switch to the `INSERT MODE`.                                |
-  |                | D                  | Delete from the current position to the end of the line.                              |
-  | _[Editing]_    | r                  | Replace current character.                                                            |
-  |                | cw                 | Change the current word.                                                              |
-  |                | cc                 | Change the current line.                                                              |
-  |                | c$                 | Change the text from the current position to the end of the line.                     |
-  |                | C                  | Same as `c$`.                                                                         |
-  |                | A                  | Append to the end of line (jump to the end -> switch to edit mode.)                   |
-  |                | ~                  | Reverse case of the obliteration character.                                           |
-  |                | Ctrl + v           | `Visual Block` mode, using redirection character to choose content need to be edited. |
-  |                | `:tabe <filepath>` | `tabe/tabedit` to open file in a new tab.                                             |
-  |                | `:sp <filepath>`   | `sp/split` split screen in multiple files (horizontally).                             |
-  |                | `:vs <filepath>`   | `vs/vsplit` split screen in multiple files (vertically).                              |
-  | _[Copy/Paste]_ | yy                 | Yank (copy) the current line.                                                         |
-  |                | y\<position\>      | Yank the position. Exp: `yw` := yank a word, `y3w` := yank 3 words.                   |
-  |                | p                  | Paste the most recent deleted or yanked text.                                         |
-  | _[Undo/Redo]_  | u                  | Undo.                                                                                 |
-  |                | Ctrl + r           | Redo.                                                                                 |
-  | _[Searching]_  | /\<pattern\>       | Start forward search for the \<pattern\>.                                             |
-  |                | ?\<pattern\>       | Start reverse search for the \<pattern\>.                                             |
-  | _[Moving]_     | '.                 | Jump to last modification line.                                                       |
-  |                | `.                 | Jump to exact spot that was recorded the latest patches.                              |
-  |                | Ctrl + o           | Retrace your movements in file in backwards.                                          |
-  |                | Ctrl + i           | Retrace your movements in file in forwards.                                           |
-  |                | gt                 | Similar to `tabn/tabnext`.                                                            |
-  |                | gT                 | Similar to `tabp/tabprevious`.                                                        |
-  |                | g\_                | Jump to the last non-blank character on this line.                                    |
-  |                | o                  | Jumping to the next line (\\n character) in the `Normal` mode.                        |
-  |                | %                  | Moving between current code block's parentheses/brackets.                             |
+  | Action         | Shortcut                               | Description                                                                                   |
+  | :------------- | :------------------------------------- | :-------------------------------------------------------------------------------------------- |
+  | _[Delete]_     | x                                      | Delete a character.                                                                           |
+  |                | dw                                     | Delete a word.                                                                                |
+  |                | d5w                                    | Delete 5 words.                                                                               |
+  |                | dd                                     | Delete a line.                                                                                |
+  |                | 3dd                                    | Delete 3 lines                                                                                |
+  |                | C                                      | Delete the whole line and switch to the `INSERT MODE`.                                        |
+  |                | D                                      | Delete from the current position to the end of the line.                                      |
+  | _[Editing]_    | r                                      | Replace current character.                                                                    |
+  |                | cw                                     | Change the current word.                                                                      |
+  |                | ciw                                    | Replace all blank spaces from the beginning of an line until reached first non-nil character. |
+  |                | diw                                    |                                                                                               |
+  |                | viw                                    |                                                                                               |
+  |                | cc                                     | Change the current line.                                                                      |
+  |                | c$                                     | Change the text from the current position to the end of the line.                             |
+  |                | C                                      | Same as `c$`.                                                                                 |
+  |                | A                                      | Append to the end of line (jump to the end -> switch to edit mode.)                           |
+  |                | ~                                      | Reverse case of the obliteration character.                                                   |
+  |                | Ctrl + v                               | `Visual Block` mode, using redirection character to choose content need to be edited.         |
+  |                | `:tabe <filepath>`                     | `tabe/tabedit` to open file in a new tab.                                                     |
+  |                | `:sp <filepath>`                       | `sp/split` split screen in multiple files (horizontally).                                     |
+  |                | `:vs <filepath>`                       | `vs/vsplit` split screen in multiple files (vertically).                                      |
+  | _[Copy/Paste]_ | yy                                     | Yank (copy) the current line.                                                                 |
+  |                | y\<position\>                          | Yank the position. Exp: `yw` := yank a word, `y3w` := yank 3 words.                           |
+  |                | p                                      | Paste the most recent deleted or yanked text.                                                 |
+  | _[Undo/Redo]_  | u                                      | Undo.                                                                                         |
+  |                | Ctrl + r                               | Redo.                                                                                         |
+  | _[Searching]_  | /\<pattern\>                           | Start forward search for the \<pattern\>.                                                     |
+  |                | ?\<pattern\>                           | Start reverse search for the \<pattern\>.                                                     |
+  |                | `:Ex[plore]`                           | Open local directory browser on the current file's directory (or on \[dir\] if specified).    |
+  |                | `:Sex`                                 | Split the explorer browser windows.                                                           |
+  | _[Moving]_     | '.                                     | Jump to last modification line.                                                               |
+  |                | `.                                     | Jump to exact spot that was recorded the latest patches.                                      |
+  |                | Ctrl + o                               | Retrace your movements in file in backwards.                                                  |
+  |                | Ctrl + i                               | Retrace your movements in file in forwards.                                                   |
+  |                | gt                                     | Similar to `tabn/tabnext`.                                                                    |
+  |                | gT                                     | Similar to `tabp/tabprevious`.                                                                |
+  |                | g\_                                    | Jump to the last non-blank character on this line.                                            |
+  |                | o                                      | Jumping to the next line (\\n character) in the `Normal` mode.                                |
+  |                | %                                      | Moving between current code block's parentheses/brackets.                                     |
+  |                | `<ctrl / command> + w + w\|h\|j\|k\|l` | Navigate between floating panes on the current opening window.                                |
 
 - NOTE: Resources reference:
 
