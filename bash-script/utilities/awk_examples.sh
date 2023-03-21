@@ -63,3 +63,6 @@ awk '{ app = "dude"; if (app ~ /^du.*/) print app; }'
 # + `awk` can be executed on data stream directly from `stdin` or from file input stream.
 awk -F '|' "{ print $1 > $2 > $3 }" ~/tmp/test_fs.txt
 awk -F '|' "{ print $1 > $2 > $3 }" <~/tmp/test_fs.txt
+
+# Retrieve all IPv4 addresses from the stdout of `ip a` command:
+ip a | awk '{ if ($0 ~ /inet /) print $2; }'
