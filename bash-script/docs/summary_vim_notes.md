@@ -31,6 +31,15 @@
   - Substitute each word's quotes boundary with backticks punctuation: `` :%s/"(\w+)"/`\1`/g ``.
   - NOTE: If you have more than 9 capture groups, you can use `\g<1>`, `\g<2>`, etc. to reference them in the substitution string.
 
+- File-formatting conversion between different platforms (exp: Windows -> MacOS):
+
+  ```vim
+  " Forcing DOS file format, Vim will remove CRLF and LF-only line endings, leaving only the text of each line in the buffer.
+  :e +ff=dos
+  :set ff=unix
+  :wq
+  ```
+
 - Use range to manipulate content of a file:
 
   - Summary: `[range][operation][additional-options]`.
@@ -147,6 +156,7 @@
   - [Delete a block of text in Vim][6]
   - [Auto-remove trailing whitespace characters][7]
   - [Windows Explorer in Vim][8]
+  - [Get rid of carriage returns on Windows][9]
 
   [0]: https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vimp
   [1]: https://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
@@ -157,3 +167,4 @@
   [6]: https://stackoverflow.com/questions/16721945/delete-a-block-of-text-in-vim
   [7]: https://vimtricks.com/p/vim-remove-trailing-whitespace/
   [8]: https://superuser.com/questions/31677/how-do-i-open-the-directory-of-the-current-open-file
+  [9]: https://unix.stackexchange.com/questions/32001/what-is-m-and-how-do-i-get-rid-of-it
