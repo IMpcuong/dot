@@ -8,6 +8,9 @@ if [[ "$svc" == "" ]]; then svc="java"; fi
 #
 # + `$4` := local address.
 # + `$5` := foreign address.
-netstat -tulpan | \
-  grep -i $svc | \
+netstat -tulpan |
+  grep -i $svc |
   awk '{ if ($6 ~ /^ES/) print $4 "\t" $5 }'
+
+# NOTE: You can also check the status of the daemon as well.
+strings /proc/$(pgrep -n $svc)/status
