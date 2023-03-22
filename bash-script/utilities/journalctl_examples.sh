@@ -7,7 +7,7 @@
 journalctl # --> With the structure is similar to one used in `/var/log/messages/`.
 
 # Exp2: View journal logs runtime or realtime attendance:
-journalctl -f # --> Same as: `tail -f`.
+journalctl -f # --> Same as: `tail -f || tailf (-n 100)`.
 
 # Exp3: List of all Linux boot messages using numerical identifiers:
 journalctl --list-boots
@@ -56,3 +56,19 @@ journalctl --vacuum-size=200M
 
 # Exp13: View logs in verbose mode:
 journalctl -o verbose
+# `-r`: Reverse output so that the newest entries are displayed first.
+journalctl -u apache2.service -r -o json-pretty
+
+# Exp14:
+# `-x, --catalog`: Augment log lines with explanation text from the message catalog.
+# `-e, --pager-end`: Immediately jump to the end of the journal inside the implied page tool.
+journalctl --no-pager -xe --since "2 hour ago"
+
+# Exp15;
+# `-b, --boot`: Track logs for a specific system boot.
+#     To limit the logs shown to the current boot, use the -b switch, or by passing in its offset.
+journalctl -b -1
+journalctl --list-boots # Show result in a tabular format.
+
+# Exp16: Filter out messages based on their priority level.
+journalctl -b -1 -p "emerg".."crit"
