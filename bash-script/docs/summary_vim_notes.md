@@ -35,7 +35,9 @@
 
   ```vim
   " Forcing DOS file format, Vim will remove CRLF and LF-only line endings, leaving only the text of each line in the buffer.
-  :e +ff=dos
+  
+  " The `:e ++ff=dos` tells Vim to read the file again, and then forcing to the DOS format file-system.
+  :e ++ff=dos
   :set ff=unix
   :wq
   ```
