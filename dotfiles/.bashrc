@@ -250,7 +250,7 @@ function mdu() {
   # `sort -h` := compares human-readable numbers such as 1k, 1G.
   # `sort -k` := sort the data via a specific key (useful when sorting columnar data).
   # `sort -r` := sort the values in reverse (descending order).
-  find $dir -maxdepth 1 -type d ! -empty |
+  find "$dir" -maxdepth 1 -type d ! -empty |
     xargs du -hc --max-depth=1 |
     sort -hr -k1
 }
@@ -284,22 +284,14 @@ function ex() {
 
 # Navigation.
 function up() {
-  local d=""
-  local limit="$1"
+  local d="" limit="$1"
 
-  # Default to limit of 1
-  if [ -z "$limit" ] || [ "$limit" -le 0 ]; then
-    limit=1
-  fi
+  # Default to limit of 1.
+  if [ -z "$limit" ] || [ "$limit" -le 0 ]; then limit=1; fi
+  for ((i = 1; i <= limit; i++)); do d="../$d"; done
 
-  for ((i = 1; i <= limit; i++)); do
-    d="../$d"
-  done
-
-  # perform cd. Show error if cd fails
-  if ! cd "$d"; then
-    echo "Couldn't go up $limit dirs."
-  fi
+  # Perform cd. Show error if cd fails.
+  if ! cd "$d"; then echo "Couldn't go up $limit dirs."; fi
 }
 ### End From.
 
