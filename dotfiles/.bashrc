@@ -199,9 +199,9 @@ function daterepo() {
   # `-f{number}`: retrieves only one field corresponded with the given position.
   # `-f{number}-`: retrieves every fields from the input position until reach the end.
   local date=$(
-    curl -s "https://api.github.com/repos/${username}/${repo}" | \
-    grep -E "created_at" | \
-    cut -d: -f2-
+    curl -s "https://api.github.com/repos/${username}/${repo}" |
+      grep -E "created_at" |
+      cut -d: -f2-
   )
 
   if [[ $? == 1 ]]; then
@@ -217,9 +217,9 @@ function syncforked() {
   local username=$1
 
   local forkedRepos=($(
-    gh repo list | \
-    grep -E "fork" | \
-    grep -ioE "^.*${username}\/[\w*-_]*\b" \
+    gh repo list |
+      grep -E "fork" |
+      grep -ioE "^.*${username}\/[\w*-_]*\b"
   ))
   for repo in "${forkedRepos[@]}"; do
     gh repo sync --force $repo
@@ -242,7 +242,7 @@ function rmhist() {
 
 # Weighs multiple sub-folders inside the given directory.
 function mdu() {
-  declare -x dir=$1
+  declare -x dir="$1"
 
   # `du -h/--human-readable` := print sizes in human readable format (e.g., 1K 234M 2G).
   # `du -c/--total` := produce a grant total.
@@ -250,9 +250,9 @@ function mdu() {
   # `sort -h` := compares human-readable numbers such as 1k, 1G.
   # `sort -k` := sort the data via a specific key (useful when sorting columnar data).
   # `sort -r` := sort the values in reverse (descending order).
-  find $dir -maxdepth 1 -type d ! -empty | \
-  xargs du -hc --max-depth=1 | \
-  sort -hr -k1
+  find $dir -maxdepth 1 -type d ! -empty |
+    xargs du -hc --max-depth=1 |
+    sort -hr -k1
 }
 
 ### From: https://gitlab.com/dwt1/dotfiles/-/blob/master/.bashrc
@@ -315,24 +315,17 @@ function recentb() {
   # `echo -e` := enable interpretation of backslash escapes.
   # `column -t -s='|'` := table with the given separator character.
   git for-each-ref \
-  --sort=-committerdate refs/heads \
-  --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' \
-  --color=always \
-  --count=${count:-20} | \
-  while read line; do
-    \
-    branch=$(echo "$line" | awk 'BEGIN { FS = "|" }; { print $1 }' | tr -d '*')
-    \
-    ahead=$(git rev-list --count "${refbranch:-origin/master}..${branch}")
-    \
-    behind=$(git rev-list --count "${branch}..${refbranch:-origin/master}")
-    \
-    colorline=$(echo "$line" | sed 's/^[^|]*|//')
-    \
-    echo "$ahead|$behind|$colorline" | awk -F='|' -v OFS='|' '{ $5 = substr($5, 1, 70) } $1'
-    \
-  done | \
-  cat | column -t -s='|' --table-columns Ahead,Behind,Branch,LastCommit,Message,Author
+    --sort=-committerdate refs/heads \
+    --format='%(refname:short)|%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)' \
+    --color=always \
+    --count=${count:-20} |
+    while read line; do
+      branch=$(echo "$line" | awk 'BEGIN { FS = "|" }; { print $1 }' | tr -d '*')
+      ahead=$(git rev-list --count "${refbranch:-origin/master}..${branch}")
+      behind=$(git rev-list --count "${branch}..${refbranch:-origin/master}")
+      colorline=$(echo "$line" | sed 's/^[^|]*|//')
+      echo "$ahead|$behind|$colorline" | awk -F='|' -v OFS='|' '{ $5 = substr($5, 1, 70) } $1'
+    done | cat | column -t -s='|' --table-columns Ahead,Behind,Branch,LastCommit,Message,Author
   # Both solutions have the same effect:
   # ( echo -e "Ahead|Behind|Branch|Lastcommit|Message|Author\n" && cat ) | column -t -s='|'
 }
