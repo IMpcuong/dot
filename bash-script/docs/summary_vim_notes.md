@@ -42,6 +42,19 @@
   :wq
   ```
 
+- Execute native shell commands inside vim command-mode:
+
+  ```vim
+  " Output the command results to a file.
+  :r!./shell.sh
+
+  " The opposite of the command above.
+  :!./shell.sh
+
+  " If you already have the `shell.sh` line in the file, you can include output with the file with:
+  !!sh
+  ```
+
 - Use range to manipulate content of a file:
 
   - Summary: `[range][operation][additional-options]`.
@@ -159,6 +172,7 @@
   - [Auto-remove trailing whitespace characters][7]
   - [Windows Explorer in Vim][8]
   - [Get rid of carriage returns on Windows][9]
+  - [Execute Shell commands in Vim][10]
 
   [0]: https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vimp
   [1]: https://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
@@ -170,3 +184,4 @@
   [7]: https://vimtricks.com/p/vim-remove-trailing-whitespace/
   [8]: https://superuser.com/questions/31677/how-do-i-open-the-directory-of-the-current-open-file
   [9]: https://unix.stackexchange.com/questions/32001/what-is-m-and-how-do-i-get-rid-of-it
+  [10]: https://stackoverflow.com/questions/23097842/how-to-execute-command-inside-vim
