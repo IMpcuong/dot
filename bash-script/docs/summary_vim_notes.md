@@ -55,6 +55,16 @@
   !!sh
   ```
 
+- Set `fileformat=unix` for all opened files in Vim (exp: `zsh-syntax-highlighting`):
+
+  ```vim
+  vim */**/*.zsh
+  :bufdo set ff=unix | update
+  " Or:
+  :args *.zsh
+  :argdo set ff=unix | update
+  ```
+
 - Use range to manipulate content of a file:
 
   - Summary: `[range][operation][additional-options]`.
@@ -173,6 +183,7 @@
   - [Windows Explorer in Vim][8]
   - [Get rid of carriage returns on Windows][9]
   - [Execute Shell commands in Vim][10]
+  - [Converting file format in Vim][11]
 
   [0]: https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vimp
   [1]: https://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
@@ -185,3 +196,4 @@
   [8]: https://superuser.com/questions/31677/how-do-i-open-the-directory-of-the-current-open-file
   [9]: https://unix.stackexchange.com/questions/32001/what-is-m-and-how-do-i-get-rid-of-it
   [10]: https://stackoverflow.com/questions/23097842/how-to-execute-command-inside-vim
+  [11]: https://vim.fandom.com/wiki/File_format
