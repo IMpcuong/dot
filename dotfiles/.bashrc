@@ -244,14 +244,15 @@ function rmhist() {
 function mdu() {
   declare -x dir="$1"
 
-  # `du -h/--human-readable` := print sizes in human readable format (e.g., 1K 234M 2G).
-  # `du -c/--total` := produce a grant total.
+  # `du -h/--human-readable` := Print sizes in human readable format (e.g., 1K 234M 2G).
+  # `du -c/--total` := Produce a grant total.
+  # `du -x` := File system mount points are not traversed.
   #
-  # `sort -h` := compares human-readable numbers such as 1k, 1G.
-  # `sort -k` := sort the data via a specific key (useful when sorting columnar data).
-  # `sort -r` := sort the values in reverse (descending order).
+  # `sort -h` := Compares human-readable numbers such as 1k, 1G.
+  # `sort -k` := Sort the data via a specific key (useful when sorting columnar data).
+  # `sort -r` := Sort the values in reverse (descending order).
   find "$dir" -maxdepth 1 -type d ! -empty |
-    xargs du -hc --max-depth=1 |
+    xargs du -hxc --max-depth=1 |
     sort -hr -k1
 }
 
