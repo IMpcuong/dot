@@ -146,6 +146,26 @@
     ```bash
     [Syntax]
     find . -newer <file> - [Finds files that are newer than the given file.]
+    find . -newerXY <file> - [Succeeds if timestamp X of the file being considered is newer than timestamp Y of the file reference.]
+      # The letters X and Y can be any of the following letters:
+      # a   The access time of the file reference
+      # B   The birth time of the file reference
+      # c   The inode status change time of reference
+      # m   The modification time of the file reference
+      # t   reference is interpreted directly as a time
+    ```
+
+    ```bash
+    find . -path "./sr*kg" - [File name matches shell pattern; e.g. this example will print an entry for directory "./src/pkg"]
+    find ./github -path "./github*ot"
+      # ./github/dot
+      # ./github/toy-projects/telebot
+      # ./github/toy-projects/telebot/bot
+
+    find . -path "./sr*kg" --prune - [Use "-prune" to ignore checking every file in the directory tree.]
+    find ./github -path "./github*ot" -prune
+      # ./github/dot
+      # ./github/toy-projects/telebot
     ```
 
     ```bash
