@@ -66,3 +66,15 @@ awk -F '|' "{ print $1 > $2 > $3 }" <~/tmp/test_fs.txt
 
 # Retrieve all IPv4 addresses from the stdout of `ip a` command:
 ip a | awk '{ if ($0 ~ /inet /) print $2; }'
+
+# Retrieve the desired pattern that was containing between 2 HTML tags.
+declare -x ltag="code class=\"md5\"" rtag="/code"
+curl -s "https://dev.mysql.com/downloads/repo/yum/" |
+  awk -F'[<>]' -v ltag="$ltag" -v rtag="$rtag" '{ \
+      i = 1 \
+      while (i <= NF) { \
+        if ($i == ltag && $(i + 2) == rtag) \
+          print $(i + 1); i++ \
+      } \
+    }' |
+  head -n1
