@@ -22,6 +22,8 @@
 
 - Autocompletion: using `:e` or `Ctrl + e`.
 
+- Auto-indent all lines to the left-most position in the opening document: `gg=G`.
+
 - File explorer: using `:Ex` or `:Explore`
 
 - Substitution commands with some elegant pattern: (NOTE: This is the string substitution in `Ruby`, `Vim` has been written in `Ruby`).
