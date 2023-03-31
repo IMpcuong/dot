@@ -24,3 +24,10 @@ ip route show
 ip r s
 
 route -n
+
+# NOTE: https://www.cyberciti.biz/faq/linux-ip-command-examples-usage-syntax/
+# Retrieve the subnet-mask of the local machine in format `/24 := 32 - 24 == 8 ~ host-ip`:
+# `ip -o/-oneline` := Output each record in the single line, replacing line feeds with the '\' character.
+# `ip -f/-family` := Specifies the protocol family to use; protool family identifier := [inet, inet6, bridge, ipx, dnet, link].
+ip -o -f inet addr show | awk '/scope global/ { print $4 }'
+ip -4 a show eth0
