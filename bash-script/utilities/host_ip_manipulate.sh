@@ -31,3 +31,6 @@ route -n
 # `ip -f/-family` := Specifies the protocol family to use; protool family identifier := [inet, inet6, bridge, ipx, dnet, link].
 ip -o -f inet addr show | awk '/scope global/ { print $4 }'
 ip -4 a show eth0
+
+# NOTE: Scan open ports.
+nmap -sS your.server.ip
