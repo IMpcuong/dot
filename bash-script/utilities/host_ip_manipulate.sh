@@ -33,4 +33,4 @@ ip -o -f inet addr show | awk '/scope global/ { print $4 }'
 ip -4 a show eth0
 
 # NOTE: Scan open ports.
-nmap -sS your.server.ip
+nmap -sS your.server.ip -p-
