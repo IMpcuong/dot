@@ -87,3 +87,8 @@ lscpu |
         if (lines[i] ~ /^CPU/) print lines[i] \
       } \
     }'
+
+# Retrieving the network interface's mask.
+ip -o -f inet addr show |
+  awk '/scope global/ { print $4 }' |
+  cut -d'/' -f2
