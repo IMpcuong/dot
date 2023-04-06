@@ -99,3 +99,10 @@ cat /etc/passwd |
   while read line; do
     echo $line | cut -d':' -f1
   done
+
+# List all IPv4 addresses on the Linux system.
+ip -4 -s a |
+  awk '/inet/ { print $2 }' |
+  while read line; do
+    echo $line | cut -d'/' -f1
+  done
