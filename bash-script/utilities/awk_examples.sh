@@ -92,3 +92,10 @@ lscpu |
 ip -o -f inet addr show |
   awk '/scope global/ { print $4 }' |
   cut -d'/' -f2
+
+# List all active users on the Linux system.
+cat /etc/passwd |
+  awk '{ print $0 }' |
+  while read line; do
+    echo $line | cut -d':' -f1
+  done
