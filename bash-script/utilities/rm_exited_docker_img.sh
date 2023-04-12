@@ -109,3 +109,13 @@ docker network connect bridge container_name
 
 docker network disconnect bridge container_name
 docker network disconnect host container_name
+docker network create --driver bridge \
+  --subnet 172.28.0.0/16 \
+  --gateway 172.28.5.254 \
+  --opt "dns=8.8.8.8" --opt "dns=127.0.0.11" my_network
+
+docker network create --driver bridge \
+  --opt "dns=8.8.8.8" --opt "dns=127.0.0.11" my_network
+
+docker run --name my_container --network my_network -d nginx
+docker exec my_container /bin/bash cat /etc/resolv.conf
