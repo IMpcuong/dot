@@ -22,3 +22,6 @@ curl -u $AUTH -X DELETE $API_URL
 curl -u $AUTH -T test.csv -H "Content-Type: text/csv" $API_URL
 curl -u $AUTH -T test.json -H "Content-Type: application/json" $API_URL
 curl -u $AUTH -d '{}' -H "Content-Type: application/json" $API_URL
+
+# Exp2: `curl` only header fields and dumps them to the standard output.
+curl -sSL -D - https://telegram.org/ -o /dev/null
