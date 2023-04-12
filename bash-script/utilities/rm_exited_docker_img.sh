@@ -6,15 +6,15 @@
 #             := the string inside double backslashes are represented for a regex pattern in `awk`.
 # + `tail -n +2` := omits/ignores the first line/record from the precedence command output.
 # + `xargs docker rm` := removes all of the "Exited" images with the corresponded IDs.
-docker ps -a | \
-  awk '{ if ($5 ~ /.*Exited.*/) print $1 }' | \
-  tail -n +2 | \
+docker ps -a |
+  awk '{ if ($5 ~ /.*Exited.*/) print $1 }' |
+  tail -n +2 |
   xargs docker rm
 
 # The problem appeared when any fields from the stdout of the `docker ps -a` command contained
 # the whitespace charater(s).
 # Solved:
-docker ps -a | \
+docker ps -a |
   awk '{ \
     for (line = 1; line <= NF; line++) { \
       if ($line ~ /.*Exited.*/) print $1 \
@@ -22,10 +22,10 @@ docker ps -a | \
   }' | xargs docker rm -f
 
 # NOTE: remove first matched `docker` image filtered by name.
-docker images -a | \
-  grep "image_name" | \
-  head -n1 | \
-  awk '{ print $3 }' | \
+docker images -a |
+  grep "image_name" |
+  head -n1 |
+  awk '{ print $3 }' |
   xargs docker rmi -f
 
 # Format command and log output: https://docs.docker.com/config/formatting/
@@ -39,15 +39,21 @@ docker images -a | \
 # public.ecr.aws/sam/emulation-go1.x          latest                bb23c9751bfd   10 days ago   817MB
 # public.ecr.aws/sam/emulation-provided.al2   latest-x86_64         56b0367ae68e   10 days ago   236MB
 # ubuntu                                      latest                2dc39ba059dc   2 weeks ago   77.8MB
-docker images -a --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" | \
-  tail -n+2 | \
-  grep -i public | \
+docker images -a --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" |
+  tail -n+2 |
+  grep -i public |
   awk '{ system("docker rmi " $1) }'
 
-# Having the same semantics as the precedence command:
-docker images -a --format "table {{.ID}}\t{{.Tag}}" | \
-  grep none | \
-  awk '{ print $1 }' | \
+# Remove all exited docker images from our system.
+docker images -a --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" |
+  tail -n+2 |
+  awk '/<none>/ { print $1 }' |
+  xargs docker rmi -f
+
+# Having the semantics as identical as the precedence command:
+docker images -a --format "table {{.ID}}\t{{.Tag}}" |
+  grep none |
+  awk '{ print $1 }' |
   xargs docker rmi -f
 
 # Join:
