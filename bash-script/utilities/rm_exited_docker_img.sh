@@ -95,3 +95,17 @@ docker rmi $(docker ps -a -q)
 
 # Showing Docker filesystems' status:
 docker system df
+
+# Docker network commands:
+docker network ls
+# NETWORK ID     NAME                        DRIVER    SCOPE
+# 8abfbeca3be0   bridge                      bridge    local
+# 07bf14fbbe0f   host                        host      local
+# cba7ab72b35a   none                        null      local
+docker network inspect host
+docker network inspect bridge
+
+docker network connect bridge container_name
+
+docker network disconnect bridge container_name
+docker network disconnect host container_name
