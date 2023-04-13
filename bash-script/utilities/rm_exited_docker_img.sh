@@ -44,6 +44,8 @@ docker images -a --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" |
   grep -i public |
   awk '{ system("docker rmi " $1) }'
 
+docker images -a | awk '/<none>/ { system("docker rmi -f " $3) }'
+
 # Remove all exited docker images from our system.
 docker images -a --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" |
   tail -n+2 |
