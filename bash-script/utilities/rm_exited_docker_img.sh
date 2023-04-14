@@ -58,6 +58,13 @@ docker images -a --format "table {{.ID}}\t{{.Tag}}" |
   awk '{ print $1 }' |
   xargs docker rmi -f
 
+# Get the digest from the image index of the image docker.io/library/debian:buster, for the amd64 CPU architecture and the linux operating system:
+docker manifest inspect --verbose docker.io/library/debian:buster |
+  jq -r 'if type=="object"
+        then .Descriptor.digest
+        else .[] | select(.Descriptor.platform.architecture=="amd64" and .Descriptor.platform.os=="linux") | .Descriptor.digest
+        end'
+
 # Join:
 docker inspect --format '{{join .Args " , "}}' container_name
 
