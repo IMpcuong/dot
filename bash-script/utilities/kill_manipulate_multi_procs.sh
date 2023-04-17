@@ -34,3 +34,8 @@ for i in ${!mixtureArr[@]}; do
     kill -9 ${mixtureArr[$i]}
   fi
 done
+
+# NOTE: Collects specified columns from the process manager output.
+ps aux
+ps -ef
+ps -eo pcpu,pmem,args
