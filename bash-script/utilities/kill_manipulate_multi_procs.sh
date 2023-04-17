@@ -39,3 +39,11 @@ done
 ps aux
 ps -ef
 ps -eo pcpu,pmem,args
+ps -eo pid,args | grep main.py | head -n1 | awk '{ system("kill -9 " $1) }'"
+pgrep -f "something.jar"
+pgrep -f "src/main.py
+
+declare -x mem_total=$(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }')
+declare -x mem_free=$(cat /proc/meminfo | grep MemFree | awk '{ print $2 }')
+declare -x mem_used_pct=$(((mem_total - mem_free) * 100 / mem_total))
+[[ $mem_used_pct -gt 95 ]] && /bin/bash printf "[WARN]: Probably in a leaked memory status!"
