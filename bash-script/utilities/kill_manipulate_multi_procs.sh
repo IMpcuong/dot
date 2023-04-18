@@ -47,3 +47,9 @@ declare -x mem_total=$(cat /proc/meminfo | grep MemTotal | awk '{ print $2 }')
 declare -x mem_free=$(cat /proc/meminfo | grep MemFree | awk '{ print $2 }')
 declare -x mem_used_pct=$(((mem_total - mem_free) * 100 / mem_total))
 [[ $mem_used_pct -gt 95 ]] && /bin/bash printf "[WARN]: Probably in a leaked memory status!"
+
+# NOTE: Calculate the total time the provided process has been existed.
+date +%s --date="now - $(stat -c "%X" /proc/$(pgrep -f "src/main.py")) seconds"
+ps -o stime,time $$ # NOTE: The current process formatter (`-o`) only; `-e` == `-A` == represents for all processes.
+ps -o etimes,etime -p $$
+awk '{ print "CPU time: " $14+$15 (hour); print "Start time: " $22 }' /proc/$$/stat
