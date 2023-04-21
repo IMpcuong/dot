@@ -81,6 +81,11 @@
     },
     "editor.suggest.snippetsPreventQuickSuggestions": false
   },
+  // 5. YAML:
+  // NOTE: For `!reference` tag on .gitlab-ci.yml config-file.
+  "yaml.customTags": [
+    "!reference sequence"
+  ],
   // Git Configs:
   "git.autofetch": true,
   "gitlens.gitCommands.closeOnFocusOut": true,
