@@ -23,7 +23,8 @@ ip route show
 # Equivalent with:
 ip r s
 
-route -n
+route -n                                # NOTE: Kernel IP routing table
+route -n | awk '/UG[ \t]/ { print $2 }' # NOTE: Retrieve host IP address.
 
 # NOTE: https://www.cyberciti.biz/faq/linux-ip-command-examples-usage-syntax/
 # Retrieve the subnet-mask of the local machine in format `/24 := 32 - 24 == 8 ~ host-ip`:
