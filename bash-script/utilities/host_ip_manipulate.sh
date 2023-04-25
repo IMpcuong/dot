@@ -32,6 +32,7 @@ route -n | awk '/UG[ \t]/ { print $2 }' # NOTE: Retrieve host IP address.
 # `ip -f/-family` := Specifies the protocol family to use; protool family identifier := [inet, inet6, bridge, ipx, dnet, link].
 ip -o -f inet addr show | awk '/scope global/ { print $4 }'
 ip -4 a show eth0
+ip route get 1 | sed -n 's/^.*src \([0-9.]*\) .*$/\1/p'
 
 # NOTE: Scan open ports.
 nmap -sS your.server.ip -p-

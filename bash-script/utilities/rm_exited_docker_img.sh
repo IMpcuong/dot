@@ -128,3 +128,6 @@ docker network create --driver bridge \
 
 docker run --name my_container --network my_network -d nginx
 docker exec my_container /bin/bash cat /etc/resolv.conf
+
+docker network inspect --format='{{ range .IPAM.Config }} {{ .Gateway }} {{ end }}' bridge |
+  awk -F "/" 'NR == 1 { print $1 }'
