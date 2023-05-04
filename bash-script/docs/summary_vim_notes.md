@@ -37,7 +37,7 @@
 
   ```vim
   " Forcing DOS file format, Vim will remove CRLF and LF-only line endings, leaving only the text of each line in the buffer.
-  
+
   " The `:e ++ff=dos` tells Vim to read the file again, and then forcing to the DOS format file-system.
   :e ++ff=dos
   :set ff=unix
@@ -65,6 +65,24 @@
   " Or:
   :args *.zsh
   :argdo set ff=unix | update
+  ```
+
+- A good line to memorize:
+
+  ```vim
+  :set et sts=4 sw=4 ts=4
+
+  " et  = expandtab (spaces instead of tabs).
+  " ts  = tabstop (the number of spaces that a tab equates to).
+  " sw  = shiftwidth (the number of spaces to use when indenting or de-indenting a line).
+  " sts = softtabstop (the number of spaces to use when expanding tabs).
+  ```
+
+- Unset a command's utility in Vim:
+
+  ```vim
+  :set list
+  :set list& " Unset the EOL character exposed by the list command.
   ```
 
 - Use range to manipulate content of a file:
