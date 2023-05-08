@@ -1,4 +1,6 @@
-#!/usr/bin bash
+#!/usr/bin/env bash
+
+# Documentation: https://www.cyberciti.biz/faq/linux-command-to-find-the-system-configuration-and-hardware-information/
 
 # [free]: `free` command give us valuable information on available RAM/Memory.
 
@@ -29,3 +31,6 @@ free
 # `-S` unit size delay is the delay between updates in seconds. Unit size [k:1000 K:1024 m:1000000 M:1048576] (default is K).
 # `[count]`: is the number of updates.
 vmstat
+
+cat /proc/cpuinfo || lscpu || /sbin/dmidecode -t processor
+cat /proc/meminfo || free || /sbin/dmidecode -t memory
