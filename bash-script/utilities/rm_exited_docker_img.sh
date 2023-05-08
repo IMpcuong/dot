@@ -131,3 +131,6 @@ docker exec my_container /bin/bash cat /etc/resolv.conf
 
 docker network inspect --format='{{ range .IPAM.Config }} {{ .Gateway }} {{ end }}' bridge |
   awk -F "/" 'NR == 1 { print $1 }'
+
+# NOTE: Monitoring docker-containers' resources usage with:
+docker stats --all
