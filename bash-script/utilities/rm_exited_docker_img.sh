@@ -53,7 +53,7 @@ docker images -a --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" |
   xargs docker rmi -f
 
 # Having the semantics as identical as the precedence command:
-docker images -a --format "table {{.ID}}\t{{.Tag}}" |
+docker images -a --format "table {{ .ID }}\t{{ .Tag }}" |
   grep none |
   awk '{ print $1 }' |
   xargs docker rmi -f
@@ -61,34 +61,36 @@ docker images -a --format "table {{.ID}}\t{{.Tag}}" |
 # Get the digest from the image index of the image docker.io/library/debian:buster, for the amd64 CPU architecture and the linux operating system:
 docker manifest inspect --verbose docker.io/library/debian:buster |
   jq -r 'if type=="object"
-        then .Descriptor.digest
-        else .[] | select(.Descriptor.platform.architecture=="amd64" and .Descriptor.platform.os=="linux") | .Descriptor.digest
-        end'
+    then .Descriptor.digest
+    else .[] | select(.Descriptor.platform.architecture=="amd64" and .Descriptor.platform.os=="linux") | .Descriptor.digest
+    end'
 
 # Join:
-docker inspect --format '{{join .Args " , "}}' container_name
+docker inspect --format '{{ join .Args " , " }}' container_name
 
 # Json:
-docker inspect --format '{{json .Mounts}}' container_name
+docker inspect --format '{{ json .Mounts }}' container_name
 
 # Lower:
-docker inspect --format "{{lower .Name}}" container_name
+docker inspect --format "{{ lower .Name }}" container_name
 
 # Upper:
-docker inspect --format "{{upper .Name}}" container
+docker inspect --format "{{ upper .Name }}" container_name
 
 # Println:
-docker inspect --format='{{range .NetworkSettings.Networks}}{{println .IPAddress}}{{end}}' container_name
+docker inspect --format='{{ range .NetworkSettings.Networks }}{{ println .IPAddress }}{{end}}' container_name
 
 # Split:
-docker inspect --format '{{split .Image ":"}}'
+docker inspect --format '{{ split .Image ":" }}'
 
 # Title:
-docker inspect --format "{{title .Name}}" container_name
+docker inspect --format "{{ title .Name }}" container_name
+
+docker inspect --format '{{ .Config.WorkingDir }}' container_name
 
 # Hint: To find out what data can be printed, show all content as json:
-docker container ls --format='{{json .}}'
-docker images -a --format='{{json .}}'
+docker container ls --format='{{ json . }}'
+docker images -a --format='{{ json . }}'
 
 # If you want to list only IDs from all images/containers:
 # -> Just using option `-q, --quiet` := only show image/container IDs.
