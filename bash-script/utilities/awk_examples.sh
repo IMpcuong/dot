@@ -71,12 +71,11 @@ ip a | awk '{ if ($0 ~ /inet /) print $2; }'
 declare -x ltag="code class=\"md5\"" rtag="/code"
 curl -s "https://dev.mysql.com/downloads/repo/yum/" |
   awk -F'[<>]' -v ltag="$ltag" -v rtag="$rtag" '{ \
-    i = 1 \
-    while (i <= NF) { \
-      if ($i == ltag && $(i + 2) == rtag) \
-        print $(i + 1); i++ \
-    } \
-  }' |
+      i = 1; while (i <= NF) { \
+        if ($i == ltag && $(i + 2) == rtag) \
+          print $(i + 1); i++ \
+      } \
+    }' |
   head -n1
 
 # Checking CPU statistics that at least satisfy the minimum required specifications.
