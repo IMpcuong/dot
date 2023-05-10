@@ -95,6 +95,28 @@
   " ' - Add the closing quote.
   ```
 
+- Recording mode in Vim:
+
+  ```vim
+  :h recording
+  " q{0-9a-zA-Z"}           Record typed characters into register {0-9a-zA-Z"}
+  "                         (uppercase to append).  The 'q' command is disabled
+  "                         while executing a register, and it doesn't work inside
+  "                         a mapping.  {Vi: no recording}
+
+  " q                       Stops recording.  (Implementation note: The 'q' that
+  "                         stops recording is not stored in the register, unless
+  "                         it was the result of a mapping)  {Vi: no recording}
+
+  "                                                         " *@*
+  " @{0-9a-z".=*}           Execute the contents of register {0-9a-z".=*} [count]
+  "                         times.  Note that register '%' (name of the current
+  "                         file) and '#' (name of the alternate file) cannot be
+  "                         used.  For "@=" you are prompted to enter an
+  "                         expression.  The result of the expression is then
+  "                         executed.  See also |@:|.  {Vi: only named registers}
+  ```
+
 - Use range to manipulate content of a file:
 
   - Summary: `[range][operation][additional-options]`.
@@ -214,6 +236,8 @@
   - [Get rid of carriage returns on Windows][9]
   - [Execute Shell commands in Vim][10]
   - [Converting file format in Vim][11]
+  - [Learn Vim-script the hard way][12]
+  - [Recording mode in Vim][13]
 
   [0]: https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vimp
   [1]: https://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
@@ -227,3 +251,5 @@
   [9]: https://unix.stackexchange.com/questions/32001/what-is-m-and-how-do-i-get-rid-of-it
   [10]: https://stackoverflow.com/questions/23097842/how-to-execute-command-inside-vim
   [11]: https://vim.fandom.com/wiki/File_format
+  [12]: https://learnvimscriptthehardway.stevelosh.com/
+  [13]: https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled
