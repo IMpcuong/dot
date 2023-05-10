@@ -85,6 +85,16 @@
   :set list& " Unset the EOL character exposed by the list command.
   ```
 
+- Quote/unquote words in Vim:
+
+  ```vim
+  ciw'Ctrl+r"'
+  " ciw - Delete the word the cursor is on, and end up in insert mode.
+  " ' - Add the first quote.
+  " Ctrl+r" - Insert the contents of the " register, aka the last yank/delete.
+  " ' - Add the closing quote.
+  ```
+
 - Use range to manipulate content of a file:
 
   - Summary: `[range][operation][additional-options]`.
