@@ -53,3 +53,10 @@ date +%s --date="now - $(stat -c "%X" /proc/$(pgrep -f "src/main.py")) seconds"
 ps -o stime,time $$ # NOTE: The current process formatter (`-o`) only; `-e` == `-A` == represents for all processes.
 ps -o etimes,etime -p $$
 awk '{ print "CPU time: " $14+$15 (hour); print "Start time: " $22 }' /proc/$$/stat
+
+# NOTE: Gracefully shutdown all processes that are correlated with the 8080 TCP connection using `lsof`.
+lsof -i tcp:8080 |
+  grep -vE "(prometheus|exporter)" |
+  awk '{ if ($2 ~ /[^PID]/) print $2 }' |
+  uniq |
+  xargs kill -15
