@@ -16,7 +16,13 @@
 - Copy one (or multiple) line(s) to clipboard: `COMMAND MODE` -> `<start>,<end>y *` -> `p` to paste to wherever as you want to.
 
 - Multi-cursors (concurrently): using edit-block mode to make it happen:
-  Selecting a block of text (more than 1 line) -> `Shift + i` -> `EDIT BLOCK MODE` -> \<ESC\> (x2) to apply.
+
+  ```txt
+  Selecting a block of text (`VISUAL BLOCK` := `Ctrl + v` wrapping more than 1 line)
+    -> `Shift + i`
+    -> `EDIT BLOCK MODE` := typing whatever you want
+    -> \<ESC\> (x2) to apply.
+  ```
 
   - Checks if you have `+visualextra` enabled in your version of `Vim` using `:ver` in `COMMAND MODE`.
 
