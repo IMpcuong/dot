@@ -256,7 +256,10 @@
     # Search for `Input Record Separator`:
     man awk | col -b | grep -iE "\brs\b" -C 1
 
-    cat /etc/passwd | grep user | cut -d: -f1,3,6 | sed 's/:/ /g'
+    cat /etc/passwd | grep user | cut -d: -f1,3,6 | sed -ier 's/:/ /g'
+    # `-i`: Edit file with its in-placec content.
+    # `-r`: Regex or Extended-regex syntax accepted.
+    # `-e`: Add the inherited script to the command to execute. 
 
     # `OFS` := Output Field Separator.
     ps aux | awk '{ print $2, $11 }' OFS='\t' | grep -i java
