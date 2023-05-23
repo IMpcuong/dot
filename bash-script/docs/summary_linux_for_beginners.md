@@ -953,6 +953,163 @@
     |                        |                 | `dpkg -i <package>.deb`          | Install a package from the file named \<package\>.deb.                                  |
     |                        |                 | `dpkg -L package`                | List all files that belong to \<package\>.                                              |
 
+- More `grep` options to be dived in:
+
+- `grep -o`: -o ~ --only-matching, print only the matched parts of a matching line, with each matched part on a separate output line.
+- `grep -A <NUM>`: -A ~ --after-context, print `<NUM>` lines of trailing context after matching lines.
+- `grep -B <NUM>`: -B ~ --before-context, print `<NUM>` lines of trailing context before matching lines.
+- `grep -C <NUM>`: -C ~ --context, print `<NUM>` lines of output expanded in both up/down direction started from the matched context.
+
+```bash
+man ascii | grep -A 20 Tables
+```
+
+- Services listing distinguish between `SysV` and `systemd`:
+
+- `SysV` services only (does not include the native `systemd` services):
+
+```bash
+chkconfig
+```
+
+- `systemd` services:
+
+  + List all services:
+
+  ```bash
+  systemctl list-units
+  systemctl list-unit-files
+  systemctl list-units --type=service --state=active
+  ```
+
+  + List all services enabled on particular target: `[target]` can be found in the output of `systemctl list-unit-files`
+
+  ```bash
+  systemctl list-dependencies [target]
+  systemctl list-dependencies sysinit.target
+  ```
+
+  + List of status reportation from a specific sercvice: (`/dev/sda` equivalent with and `dev-sda.device` and so on)
+
+  ```bash
+  systemctl status /dev/sda
+  systemctl status dev-sda.device
+
+  systemctl status /home
+  systemctl status home.mount
+  ```
+
+- Some more `systemctl` options utilities:
+
+```bash
+systemctl list-jobs --all
+systemctl list-sockets --all
+systemctl list-timers --all
+```
+
+- The function `splitPath` is using only for current user profile, to see all system path, using:
+
+```bash
+systemd-path
+```
+
+- Retrieving log report from a service in a range of time:
+
+```bash
+journalctl --unit=home.mount --no-pager --since "1 week ago" | grep -i error
+journalctl --unit=dev-sda.device --no-pager --since "1 week ago" | grep -i error
+```
+
+- A curated table of `Escape Sequence` characters:
+
+```
++===================================================================+
+| Escape Sequence | Unicode Character | Description                 |
++=================+===================+=============================+
+|        \b       |       U+0008      | BS backspace                |
++-----------------+-------------------+-----------------------------+
+|        \t       |       U+0009      | HT horizontal tab           |
++-----------------+-------------------+-----------------------------+
+|        \n       |       U+000A      | LF line feed                |
++-----------------+-------------------+-----------------------------+
+|        \f       |       U+000C      | FF form feed                |
++-----------------+-------------------+-----------------------------+
+|        \r       |       U+000D      | CR carriage return          |
++-----------------+-------------------+-----------------------------+
+|        \"       |       U+0022      | quotation mark              |
++-----------------+-------------------+-----------------------------+
+|        \'       |       U+0027      | apostrophe                  |
++-----------------+-------------------+-----------------------------+
+|        \/       |       U+002F      | slash (solidus)             |
++-----------------+-------------------+-----------------------------+
+|        \\       |       U+005C      | backslash (reverse          |
+|                 |                   | solidus)                    |
++-----------------+-------------------+-----------------------------+
+|      \uXXXX     |       U+XXXX      | unicode character           |
++-----------------+-------------------+-----------------------------+
+```
+
+- Process management:
+
+- All of these signal process interaction command can be found in:
+
+```bash
+$ man 7 signal
+
+Sending a signal
+  The following system calls and library functions allow the caller to send a signal:
+
+  raise(3)          Sends a signal to the calling thread.
+  kill(2)           Sends a signal to a specified process, to all members of a specified process group, or to all processes on the system.
+  killpg(2)         Sends a signal to all of the members of a specified process group.
+  pthread_kill(3)   Sends a signal to a specified POSIX thread in the same process as the caller.
+  tgkill(2)         Sends a signal to a specified thread within a specific process.  (This is the system call used to implement pthread_kill(3).)
+  sigqueue(3)       Sends a real-time signal with accompanying data to a specified process.
+```
+
+- `ps` report snapshot of all current processes:
+
+```bash
+ps -fax
+ps -aux
+ps -ax -o %U%p%n%c
+```
+
+NOTE: the syntax `%U%p%n%c` corresponded with `USER PID NI COMMAND`.
+
+- `netstat`: `ss` is the new version of `netstat`, lack some features, but exposes more TCP states and slightly faster.
+
+```bash
+netstat -tulpn | grep :22
+ss -tulpn | grep 443
+```
+
+  > + -t - Show TCP ports.
+  > + -u - Show UDP ports.
+  > + -n - Show numerical addresses instead of resolving hosts.
+  > + -l - Show only listening ports.
+  > + -p - Show the PID and name of the listener’s process. This information is shown only if you run the command as root or sudo user.
+
+- `lsof`: provides information about files opened by processes.
+
+```bash
+lsof -i tcp:8008
+lsof -t -i tcp:8080
+lsof -nP -iTCP -sTCP:LISTEN
+```
+
+  > + `-p`: Do not resolve hostnames, show numerical addresses.
+  > + `-iTCP -sTCP:LISTEN`: Show only network files with TCP state LISTEN.
+  > + `-i`: Selects the listing of files any pf whose Internet address matched the address specified in `-i`.
+  > + `-t`: Specifies that lsof should produce terse output with process identifiers only, without any extra-information.
+  > + `-n`: Inhibits/publishs the conversion/parser of network numbers to hostnames for network files.
+  > + `-n`: Do not convert port numbers to port names.
+  > + `-T[a/f/g/K]: Controls the reporting output of some TCP/IP information, also reported by `netstat`.
+  >   + `a`: file access mode.
+  >   + `f`: file descriptor.
+  >   + `g`: process group ID.
+  >   + `K`: task ID.
+
 - Resources: (NOTE: options/values inside square brackets `[`, `]` is optional.)
 
   - [Permanently export environment variable Linux](https://stackoverflow.com/questions/13046624/how-to-permanently-export-a-variable-in-linux)
