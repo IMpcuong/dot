@@ -653,6 +653,7 @@ Also works for getting the current branch name
 
 ```bash
 git rev-parse --abbrev-ref HEAD
+git rev-parse --abbrev-ref @
 ```
 
 - Some options: [--verify, --git-dir, --is-inside-git-dir, --is-inside-work-tree, --branches, --remote]
