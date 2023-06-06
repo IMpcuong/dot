@@ -182,6 +182,12 @@ git add -p
 git add --patch
 ```
 
+- Provide a flexible method to allow user to choose which hunks/lines to be added on their latest patch:
+
+```bash
+git add -e
+```
+
 - `git status` shows the current state of all file in this directory:
 
 ```bash
