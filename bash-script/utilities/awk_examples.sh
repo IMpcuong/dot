@@ -105,3 +105,6 @@ ip -4 -s a |
   while read line; do
     echo $line | cut -d'/' -f1
   done
+
+# Returns the unique collection of usernames whom has satisfied the year logged in constraint.
+last -F | awk '{ if ($13 > 2022) print $1 }' | uniq
