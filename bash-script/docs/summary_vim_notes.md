@@ -3,7 +3,7 @@
 - Search/move inline:
 
   - Forward: `f + <first_character_of_word>` -> search next: `;`.
-  - Backward: `shift + f + <first_character_of_word>`.
+  - Backward: `Shift + f + <first_character_of_word>`.
 
 - Duplicate previous action: remember action between 2 `COMMAND MODE` entries.
 
@@ -100,6 +100,10 @@
   " Ctrl+r" - Insert the contents of the " register, aka the last yank/delete.
   " ' - Add the closing quote.
   ```
+
+- Upper/lowercase multiple characters in Visual Mode: `U := upper` | `u := lower` | `tilde (~) := toggle between case`.
+
+- `Shift + k` := jump to the man-page definition if the OS has known about the language's specifications.
 
 - Recording mode in Vim:
 
