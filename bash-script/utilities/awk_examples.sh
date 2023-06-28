@@ -108,3 +108,6 @@ ip -4 -s a |
 
 # Returns the unique collection of usernames whom has satisfied the year logged in constraint.
 last -F | awk '{ if ($13 > 2022) print $1 }' | uniq
+
+# Collects all visible listening ports (IPv4 or IPv6) depends on their splitted index.
+ss -tulpan | grep -i LISTEN | awk '{ n = split($5, arr, ":"); if (n == 2) { print arr[2] } else { print arr[4] } }'
