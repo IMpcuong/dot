@@ -7,7 +7,7 @@
 # Root privileges
 alias doas="doas --"
 
-# User specific aliases and functions
+# User-specific aliases and functions:
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -20,11 +20,11 @@ alias b='cd ..'
 
 ### Special/Builtin Variables ###
 
-# History format with datetime
+# History format with date time formatted:
 HISTTIMEFORMAT="%d/%m/%Y %T "
 
 # Customizing the prompt:
-# For more informations please visit: https://github.com/IMpcuong/live-and-learn/blob/main/08162022.md
+# For more information please visit: https://github.com/IMpcuong/live-and-learn/blob/main/08162022.md
 export PS1="[\A \u@\h \w]\$ "
 
 # NOTE: when using the backslash (\) line continuation character (placed at the end of the line).
@@ -71,7 +71,7 @@ function _have() {
   type "$1" &>/dev/null
 }
 
-# NOTE: `-r` ~ checking if file has read permission (for the user running the test).
+# NOTE: `-r` ~ checking if the file has read permission (for the user running the test).
 function _source_if() {
   [[ -r "$1" ]] && source "$1"
 }
@@ -101,7 +101,7 @@ function splitpath() {
 }
 
 # An interactive menu that unveils/exhibits all of the subdirectories inside
-# the current one, also give us the ability to traverse between each node as well.
+# the current one also allows us to traverse between each node as well.
 function mndirs() {
   # Get 'ls' command's location: "/usr/bin/ls".
   local lsLoc=$(whereis ls | cut -d ":" -d " " -f 2)
@@ -156,20 +156,20 @@ function mndirs() {
   # Old exec command:
   # local curDir=$(find ../ "$name" -exec readlink -f {} \;)
 
-  # Split the chosen line in to only dir's name.
+  # Split the chosen line into only dir's name.
   read -r name unused <<<"$choice"
 
   # $curDir is global variable defined in `function realdir() {}`.
   echo "Current directory: [$name]; absolute path: [$curDir]"
 }
 
-# Checking and retrieve the given file's privilege.
+# Checking and retrieving the given file's privilege.
 function chper() {
   local filename=$1
   if [[ -f "${filename}" ]]; then
-    # If you wanna see access rigths in human readable form: "%a" -> "%A".
+    # If you wanna see access rights in human-readable form: "%a" -> "%A".
     # Some more indirective fields: ["%F", "%s". "%i", "%m/%M", "%l/%L", "%c/%C"].
-    perm=$(stat -c "%a" "${filename}")
+    local perm=$(stat -c "%a" "${filename}")
     printf "%s have permissions: %d\n" "${filename}" "${perm}"
   else
     echo "'${filename}' is not a file"
@@ -184,7 +184,7 @@ function chrepo() {
   local counter=$(ls -halt "$dir" | grep -E "\.git" | wc -l)
   if (("$counter" == 1)); then
     cd "$dir"
-    branches=$(git branch -a)
+    local branches=$(git branch -a)
     printf "List current branches\n: %s" "$branches"
   else
     echo "Not a git repository"
@@ -196,8 +196,8 @@ function daterepo() {
   local username=$1
   local repo=$2
 
-  # `-f{number}`: retrieves only one field corresponded with the given position.
-  # `-f{number}-`: retrieves every fields from the input position until reach the end.
+  # `-f{number}`: retrieves only one field corresponding with the given position.
+  # `-f{number}-`: retrieves every field from the input position until reaches the end.
   local date=$(
     curl -s "https://api.github.com/repos/${username}/${repo}" |
       grep -E "created_at" |
@@ -226,7 +226,7 @@ function syncforked() {
   done
 }
 
-# Remove/clear multiple commands line history from `HISTFILE` in Linux system.
+# Remove/clear multiple commands line history from `HISTFILE` in the Linux system.
 function rmhist() {
   declare -i from=$1 to=$2
   declare -i range=$(($to - $from))
@@ -240,11 +240,11 @@ function rmhist() {
   done
 }
 
-# Weighs multiple sub-folders inside the given directory.
+# Weigh multiple sub-folders inside the given directory.
 function mdu() {
   declare -x dir="$1"
 
-  # `du -h/--human-readable` := Print sizes in human readable format (e.g., 1K 234M 2G).
+  # `du -h/--human-readable` := Print sizes in human-readable format (e.g., 1K 234M 2G).
   # `du -c/--total` := Produce a grant total.
   # `du -x` := File system mount points are not traversed.
   #
@@ -287,7 +287,7 @@ function ex() {
 function up() {
   local d="" limit="$1"
 
-  # Default to limit of 1.
+  # Default to a limit of 1.
   if [ -z "$limit" ] || [ "$limit" -le 0 ]; then limit=1; fi
   for ((i = 1; i <= limit; i++)); do d="../$d"; done
 
@@ -298,10 +298,10 @@ function up() {
 
 ### From: https://stackoverflow.com/questions/5188320/how-can-i-get-a-list-of-git-branches-ordered-by-most-recent-commit
 # NOTE:
-# - `refbranch` := which branch the ahead or behind columns are calculated against. Default is master.
+# - `refbranch` := which branch the ahead or behind columns are calculated against. The default is master branch.
 # - `count` := how many recent branches to show. Default 20.
 # - `line` := each line of data have the convention like this "data-sync|*data-sync|3 months ago|chore: Refactor a minority amount of classes|imp".
-#          := the `*` (asterisk) represents for current local branch where you have already located at.
+#          := the `*` (asterisk) represents for the current local branch where you have already located at.
 function recentb() {
   local refbranch=$1 count=$2
 
