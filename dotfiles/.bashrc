@@ -207,7 +207,7 @@ function daterepo() {
   if [[ $? == 1 ]]; then
     echo "The given username ("$username") or repo ("$repo") is wrong!"
   else
-    created_date=${date//[\",]/''}
+    local created_date=${date//[\",]/''}
     echo "The created date of the repo "${repo}" is: "${created_date}""
   fi
 }
