@@ -106,6 +106,9 @@ ip -4 -s a |
     echo $line | cut -d'/' -f1
   done
 
+# Indicates any available IPs on our machine:
+ip -o -f inet addr show | awk '/scope global/ { n = split($4, ips, "/"); print ips[1] }'
+
 # Returns the unique collection of usernames whom has satisfied the year logged in constraint.
 last -F | awk '{ if ($13 > 2022) print $1 }' | uniq
 
