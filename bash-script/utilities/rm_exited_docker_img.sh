@@ -136,3 +136,18 @@ docker network inspect --format='{{ range .IPAM.Config }} {{ .Gateway }} {{ end 
 
 # NOTE: Monitoring docker-containers' resources usage with:
 docker stats --all
+docker stats $(docker ps | grep -v "NAMES" | awk '{ print $NF }' | tr "\n" " ")
+
+# NOTE: Mount exact volumes for cAdvisor to collect desired metrics' data.
+docker run \
+  --volume=/:/rootfs:ro \
+  --volume=/var/run:/var/run:ro \
+  --volume=/sys:/sys:ro \
+  --volume=/var/lib/docker/:/var/lib/docker:ro \
+  --volume=/dev/disk/:/dev/disk:ro \
+  --publish=127.0.0.1:11111:8080 \
+  --detach=true \
+  --name=cadvisor \
+  --privileged \
+  --device=/dev/kmsg \
+  gcr.io/cadvisor/cadvisor:v0.47.2
