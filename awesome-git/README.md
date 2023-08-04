@@ -1013,3 +1013,12 @@ $ git worktree list -v
 ~/tmp/test-git-update-idx/worktree-1  88049b6 [w1]
 ~/tmp/test-git-update-idx/worktree-2  88049b6 [w2]
 ```
+
+32. `git rev-list or git-rev-list`: blobs' revisions simplification:
+
+- Search for a bounds/range/compass list of commit's hash where its
+commit message enclose/match the given regex-pattern:
+
+```bash
+git rev-list --max-count=10 --grep "^feat" main
+```
