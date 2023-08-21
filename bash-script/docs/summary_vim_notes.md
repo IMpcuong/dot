@@ -22,6 +22,12 @@
     -> `Shift + i`
     -> `EDIT BLOCK MODE` := typing whatever you want
     -> \<ESC\> (x2) to apply.
+
+  Selecting a block of text (`VISUAL BLOCK` := `Ctrl + v` wrapping more than 1 line)
+    -> `Shift + 4 ($)` - move cursor to last character
+    -> `Shift + a (A)` - enter insert mode after the last character
+    -> Insert desired text
+    -> \<ESC\> (x2) to apply.
   ```
 
   - Checks if you have `+visualextra` enabled in your version of `Vim` using `:ver` in `COMMAND MODE`.
