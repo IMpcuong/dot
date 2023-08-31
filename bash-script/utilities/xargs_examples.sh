@@ -22,3 +22,7 @@ curl -s "https://dev.mysql.com/downloads/repo/yum/" |
 
 # Exp4: Manage to measure the most captured disk space file in this current directory.
 find . -type f ! -newermt "6 months ago" -a -size +0M | xargs -I{} bash -c "du -sh {}"
+
+# Exp5: With the process substitution technique, one stdin can be passed through
+#       and treated as an argument for multi-commands.
+echo "example" | tee >(xargs mkdir) >(wc -c)
