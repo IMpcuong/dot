@@ -251,7 +251,7 @@ function mdu() {
   # `sort -h` := Compares human-readable numbers such as 1k, 1G.
   # `sort -k` := Sort the data via a specific key (useful when sorting columnar data).
   # `sort -r` := Sort the values in reverse (descending order).
-  find "$dir" -maxdepth 1 -type d ! -empty |
+  find "$dir" -maxdepth 1 ! -path "*proc*" -type d ! -empty |
     xargs du -hxc --max-depth=1 |
     sort -hr -k1
 }
