@@ -242,7 +242,7 @@ function rmhist() {
 
 # Weigh multiple sub-folders inside the given directory.
 function mdu() {
-  declare -x dir="$1"
+  local dir="$1"
 
   # `du -h/--human-readable` := Print sizes in human-readable format (e.g., 1K 234M 2G).
   # `du -c/--total` := Produce a grant total.
