@@ -34,4 +34,4 @@ tasklist /fi "status eq running" | `
   ForEach-Object { taskkill /f /pid ($_ -split '\s+', 4)[2] }
 
 Get-Process | Where { $_.Name -match ".*java.*" } | `
-  ForEach-Object { taskkill /PID (Select-String -InputObject $_.ID -Pattern "\d+" ) /F }
+  ForEach-Object { taskkill /PID (Select-String -InputObject $_.ID -Pattern "\d+") /F }
