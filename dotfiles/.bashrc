@@ -232,7 +232,7 @@ function rmhist() {
   declare -i range=$(($to - $from))
   printf "Delete history from index %s to %s (range=%s)\n" "$from" "$to" "$range"
 
-  # NOTE: `history -c` ~ for delete all history.
+  # NOTE: `history -c` ~ for cleansing the history database entirely.
   # Remove `$range` lines starting from the `$from` position permanently.
   for ((i = 1; i <= $range; i++)); do
     history -d $from
