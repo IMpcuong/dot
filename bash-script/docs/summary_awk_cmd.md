@@ -16,3 +16,8 @@
   ! pattern
   pattern1, pattern2
 ```
+
+- Links:
+  - [Multiple-stragies/maneuvers to embed shell-vars into awk-env][1]
+
+[1]: https://www.baeldung.com/linux/awk-use-shell-variables
