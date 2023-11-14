@@ -33,6 +33,7 @@
   - Checks if you have `+visualextra` enabled in your version of `Vim` using `:ver` in `COMMAND MODE`.
 
 - Autocompletion: using `:e` or `Ctrl + e`.
+- Keyword completion: `Ctrl + p`.
 
 - Auto-indent all lines to the left-most position in the opening document: `gg=G`.
 
