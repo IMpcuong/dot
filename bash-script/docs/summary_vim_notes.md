@@ -107,6 +107,14 @@
   " ' - Add the closing quote.
   ```
 
+- Navigates between matched pair of brackets:
+
+  ```vim
+  v (Visual mode)
+  " Relocate the cursor to the first half of the intended pair.
+  %
+  ```
+
 - Upper/lowercase multiple characters in Visual Mode: `U := upper` | `u := lower` | `tilde (~) := toggle between case`.
 
 - `Shift + k` := jump to the man-page definition if the OS has known about the language's specifications.
@@ -254,6 +262,7 @@
   - [Converting file format in Vim][11]
   - [Learn Vim-script the hard way][12]
   - [Recording mode in Vim][13]
+  - [Moving to the matching braces][14]
 
   [0]: https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vimp
   [1]: https://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
@@ -269,3 +278,4 @@
   [11]: https://vim.fandom.com/wiki/File_format
   [12]: https://learnvimscriptthehardway.stevelosh.com/
   [13]: https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled
+  [14]: https://vim.fandom.com/wiki/Moving_to_matching_braces
