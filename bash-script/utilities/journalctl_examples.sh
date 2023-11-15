@@ -71,4 +71,12 @@ journalctl -b -1
 journalctl --list-boots # Show result in a tabular format.
 
 # Exp16: Filter out messages based on their priority level.
+# 0: emerg
+# 1: alert
+# 2: crit
+# 3: err
+# 4: warning
+# 5: notice
+# 6: info
+# 7: debug
 journalctl -b -1 -p "emerg".."crit"
