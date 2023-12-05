@@ -1022,3 +1022,11 @@ commit message enclose/match the given regex-pattern:
 ```bash
 git rev-list --max-count=10 --grep "^feat" main
 ```
+
+33. Visualize the entire list of branches in desecended modification-time order:
+
+```bash
+git branch -a | sed 's/^..//' | \
+  while read br; do echo -e $(git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $br -- | head -n1)\\t$br; done | \
+  sort -r
+```
