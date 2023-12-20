@@ -1102,7 +1102,7 @@ lsof -nP -iTCP -sTCP:LISTEN
   > + `-iTCP -sTCP:LISTEN`: Show only network files with TCP state LISTEN.
   > + `-i`: Selects the listing of files any pf whose Internet address matched the address specified in `-i`.
   > + `-t`: Specifies that lsof should produce terse output with process identifiers only, without any extra-information.
-  > + `-n`: Inhibits/publishs the conversion/parser of network numbers to hostnames for network files.
+  > + `-n`: Inhibits/publishes the conversion/parser of network numbers to hostnames for network files.
   > + `-n`: Do not convert port numbers to port names.
   > + `-T[a/f/g/K]: Controls the reporting output of some TCP/IP information, also reported by `netstat`.
   >   + `a`: file access mode.

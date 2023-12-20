@@ -116,6 +116,8 @@
   %
   ```
 
+- Navigates between the two identical string-sequence: `Shift` + 3 (on Visual Mode).
+
 - Upper/lowercase multiple characters in Visual Mode: `U := upper` | `u := lower` | `tilde (~) := toggle between case`.
 
 - `Shift + k` := jump to the man-page definition if the OS has known about the language's specifications.
