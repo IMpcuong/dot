@@ -108,6 +108,13 @@
   " ' - Add the closing quote.
   ```
 
+- Word(s)-replacement using register's content:
+
+  ```vim
+  " reg-0 ~ "0: nonsense_text
+  ciw -> Ctrl+r -> 0
+  ```
+
 - Navigates between matched pair of brackets:
 
   ```vim
