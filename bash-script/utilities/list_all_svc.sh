@@ -9,6 +9,10 @@ sudo systemctl list-unit-files
 sudo systemctl list-unit-files
 sudo systemctl status -l nginx.service
 sudo systemctl is-active nginx.service
+sudo systemctl --type=service --state=running
+sudo systemctl list-units --type=service --state=running
+sudo systemctl list-timers --no-pager
+sudo systemctl list-sockets --no-pager
 
 sudo systemctl cat nginx.service
 # Output:
