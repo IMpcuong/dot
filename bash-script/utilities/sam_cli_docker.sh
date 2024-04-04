@@ -14,7 +14,7 @@ if (( "${container}" > 1 )); then
   docker rm $(docker ps -a -q)
   docker container prune # Remove all stopped containers.
 fi
-docker images -a --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}" | \
+docker images -a --format "table {{ .ID }}\t{{ .Repository }}\t{{ .Tag }} | \
   awk '{ print $2 }' | \
   grep sam
 if (( $? != 0 )); then docker pull ${IMAGE_NAME}; fi
@@ -23,10 +23,10 @@ docker run ${DOCKER_RUN_OPTIONS} \
   --env "HOME=/home/samcli" \
   "${IMAGE_NAME}:latest" \
   sam --version
-docker ps -a --format "table {{.ID}}\t{{.Image}}" | \
+docker ps -a --format "table {{ .ID }}\t{{ .Image }} | \
   grep sam | \
   awk '{ print $1 }' | \
-  xargs docker inspect --format "{{.Config.Env}}"
+  xargs docker inspect --format "{{ .Config.Env }}
 
 docker run ${DOCKER_RUN_OPTIONS} \
   --privileged \
