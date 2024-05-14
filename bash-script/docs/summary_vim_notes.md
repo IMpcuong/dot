@@ -32,7 +32,7 @@
 
   - Checks if you have `+visualextra` enabled in your version of `Vim` using `:ver` in `COMMAND MODE`.
 
-- Autocompletion: using `:e` or `Ctrl + e`.
+- Autocompletion: `Ctrl + n` for auto-completion suggestion, `Ctrl + p` to select in reverse order (from bottom to top).
 - Keyword completion: `Ctrl + p`.
 
 - Auto-indent all lines to the left-most position in the opening document: `gg=G`.
@@ -273,6 +273,7 @@
   - [Learn Vim-script the hard way][12]
   - [Recording mode in Vim][13]
   - [Moving to the matching braces][14]
+  - [Built-in auto-completion in Vim][15]
 
   [0]: https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vimp
   [1]: https://stackoverflow.com/questions/235839/indent-multiple-lines-quickly-in-vi
@@ -289,3 +290,4 @@
   [12]: https://learnvimscriptthehardway.stevelosh.com/
   [13]: https://stackoverflow.com/questions/1527784/what-is-vim-recording-and-how-can-it-be-disabled
   [14]: https://vim.fandom.com/wiki/Moving_to_matching_braces
+  [15]: https://linuxhandbook.com/vim-auto-complete/
