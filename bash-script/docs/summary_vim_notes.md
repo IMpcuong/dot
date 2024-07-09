@@ -115,12 +115,20 @@
   ciw -> Ctrl+r -> 0
   ```
 
-- Navigates between matched pair of brackets:
+- Navigates between any matched pair of brackets (curly, braces):
 
   ```vim
   v (Visual mode)
   " Relocate the cursor to the first half of the intended pair.
   %
+  ```
+
+- Navigates between paragraphs (blank line or ending of a text-block):
+
+  ```vim
+  v (Visual mode)
+  Shift + { (switch forth to the adjacent paragraph)
+  Shift + } (switch back to the previous paragraph)
   ```
 
 - Navigates between the two identical string-sequence: `Shift` + 3 (on Visual Mode).
