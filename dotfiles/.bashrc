@@ -86,7 +86,7 @@ function splitpath() {
   # We can define an array using any unique type of key (for short: `dictionaries` data-structure in Python).
 
   # E.g.:
-  # declare/typeset -A dirs
+  # declare/typeset -A/a dirs
   # dirs=(
   #   [jim]="/home/jim"
   #   [silvia]="/home/silvia"
