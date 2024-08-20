@@ -67,7 +67,7 @@ awk -F '|' "{ print $1 > $2 > $3 }" <~/tmp/test_fs.txt
 # Retrieve all IPv4 addresses from the stdout of `ip a` command:
 ip a | awk '{ if ($0 ~ /inet /) print $2; }'
 
-# Retrieve the desired pattern that was containing between 2 HTML tags.
+# Retrieve the desired pattern that was containing between 2 HTML tags:
 declare -x ltag="code class=\"md5\"" rtag="/code"
 curl -s "https://dev.mysql.com/downloads/repo/yum/" |
   awk -F'[<>]' -v ltag="$ltag" -v rtag="$rtag" '{ \
@@ -78,7 +78,7 @@ curl -s "https://dev.mysql.com/downloads/repo/yum/" |
     }' |
   head -n1
 
-# Checking CPU statistics that at least satisfy the minimum required specifications.
+# Checking CPU statistics that at least satisfy the minimum required specifications:
 lscpu |
   awk '{ lines[NR] = $0 } \
     END { \
@@ -87,19 +87,19 @@ lscpu |
       } \
     }'
 
-# Retrieving the network interface's mask.
+# Retrieving the network interface's mask:
 ip -o -f inet addr show |
   awk '/scope global/ { print $4 }' |
   cut -d'/' -f2
 
-# List all active users on the Linux system.
+# List all active users on the Linux system:
 cat /etc/passwd |
   awk '{ print $0 }' |
   while read line; do
     echo $line | cut -d':' -f1
   done
 
-# List all IPv4 addresses on the Linux system.
+# List all IPv4 addresses on the Linux system:
 ip -4 -s a |
   awk '/inet/ { print $2 }' |
   while read line; do
@@ -109,8 +109,11 @@ ip -4 -s a |
 # Indicates any available IPs on our machine:
 ip -o -f inet addr show | awk '/scope global/ { n = split($4, ips, "/"); print ips[1] }'
 
-# Returns the unique collection of usernames whom has satisfied the year logged in constraint.
+# Returns the unique collection of usernames whom has satisfied the year logged in constraint:
 last -F | awk '{ if ($13 > 2022) print $1 }' | uniq
 
-# Collects all visible listening ports (IPv4 or IPv6) depends on their splitted index.
+# Collects all visible listening ports (IPv4 or IPv6) depends on their splitted index:
 ss -tulpan | grep -i LISTEN | awk '{ n = split($5, arr, ":"); if (n == 2) { print arr[2] } else { print arr[4] } }'
+
+# Emphasizes all of the host's mountpoints on the `/etc/fstab` file to unmount several busy target devices:
+cat /etc/fstab | awk '/^[^#].*log.*/ { print $2 }' | xargs -I{} umount -l {}
