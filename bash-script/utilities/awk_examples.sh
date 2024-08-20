@@ -116,4 +116,8 @@ last -F | awk '{ if ($13 > 2022) print $1 }' | uniq
 ss -tulpan | grep -i LISTEN | awk '{ n = split($5, arr, ":"); if (n == 2) { print arr[2] } else { print arr[4] } }'
 
 # Emphasizes all of the host's mountpoints on the `/etc/fstab` file to unmount several busy target devices:
+ps -ef | grep -P '(?!grep).+ceph' | awk '{ system("kill -s 9 " $2) }' # NOTE: PCRE (Perl) regex negate lookahead.
 cat /etc/fstab | awk '/^[^#].*log.*/ { print $2 }' | xargs -I{} umount -l {}
+# ERR: fuse: bad mount point: Transport endpoint is not connected.
+# --> SOL: https://stackoverflow.com/a/25986155/12535617
+cat /etc/fstab | awk '/^[^#].*log.*/ { print $2 }' | xargs -I{} fusermount -uz {}
