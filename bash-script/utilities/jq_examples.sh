@@ -4,7 +4,7 @@
 jq 'with_entries(select(.key | contains("test")))' input.json
 
 # Match keys that exactly equal 'test'
-jq 'with_entries(select(.key == "test"))' input.json
+jq 'with_entries(select(.key == "test")) | .test.sub_key' input.json
 
 # Match keys starting with 'test'
 jq 'with_entries(select(.key | startswith("test")))' input.json
