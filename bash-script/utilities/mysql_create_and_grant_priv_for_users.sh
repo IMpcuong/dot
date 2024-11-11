@@ -32,7 +32,7 @@ BEGIN
 
   -- Cursor to iterate over databases:
   DECLARE db_cursor CURSOR FOR
-    SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME LIKE 'sample_%';
+    SELECT schema_name FROM information_schema.schemata WHERE schema_name LIKE 'sample_%';
 
   -- Error handler:
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
