@@ -92,7 +92,7 @@ git log --oneline --name-only
 
 ```bash
 git shortlog -e -s -n HEAD
-git log -L <start_line>,<end_line>:FILENAME --full-history --pretty=oneline --date-order --decorate=full --skip=0 --max-count=10
+git log -L <start_line>,<end_line>:<file_path> --full-history --pretty=oneline --date-order --decorate=full --skip=0 --max-count=10
 ```
 
 NOTE: The second one is really fascinating, it shows all of the changed parts in one specified file, with a range of lines as your wish.
@@ -1039,4 +1039,17 @@ git branch -a | sed 's/^..//' | \
 for k in `git branch | \
   perl -pe s/^..//`; do echo -e `git show --pretty=format:"%Cgreen%ci %Cblue%cr%Creset" $k -- | head -n 1`\\t$k; done | \
   sort -r
+```
+
+34. `git commit-tree`: create a new commit object by indicating the parent commit-tree's hash;
+
+```bash
+# Create a new commit that's identical to an old one while preserving the entire commit history in between:
+git help -a
+
+git branch test @
+git checkout test
+tree_hash=$(git cat-file -p `git rev-parse --short @~1` | grep '^tree' | cut -d' ' -f2)
+new_commit=$(git commit-tree $tree_hash -p HEAD -m "test: Duplicate commit")
+git update-ref refs/heads/`git rev-parse --abbrev-ref HEAD` `git rev-parse --short HEAD`
 ```
