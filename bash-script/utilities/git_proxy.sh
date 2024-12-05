@@ -10,5 +10,5 @@ if [[ $? -eq 0 ]]; then
 
   echo -e ${current_ip}
   git config --global http.sslverify false
-  git config --global http.proxy "http://${current_ip}/${port}"
+  git config --global http.proxy "http://${current_ip}/${proxy_port}"
 fi
