@@ -9,14 +9,14 @@ function mdg {
 
 # New multiple folders
 function mdirs {
-  for ( $i = 0; $i -lt $args.count; $i++ ) {
+  for ($i = 0; $i -lt $args.count; $i++) {
     mkdir $args[$i]
   }
 }
 
 # New multiple files
 function mfs {
-  for ( $i = 0; $i -lt $args.count; $i++ ) {
+  for ($i = 0; $i -lt $args.count; $i++) {
     touch $args[$i]
   }
 }
@@ -74,12 +74,12 @@ function size {
 
 # Remove multiple items from the current directory
 function rms {
-  for ( $i = 0; $i -lt $args.count; $i++ ) {
+  for ($i = 0; $i -lt $args.count; $i++) {
     Remove-Item $args[$i]
   }
 }
 
-# Invocate absolute path for the given application or command.
+# Invoke absolute path for the given application or command.
 function which ($command) {
   Get-Command -Name $command -ErrorAction SilentlyContinue |
   Select-Object -ExpandProperty Path -ErrorAction SilentlyContinue
