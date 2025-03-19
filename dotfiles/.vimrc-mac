@@ -12,6 +12,7 @@ set shiftwidth=2
 set expandtab
 set smartindent
 set autoindent
+set autoread
 set nowrap
 set smartcase
 set showmatch
@@ -21,3 +22,8 @@ set incsearch
 set ff=unix
 set mouse=a
 
+inoremap <C-C> <esc>
+vnoremap <C-C> <esc>
+cnoremap <C-C> <esc>
+
+autocmd BufWritePre * :%s/\s\+$//e
