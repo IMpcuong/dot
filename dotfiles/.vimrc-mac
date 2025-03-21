@@ -1,7 +1,12 @@
+filetype plugin on
+
 syntax on
 syntax enable
 
+colorscheme jellybeans
+
 set nu
+set ruler
 set encoding=utf-8 fileencoding=utf-8
 set background=dark
 set splitbelow
@@ -22,8 +27,34 @@ set incsearch
 set ff=unix
 set mouse=a
 
-inoremap <C-C> <esc>
-vnoremap <C-C> <esc>
-cnoremap <C-C> <esc>
+hi QuickFixLine cterm=NONE term=reverse ctermbg=black ctermfg=white guibg=Cyan
+
+" Remaps key-binding from <esc> to <C-c>.
+inoremap <C-c> <esc>
+vnoremap <C-c> <esc>
+cnoremap <C-c> <esc>
 
 autocmd BufWritePre * :%s/\s\+$//e
+
+" :PlugInstall
+call plug#begin()
+Plug 'girishji/vimcomplete'
+Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+call plug#end()
+
+" :CocInstall coc-clangd coc-go coc-git
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Using <TAB> as the default completion trigger instead of <C-n>.
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <c-@> coc#refresh())
