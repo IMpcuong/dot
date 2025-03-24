@@ -37,7 +37,7 @@ cnoremap <C-c> <esc>
 autocmd BufWritePre * :%s/\s\+$//e
 
 " :PlugInstall
-" cd ./vim && find . -type f -exec dos2unix {} \+
+" cd ~/.vim && find . -type f -exec dos2unix {} \+
 call plug#begin()
 Plug 'girishji/vimcomplete'
 Plug 'junegunn/fzf.vim'
@@ -59,3 +59,9 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm(): "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap <silent><expr> <c-@> coc#refresh())
+
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gD <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <C-f> :NERDTreeFind<CR>

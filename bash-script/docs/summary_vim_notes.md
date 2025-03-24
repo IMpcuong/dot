@@ -21,13 +21,13 @@
   Selecting a block of text (`VISUAL BLOCK` := `Ctrl + v` wrapping more than 1 line)
     -> `Shift + i`
     -> `EDIT BLOCK MODE` := typing whatever you want
-    -> \<ESC\> (x2) to apply.
+    -> \<ESC\> (x2) (-> \<C-c\>) to apply.
 
   Selecting a block of text (`VISUAL BLOCK` := `Ctrl + v` wrapping more than 1 line)
     -> `Shift + 4 ($)` - move cursor to last character
     -> `Shift + a (A)` - enter insert mode after the last character
     -> Insert desired text
-    -> \<ESC\> (x2) to apply.
+    -> \<ESC\> (x2) (-> \<C-c\>) to apply.
   ```
 
   - Checks if you have `+visualextra` enabled in your version of `Vim` using `:ver` in `COMMAND MODE`.
@@ -136,6 +136,15 @@
 - Upper/lowercase multiple characters in Visual Mode: `U := upper` | `u := lower` | `tilde (~) := toggle between case`.
 
 - `Shift + k` := jump to the man-page definition if the OS has known about the language's specifications.
+
+- Quick insert-mode keys-binding:
+
+  ```vim
+  " Status quo is _VISUAL_ mode.
+  Shift + a -> starts editing from EOL.
+  Shift + i -> starts editing from BOL.
+  Shift + s -> starts editing (on a blank line) at the same position as the line above started.
+  ```
 
 - Recording mode in Vim:
 
