@@ -1053,3 +1053,15 @@ tree_hash=$(git cat-file -p `git rev-parse --short @~1` | grep '^tree' | cut -d'
 new_commit=$(git commit-tree $tree_hash -p HEAD -m "test: Duplicate commit")
 git update-ref refs/heads/`git rev-parse --abbrev-ref HEAD` `git rev-parse --short HEAD`
 ```
+
+35. `git ls-tree`: list the content of a tree object (node := hash_id).
+
+```bash
+# List all files from each commit recursively:
+git log --format=format:"%H" |
+  while read commit; do
+    echo "Commit: `git rev-parse --short $commit`"
+    git ls-tree -r --name-only "$commit"
+    printf "\n"
+  done
+```
