@@ -143,7 +143,19 @@
   " Status quo is _VISUAL_ mode.
   Shift + a -> starts editing from EOL.
   Shift + i -> starts editing from BOL.
-  Shift + s -> starts editing (on a blank line) at the same position as the line above started.
+  Shift + s -> starts editing (on a blank line) at the same beginning location as above is.
+  ```
+
+- Tab(s) manipulation:
+
+  ```vim
+  :tabnew
+  :tabn " n := next == `gt`.
+  :tabp " p := prev == `gT`.
+  :tabm " m := move == move to the last position.
+  :tabm <idx>
+  :tabm -1 " :-tabm := move to the left.
+  :tabm +1 " :+tabm := move to the right.
   ```
 
 - Recording mode in Vim:
