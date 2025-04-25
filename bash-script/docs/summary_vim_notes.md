@@ -35,7 +35,11 @@
 - Autocompletion: `Ctrl + n` for auto-completion suggestion, `Ctrl + p` to select in reverse order (from bottom to top).
 - Keyword completion: `Ctrl + p`.
 
-- Auto-indent all lines to the left-most position in the opening document: `gg=G`.
+- Auto-indent: to the left-most position from our screen.
+
+  - The whole document (all lines): `gg=G`.
+  - Within a block (block-scoped): `=a}`.
+  - Selected texts: `Shift + v -> j/k -> =`.
 
 - File explorer: using `:Ex` or `:Explore`
 
