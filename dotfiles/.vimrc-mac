@@ -26,6 +26,8 @@ set nobackup
 set incsearch
 set ff=unix
 set mouse=a
+" set path+=**
+" set wildmenu
 
 hi QuickFixLine cterm=NONE term=reverse ctermbg=black ctermfg=white guibg=Cyan
 
@@ -34,12 +36,22 @@ inoremap <C-c> <esc>
 vnoremap <C-c> <esc>
 cnoremap <C-c> <esc>
 
+" Remaps key-binding to move tab effortlessly.
+" Windows:
+" noremap <A-Left>  :-tabmove<cr>
+" noremap <A-Right> :+tabmove<cr>
+" MacOS:
+noremap <M-Left>  :-tabmove<cr>
+noremap <M-Right> :+tabmove<cr>
+
+" Yanks to register `+` (on VISUAL mode) -> can be used in global clipboard.
+vnoremap <C-y> "+y<cr>
+
 autocmd BufWritePre * :%s/\s\+$//e
 
 " :PlugInstall
-" cd ~/.vim && find . -type f -exec dos2unix {} \+
 call plug#begin()
-Plug 'girishji/vimcomplete'
+" Plug 'girishji/vimcomplete'
 Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
