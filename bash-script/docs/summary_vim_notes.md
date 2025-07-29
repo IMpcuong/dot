@@ -119,6 +119,12 @@
   ciw -> Ctrl+r -> 0
   ```
 
+- Yanks texts into system-wide clipboard:
+
+  ```vim
+  <VISUAL MODE> -> <selected_some_texts> -> "+y -> Ctrl+v.
+  ```
+
 - Navigates between any matched pair of brackets (curly, braces):
 
   ```vim
@@ -160,6 +166,14 @@
   :tabm <idx>
   :tabm -1 " :-tabm := move to the left.
   :tabm +1 " :+tabm := move to the right.
+  ```
+
+- An introduction to Vim Macro:
+
+  ```vim
+  <NORMAL MODE> -> qa (recording to register `a`)
+    -> <several_actions> -> q (exit macro/recording mode)
+    -> <times>@a || <times>@@ (to repeat the macroed actions many <times> you want)
   ```
 
 - Recording mode in Vim:
