@@ -863,6 +863,7 @@ git blame -L ^:<funcname>
 ```bash
 # [Local]:
 git for-each-ref --sort=-committerdate refs/heads/
+git for-each-ref --format="%(refname)" refs/remotes/origin
 
 # Or using `git branch` (since version 2.7.0):
 git branch --sort=-committerdate  # DESC
@@ -883,11 +884,11 @@ git branch --remote --sort=committerdate  # ASC
 - Advance options for beautify format:
 
 ```bash
-[Local]
+# [Local]
 git for-each-ref --sort=-committerdate refs/heads/ \
   --format='%(authordate:short) %(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 
-[Remote]
+# [Remote]
 git for-each-ref --sort=-committerdate refs/remotes/ \
   --format='%(authordate:short) %(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
 ```
