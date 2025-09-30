@@ -591,6 +591,13 @@ git checkout .
 git restore --staged <FILES>
 ```
 
+- Brings the `/path/to/file` from another branch to the current HEAD:
+
+```bash
+git restore --source <source_branch> /path/to/file # Overwrites file from its current workdir.
+git restore --source <source_branch> --staged --worktree /path/to/file # Overwrites but only delegated to *staged* state.
+```
+
 - Revert a file to most recent commit:
 
 ```bash
