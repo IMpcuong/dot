@@ -320,16 +320,10 @@ function daterepo() {
 
 # Synchronize forked repositories up-to-date with the latest owner's commit.
 function syncforked() {
-  local username=$1
-
-  local forkedRepos=($(
-    gh repo list |
-      grep -E "fork" |
-      grep -ioE "^.*${username}\/[\w*-_]*\b"
-  ))
-  for repo in "${forkedRepos[@]}"; do
-    gh repo sync --force $repo
-  done
+  gh repo list --fork --json 'nameWithOwner' --jq '.[] | .nameWithOwner | @text' |
+    while read repo; {
+      gh repo sync --force $repo
+    }
 }
 
 # Remove/clear multiple commands line history from `HISTFILE` in Linux system.
