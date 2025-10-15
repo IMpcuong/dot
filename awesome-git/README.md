@@ -1030,11 +1030,18 @@ $ git worktree list -v
 
 32. `git rev-list or git-rev-list`: blobs' revisions simplification:
 
-- Search for a bounds/range/compass list of commit's hash where its
-commit message enclose/match the given regex-pattern:
+- Searches for a bound/range/compass list of commit's hash where its
+commit message encloses/matches a given regex-pattern:
 
 ```bash
 git rev-list --max-count=10 --grep "^feat" main
+```
+
+- Lists all commit which changed/tainted a specific file:
+
+```bash
+git rev-list @ --oneline E_1857.cpp
+git rev-list HEAD --oneline E_1857.cpp
 ```
 
 33. Visualize the entire list of branches in desecended modification-time order:
