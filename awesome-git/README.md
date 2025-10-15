@@ -144,7 +144,7 @@ git show --textconv :main.go
 git show <branch_name>:<path/to/filename>
 ```
 
-- `git show` in multiple ways, with the same semantics:
+- `git show` behind each coherent section represents one cohesive/homogeneous semantic:
 
 ```bash
 # View the file content in the previous commit of the most recent one:
@@ -159,6 +159,9 @@ git show @{1}:./main.go
 
 # Show the original author from a specific commit:
 git show --format="%aN <%aE>" HEAD
+
+# Listing all the modified files are bound to a specific commit:
+git show --name-only $commit --oneline
 ```
 
 3. `git add/status`:
@@ -553,7 +556,7 @@ git diff --stat $(git symbolic-ref --short HEAD)^..master
 git diff --cached
 ```
 
-- Show list filenames of all modified files in a specific commit hash:
+- Reveals the filename-list (patched) which is bound to a single commit:
 
 ```bash
 git diff-tree --no-commit-id --name-only -r <COMMIT_HASH>
