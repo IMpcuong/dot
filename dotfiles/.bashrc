@@ -318,4 +318,4 @@ function recentb() {
 }
 ### End From.
 
-# ---------- Utilitty functions ----------
+# ---------- Utility functions ----------

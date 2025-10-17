@@ -431,7 +431,7 @@ function recentb() {
 }
 ### End From.
 
-# ---------- Utilitty functions ----------
+# ---------- Utility functions ----------
 
 # Global source configuration file:
 source $ZSH/oh-my-zsh.sh
