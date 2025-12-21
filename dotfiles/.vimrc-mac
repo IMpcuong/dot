@@ -50,6 +50,7 @@ vnoremap <C-y> "+y<cr>
 autocmd BufWritePre * :%s/\s\+$//e
 
 " :PlugInstall
+" cd ~/.vim && find . -type f -exec dos2unix {} \+
 call plug#begin()
 " Plug 'girishji/vimcomplete'
 Plug 'junegunn/fzf.vim'
