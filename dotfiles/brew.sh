@@ -4,7 +4,7 @@
 echo >>/Users/$(whoami)/.zprofile
 echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >>/Users/$(whoami)/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
-brew install iterm2 z zsh-autocomplete zsh-autosuggestions zsh-syntax-highlighting
+brew install iterm2 z zsh-autocomplete zsh-autosuggestions zsh-syntax-highlighting node
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -18,4 +18,5 @@ cd ~/.vim/colors
 curl -O https://raw.githubusercontent.com/nanotech/jellybeans.vim/master/colors/jellybeans.vim
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim # :PlugInstall
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim # :PlugInstall -> :CocInstall coc-clangd coc-go coc-git
+
