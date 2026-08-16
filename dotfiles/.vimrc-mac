@@ -46,6 +46,8 @@ noremap <M-Right> :+tabmove<cr>
 
 " Yanks to register `+` (on VISUAL mode) -> can be used in global clipboard.
 vnoremap <C-y> "+y<cr>
+" Paster from register `+` (on NORMAL mode) -> can be used in global clipboard.
+nnoremap <C-p> "+p<cr>
 
 autocmd BufWritePre * :%s/\s\+$//e
 
@@ -78,3 +80,7 @@ inoremap <silent><expr> <c-@> coc#refresh())
 " nmap <silent> gr <Plug>(coc-references)
 
 nnoremap <C-f> :NERDTreeFind<CR>
+
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
